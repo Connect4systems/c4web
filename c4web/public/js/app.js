@@ -310,6 +310,25 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       setStatus("جاري إرسال الطلب...");
 
+      const extractServerMessage = (payload) => {
+        const raw = payload?._server_messages;
+        if (!raw) return "";
+
+        try {
+          const messages = JSON.parse(raw);
+          if (!Array.isArray(messages) || !messages.length) return "";
+
+          const parsed = JSON.parse(messages[0] || "{}");
+          const clean = String(parsed?.message || "")
+            .replace(/<[^>]*>/g, " ")
+            .replace(/\s+/g, " ")
+            .trim();
+          return clean;
+        } catch (_error) {
+          return "";
+        }
+      };
+
       try {
         const formData = new FormData(form);
         const body = new URLSearchParams();
@@ -337,9 +356,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const payload = await response.json().catch(() => ({}));
         if (!response.ok || payload.exc) {
-          const errorMessage = payload?._server_messages
-            ? "تعذر إرسال الطلب حاليا. حاول مرة أخرى."
-            : payload?.message || "تعذر إرسال الطلب حاليا. حاول مرة أخرى.";
+          const detailedServerMessage = extractServerMessage(payload);
+          const errorMessage =
+            detailedServerMessage || payload?.message || "تعذر إرسال الطلب حاليا. حاول مرة أخرى.";
           throw new Error(errorMessage);
         }
 
