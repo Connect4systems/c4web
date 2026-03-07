@@ -13,26 +13,15 @@
   </head>
   <body>
     <div class="progress-line" data-scroll-progress></div>
-
-    <div class="announcement">
-      <div class="container announcement-wrap">
-        <span>
-          <strong>Architecture + AI:</strong>
-          حلولنا مبنية على فهم الأعمال أولا ثم توظيف ERP والذكاء الاصطناعي لتحقيق نتائج تشغيلية قابلة للقياس.
-        </span>
-        <a class="announcement-link" href="/contact">ناقش احتياج شركتك</a>
-      </div>
-    </div>
-
-    <header class="site-header">
+<header class="site-header">
       <div class="container header-wrap">
         <a class="brand" href="/">
           <span class="brand-mark">
             <img
               class="brand-logo"
-              src="https://connect4systems.com/files/logo.png"
+              src="{{ c4_logo_url or '/files/logo.png' }}"
               alt="Connect 4 Systems Logo"
-              onerror="this.onerror=null;this.src='https://connect4systems.com/files/logo-02.png';"
+              onerror="this.onerror=null;this.src='{{ c4_logo_fallback_url or '/files/logo-02.png' }}';"
             />
           </span>
           <span class="brand-title">
@@ -354,6 +343,8 @@
     </footer>
   </body>
 </html>
+
+
 
 
 

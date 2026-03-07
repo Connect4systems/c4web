@@ -5,6 +5,8 @@ app_description = "Modern Arabic RTL website for Connect4systems"
 app_email = "info@connect4systems.com"
 app_license = "MIT"
 
+update_website_context = "c4web.utils.update_website_context"
+
 website_route_rules = [
     {"from_route": "/home", "to_route": "index"},
     {"from_route": "/index-ar", "to_route": "index"},
