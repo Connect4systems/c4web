@@ -156,14 +156,16 @@ ul {
   color: #fff;
   font-weight: 800;
   font-family: "Cairo Play", "Alexandria", sans-serif;
-  background: linear-gradient(135deg, var(--brand) 0%, var(--ai) 100%);
-  box-shadow: 0 10px 24px rgba(111, 53, 255, 0.28);
+  background: #fff;
+  border: 1px solid rgba(15, 125, 143, 0.2);
+  box-shadow: 0 8px 20px rgba(8, 45, 70, 0.18);
 }
 
 .brand-logo {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  padding: 4px;
 }
 
 .brand-title {
@@ -203,21 +205,75 @@ ul {
   display: flex;
   align-items: center;
   gap: 4px;
+  flex-wrap: wrap;
 }
 
-.main-nav a {
+.main-nav a,
+.main-nav .nav-toggle {
   padding: 10px 14px;
   border-radius: 10px;
   color: var(--text-soft);
   font-size: 0.9rem;
   font-weight: 600;
+  font-family: inherit;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   transition: all var(--transition);
 }
 
 .main-nav a:hover,
-.main-nav a.active {
+.main-nav a.active,
+.main-nav .nav-toggle:hover,
+.main-nav .nav-toggle.active {
   color: var(--brand-dark);
   background: rgba(15, 125, 143, 0.12);
+}
+
+.nav-dropdown {
+  position: relative;
+}
+
+.nav-toggle::after {
+  content: "▾";
+  font-size: 0.72rem;
+  line-height: 1;
+  transition: transform var(--transition);
+}
+
+.nav-dropdown.open .nav-toggle::after,
+.nav-dropdown:hover .nav-toggle::after,
+.nav-dropdown:focus-within .nav-toggle::after {
+  transform: rotate(180deg);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  inset-inline-start: 0;
+  z-index: 30;
+  min-width: 220px;
+  display: none;
+  grid-template-columns: 1fr;
+  padding: 8px;
+  border-radius: 12px;
+  border: 1px solid rgba(8, 45, 70, 0.16);
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 16px 34px rgba(8, 45, 70, 0.2);
+}
+
+.dropdown-menu a {
+  width: 100%;
+  justify-content: flex-start;
+}
+
+.nav-dropdown.open > .dropdown-menu,
+.nav-dropdown:hover > .dropdown-menu,
+.nav-dropdown:focus-within > .dropdown-menu {
+  display: grid;
 }
 
 .btn {
@@ -237,6 +293,7 @@ ul {
 
 .btn:focus-visible,
 .main-nav a:focus-visible,
+.main-nav .nav-toggle:focus-visible,
 .menu-button:focus-visible,
 .tab-button:focus-visible,
 .accordion-trigger:focus-visible,
@@ -1197,6 +1254,29 @@ textarea:focus {
   object-fit: cover;
 }
 
+.contact-logo-visual {
+  background: linear-gradient(180deg, #eef5fb 0%, #dce9f6 100%);
+}
+
+.contact-logo-visual .hero-main-image {
+  object-fit: contain;
+  background: #fff;
+  padding: 28px;
+}
+
+.contact-logo-card {
+  display: grid;
+  place-items: center;
+  background: #fff;
+}
+
+.contact-logo-card img {
+  width: min(100%, 420px);
+  height: auto;
+  object-fit: contain;
+  padding: 18px;
+}
+
 .site-footer {
   margin-top: 36px;
   border-top: 1px solid rgba(8, 45, 70, 0.12);
@@ -1310,10 +1390,41 @@ textarea:focus {
   .main-nav {
     flex-direction: column;
     align-items: stretch;
+    gap: 8px;
   }
 
-  .main-nav a {
+  .main-nav a,
+  .main-nav .nav-toggle {
     background: rgba(255, 255, 255, 0.85);
+    width: 100%;
+    justify-content: space-between;
+    text-align: right;
+  }
+
+  .nav-dropdown {
+    width: 100%;
+  }
+
+  .dropdown-menu {
+    position: static;
+    min-width: 0;
+    display: none;
+    margin-top: 4px;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .nav-dropdown.open > .dropdown-menu {
+    display: grid;
+  }
+
+  .dropdown-menu a {
+    border-radius: 8px;
+    padding-inline-start: 24px;
+    background: rgba(242, 247, 252, 0.95);
   }
 
   .metric-row,

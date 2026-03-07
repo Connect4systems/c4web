@@ -46,15 +46,34 @@
         </button>
 
         <div class="nav-panel" data-nav-shell>
-          <nav class="main-nav">
+          <nav class="main-nav" aria-label="القائمة الرئيسية">
             <a href="/">الرئيسية</a>
-            <a href="/solution-template">حلولنا</a>
-            <a href="/trade">التجارة</a>
-            <a href="/retail-system">التجزئة</a>
-            <a href="/crm">CRM</a>
-            <a href="/factory">المصانع</a>
-            <a href="/construction">الإنشاءات</a>
-            <a href="/hr">HR</a>
+
+            <div class="nav-dropdown" data-nav-dropdown>
+              <button class="nav-toggle" type="button" aria-expanded="false">البرامج السحابية</button>
+              <div class="dropdown-menu">
+                <a href="/hr">HRMS</a>
+                <a href="/trade">الإدارة المالية</a>
+                <a href="/crm">إدارة خدمة العملاء</a>
+                <a href="/trade">إدارة المبيعات</a>
+                <a href="/trade">إدارة المخازن</a>
+                <a href="/trade">إدارة الشحن الدولي</a>
+              </div>
+            </div>
+
+            <div class="nav-dropdown" data-nav-dropdown>
+              <button class="nav-toggle" type="button" aria-expanded="false">الحلول الكاملة</button>
+              <div class="dropdown-menu">
+                <a href="/retail-system">المحلات التجارية</a>
+                <a href="/trade">الشركات التجارية</a>
+                <a href="/factory">المصانع</a>
+                <a href="/construction">المقاولات</a>
+              </div>
+            </div>
+
+            <a href="/catalog">خطط الاسعار</a>
+            <a href="/about">عملائنا</a>
+            <a href="/blog-list">المدونة</a>
             <a href="/contact">تواصل</a>
           </nav>
           <a class="btn btn-primary" href="/contact">ابدأ تطوير متجرك</a>
@@ -246,5 +265,8 @@
     </footer>
   </body>
 </html>
+
+
+
 
 
