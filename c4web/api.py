@@ -27,7 +27,10 @@ _TEXT_LIKE_FIELD_TYPES = {
 
 
 def _clean_text(value, max_len=0):
-    text = (value or "").strip()
+    if value is None:
+        text = ""
+    else:
+        text = str(value).strip()
     if max_len and len(text) > max_len:
         return text[:max_len]
     return text
@@ -44,6 +47,42 @@ def _clean_users(value):
         return ""
     # Keep numeric characters only so the value can be saved into Int/Data fields safely.
     return "".join(char for char in text if char.isdigit())
+
+
+def _coerce_field_value(field, raw_value):
+    if not field:
+        return ""
+    if raw_value is None:
+        return ""
+
+    fieldtype = (field.fieldtype or "").strip()
+    text = _clean_text(raw_value, 2000)
+    if _is_placeholder(text):
+        return ""
+
+    if fieldtype in {"Int", "Check"}:
+        normalized = "".join(char for char in text if char.isdigit() or char == "-")
+        if not normalized:
+            return ""
+        try:
+            return int(normalized)
+        except (TypeError, ValueError):
+            return ""
+
+    if fieldtype in {"Float", "Currency", "Percent"}:
+        normalized = text.replace(",", "")
+        try:
+            return float(normalized)
+        except (TypeError, ValueError):
+            return ""
+
+    if fieldtype == "Link":
+        options = _clean_text(getattr(field, "options", ""), 140)
+        if not options:
+            return text
+        return text if frappe.db.exists(options, text) else ""
+
+    return text
 
 
 def _infer_required_value(fieldname, values):
@@ -134,9 +173,14 @@ def create_website_lead():
         "company_name": company or None,
         "email_id": email,
         "mobile_no": phone,
-        "source": "Website",
         "status": "Lead",
     }
+
+    source_field = lead_meta.get_field("source")
+    if source_field:
+        source_value = _coerce_field_value(source_field, "Website")
+        if source_value != "":
+            lead_data["source"] = source_value
 
     # Copy any matching form keys to Lead fields, including custom fields.
     for field in lead_meta.fields:
@@ -146,11 +190,8 @@ def create_website_lead():
         if fieldname in lead_data:
             continue
 
-        raw_value = data.get(fieldname)
-        value = _clean_text(raw_value, 2000)
-        if _is_placeholder(value):
-            continue
-        if value:
+        value = _coerce_field_value(field, data.get(fieldname))
+        if value != "":
             lead_data[fieldname] = value
 
     # Map common website keys to likely custom Lead fields.
@@ -175,10 +216,13 @@ def create_website_lead():
         "custom_source_page": source_page,
     }
     for fieldname, value in alias_values.items():
-        if _is_placeholder(value):
+        field = lead_meta.get_field(fieldname)
+        if not field or fieldname in lead_data:
             continue
-        if lead_meta.has_field(fieldname) and not lead_data.get(fieldname):
-            lead_data[fieldname] = value
+        coerced_value = _coerce_field_value(field, value)
+        if coerced_value == "":
+            continue
+        lead_data[fieldname] = coerced_value
 
     notes_text = "\n".join(extra_notes)
     if notes_text:
@@ -213,8 +257,9 @@ def create_website_lead():
             continue
 
         inferred = _infer_required_value(fieldname, inferred_values)
-        if inferred and not _is_placeholder(inferred):
-            lead_data[fieldname] = inferred
+        inferred_value = _coerce_field_value(field, inferred)
+        if inferred_value != "":
+            lead_data[fieldname] = inferred_value
             continue
 
         missing_required.append(fieldname)
