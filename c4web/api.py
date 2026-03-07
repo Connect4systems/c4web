@@ -27,17 +27,41 @@ def _is_placeholder(value):
     return not text or text.startswith("اختر")
 
 
+def _clean_users(value):
+    text = _clean_text(value, 20)
+    if not text:
+        return ""
+    # Keep numeric characters only so the value can be saved into Int/Data fields safely.
+    return "".join(char for char in text if char.isdigit())
+
+
 def _infer_required_value(fieldname, values):
     name = (fieldname or "").lower()
     if not name:
         return ""
 
-    if "sector" in name or "industry" in name:
+    if "sector" in name or "industry" in name or "وصف_النشاط" in (fieldname or ""):
         return values.get("sector") or ""
-    if "scope" in name or "need" in name or "require" in name or "service" in name:
+    if (
+        "scope" in name
+        or "need" in name
+        or "require" in name
+        or "service" in name
+        or name.endswith("_req")
+        or "req" in name
+    ):
         return values.get("scope") or ""
-    if "message" in name or "note" in name or "brief" in name or "challenge" in name:
+    if (
+        "message" in name
+        or "note" in name
+        or "brief" in name
+        or "challenge" in name
+        or name.endswith("_inq")
+        or "inq" in name
+    ):
         return values.get("message") or ""
+    if "user" in name or "employee" in name or "staff" in name:
+        return values.get("users") or ""
     if "company" in name:
         return values.get("company") or ""
     if "phone" in name or "mobile" in name:
@@ -63,9 +87,10 @@ def create_website_lead():
     company = _clean_text(data.get("company"), 140)
     phone = _clean_text(data.get("phone"), 80)
     email = _clean_text(data.get("email"), 140)
-    sector = _clean_text(data.get("sector"), 140)
-    scope = _clean_text(data.get("scope"), 140)
-    message = _clean_text(data.get("message"), 2000)
+    sector = _clean_text(data.get("sector") or data.get("وصف_النشاط") or data.get("custom_sector"), 140)
+    scope = _clean_text(data.get("scope") or data.get("custom_req") or data.get("need_type"), 140)
+    message = _clean_text(data.get("message") or data.get("custom_inq"), 2000)
+    users = _clean_users(data.get("users") or data.get("no_of_employees") or data.get("employee_count"))
     source_page = _clean_text(data.get("source_page"), 255) or _clean_text(getattr(frappe.request, "path", ""), 255)
 
     if not full_name:
@@ -85,6 +110,8 @@ def create_website_lead():
         extra_notes.append(f"Sector: {sector}")
     if scope and "اختر" not in scope:
         extra_notes.append(f"Need: {scope}")
+    if users:
+        extra_notes.append(f"Users: {users}")
     if source_page:
         extra_notes.append(f"Source Page: {source_page}")
     if message:
@@ -119,13 +146,20 @@ def create_website_lead():
     alias_values = {
         "sector": sector,
         "industry": sector,
+        "وصف_النشاط": sector,
         "custom_sector": sector,
         "scope": scope,
+        "custom_req": scope,
         "need_type": scope,
         "custom_scope": scope,
         "custom_need_type": scope,
         "message": message,
+        "custom_inq": message,
         "custom_message": message,
+        "users": users,
+        "custom_users": users,
+        "employee_count": users,
+        "no_of_employees": users,
         "source_page": source_page,
         "custom_source_page": source_page,
     }
@@ -147,6 +181,7 @@ def create_website_lead():
         "sector": sector,
         "scope": scope,
         "message": message,
+        "users": users,
         "company": company,
         "phone": phone,
         "email": email,

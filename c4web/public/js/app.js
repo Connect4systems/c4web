@@ -363,24 +363,65 @@ document.addEventListener("DOMContentLoaded", () => {
           const normalizedValue = String(value).trim();
           body.append(key, normalizedValue);
         });
+
+        const sectorValue = String(formData.get("sector") || "").trim();
+        const scopeValue = String(formData.get("scope") || "").trim();
+        const messageValue = String(formData.get("message") || "").trim();
+        const usersValue = String(formData.get("users") || "").trim();
+
+        if (sectorValue && !sectorValue.startsWith("اختر")) {
+          body.append("وصف_النشاط", sectorValue);
+        }
+        if (scopeValue && !scopeValue.startsWith("اختر")) {
+          body.append("custom_req", scopeValue);
+        }
+        if (messageValue) {
+          body.append("custom_inq", messageValue);
+        }
+        if (usersValue) {
+          body.append("users", usersValue);
+        }
+
         body.append("source_page", window.location.pathname || "/contact");
 
         const csrfToken = window.csrf_token || window.frappe?.csrf_token || "";
+        const sessionUser = window.frappe?.session?.user || window.session_user || "Guest";
+        const isGuestSession = !sessionUser || sessionUser === "Guest";
         const headers = {
           "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
         };
-        if (csrfToken) {
+        const hasValidCsrf =
+          typeof csrfToken === "string" &&
+          csrfToken.length > 0 &&
+          csrfToken !== "None" &&
+          csrfToken !== "null";
+        if (hasValidCsrf && !isGuestSession) {
           headers["X-Frappe-CSRF-Token"] = csrfToken;
         }
 
-        const response = await fetch("/api/method/c4web.api.create_website_lead", {
-          method: "POST",
-          headers,
-          body: body.toString(),
-          credentials: "same-origin",
-        });
+        const sendLeadRequest = (requestHeaders) =>
+          fetch("/api/method/c4web.api.create_website_lead", {
+            method: "POST",
+            headers: requestHeaders,
+            body: body.toString(),
+            credentials: "same-origin",
+          });
 
-        const payload = await response.json().catch(() => ({}));
+        let response = await sendLeadRequest(headers);
+        let payload = await response.json().catch(() => ({}));
+
+        const firstMessage = extractServerMessage(payload) || String(payload?.message || "");
+        const shouldRetryWithoutCsrf =
+          (!!headers["X-Frappe-CSRF-Token"] && /invalid request/i.test(firstMessage)) || response.status === 403;
+
+        if (shouldRetryWithoutCsrf) {
+          const retryHeaders = {
+            "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+          };
+          response = await sendLeadRequest(retryHeaders);
+          payload = await response.json().catch(() => ({}));
+        }
+
         if (!response.ok || payload.exc) {
           const detailedServerMessage = extractServerMessage(payload);
           const errorMessage =

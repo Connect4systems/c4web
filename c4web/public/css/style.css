@@ -1371,7 +1371,21 @@ textarea:focus {
   background: linear-gradient(180deg, #eef5fb 0%, #dce9f6 100%);
 }
 
+.brand-logo-visual {
+  background: linear-gradient(180deg, #eef5fb 0%, #dce9f6 100%);
+}
+
+.brand-logo-visual::before {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(6, 28, 46, 0.45));
+}
+
 .contact-logo-visual .hero-main-image {
+  object-fit: contain;
+  background: #fff;
+  padding: 28px;
+}
+
+.brand-logo-visual .hero-main-image {
   object-fit: contain;
   background: #fff;
   padding: 28px;
