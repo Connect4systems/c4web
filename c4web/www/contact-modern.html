@@ -96,9 +96,9 @@
           <aside class="hero-visual contact-logo-visual reveal" data-float="8">
             <img
               class="hero-main-image"
-              src="https://connect4systems.com/files/logo.png"
+              src="{{ c4_logo_url or '/files/logo-erp.png' }}"
               alt="شعار شركة Connect 4 Systems"
-              onerror="this.onerror=null;this.src='https://connect4systems.com/files/logo-02.png';"
+              onerror="this.onerror=null;this.src='/files/logo-erp.png';"
             />
             <div class="hero-overlay">
               <div class="hero-panel">
@@ -196,9 +196,9 @@
 
             <div class="map-card contact-logo-card" style="margin-top: 14px;">
               <img
-                src="https://connect4systems.com/files/logo.png"
+                src="{{ c4_logo_url or '/files/logo-erp.png' }}"
                 alt="شعار Connect 4 Systems"
-                onerror="this.onerror=null;this.src='https://connect4systems.com/files/logo-02.png';"
+                onerror="this.onerror=null;this.src='/files/logo-erp.png';"
               />
             </div>
           </aside>
