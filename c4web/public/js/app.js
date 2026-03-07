@@ -1,35 +1,76 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const body = document.body;
   const menuToggle = document.querySelector("[data-menu-toggle]");
   const navShell = document.querySelector("[data-nav-shell]");
   const header = document.querySelector(".site-header");
+
+  const closeMenu = () => {
+    if (!menuToggle || !navShell) return;
+    navShell.classList.remove("open");
+    menuToggle.setAttribute("aria-expanded", "false");
+  };
 
   if (menuToggle && navShell) {
     menuToggle.addEventListener("click", () => {
       const isOpen = navShell.classList.toggle("open");
       menuToggle.setAttribute("aria-expanded", String(isOpen));
+      body.classList.toggle("menu-open", isOpen);
+    });
+
+    navShell.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        closeMenu();
+        body.classList.remove("menu-open");
+      });
+    });
+
+    document.addEventListener("click", (event) => {
+      const target = event.target;
+      if (!(target instanceof Node)) return;
+      if (!navShell.classList.contains("open")) return;
+      if (navShell.contains(target) || menuToggle.contains(target)) return;
+      closeMenu();
+      body.classList.remove("menu-open");
     });
   }
 
-  window.addEventListener("scroll", () => {
-    if (!header) return;
-    header.classList.toggle("compact", window.scrollY > 10);
-  });
-
   const navLinks = document.querySelectorAll(".main-nav a");
-  const currentPath = window.location.pathname.split("/").pop() || "index.html";
+  const currentPath = window.location.pathname.replace(/\/$/, "") || "/";
 
   navLinks.forEach((link) => {
     const href = link.getAttribute("href");
-    if (!href) return;
+    if (!href || href.startsWith("#")) return;
+    const normalizedHref = href.replace(/\/$/, "") || "/";
 
-    const normalized = href.includes("#") ? href.split("#")[0] : href;
-    if (normalized === currentPath) {
+    if (normalizedHref === currentPath) {
+      link.classList.add("active");
+      return;
+    }
+
+    // Keep section pages highlighted for mapped aliases such as /home -> /
+    if (normalizedHref === "/" && ["/home", "/index-ar", "/index-en"].includes(currentPath)) {
       link.classList.add("active");
     }
   });
 
-  const revealItems = document.querySelectorAll(".reveal");
+  const progressBar = document.querySelector("[data-scroll-progress]");
+  const onScroll = () => {
+    if (header) {
+      header.classList.toggle("compact", window.scrollY > 10);
+    }
 
+    if (!progressBar) return;
+
+    const scrollTop = window.scrollY;
+    const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = documentHeight > 0 ? Math.min((scrollTop / documentHeight) * 100, 100) : 0;
+    progressBar.style.width = `${progress}%`;
+  };
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  const revealItems = document.querySelectorAll(".reveal");
   if ("IntersectionObserver" in window) {
     const revealObserver = new IntersectionObserver(
       (entries, observer) => {
@@ -39,9 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
           observer.unobserve(entry.target);
         });
       },
-      {
-        threshold: 0.15,
-      }
+      { threshold: 0.16 }
     );
 
     revealItems.forEach((item) => revealObserver.observe(item));
@@ -50,18 +89,22 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const counters = document.querySelectorAll("[data-counter]");
-
   const animateCounter = (element) => {
     const target = Number(element.dataset.counter || 0);
     const duration = Number(element.dataset.duration || 1400);
+    const prefix = element.dataset.prefix || "";
+    const suffix = element.dataset.suffix || "";
     const start = performance.now();
 
     const render = (time) => {
       const progress = Math.min((time - start) / duration, 1);
       const value = Math.floor(progress * target);
-      element.textContent = value.toLocaleString("ar-EG");
+      element.textContent = `${prefix}${value.toLocaleString("ar-EG")}${suffix}`;
+
       if (progress < 1) {
         requestAnimationFrame(render);
+      } else {
+        element.textContent = `${prefix}${target.toLocaleString("ar-EG")}${suffix}`;
       }
     };
 
@@ -85,31 +128,68 @@ document.addEventListener("DOMContentLoaded", () => {
     counters.forEach((counter) => animateCounter(counter));
   }
 
-  const tabBlocks = document.querySelectorAll(".tabs");
+  const tabShells = document.querySelectorAll(".tab-shell");
+  tabShells.forEach((shell) => {
+    const buttons = shell.querySelectorAll(".tab-button");
+    const panels = shell.querySelectorAll(".tab-panel");
 
-  tabBlocks.forEach((tabs) => {
-    const buttons = tabs.querySelectorAll(".tab-buttons button");
-    const panels = tabs.querySelectorAll(".tab-panel");
+    if (!buttons.length || !panels.length) return;
+
+    const activateTab = (id) => {
+      buttons.forEach((button) => {
+        const isActive = button.dataset.tabTarget === id;
+        button.classList.toggle("active", isActive);
+        button.setAttribute("aria-selected", String(isActive));
+      });
+
+      panels.forEach((panel) => {
+        const isActive = panel.dataset.tabPanel === id;
+        panel.classList.toggle("active", isActive);
+      });
+    };
 
     buttons.forEach((button) => {
       button.addEventListener("click", () => {
-        const panelId = button.getAttribute("data-tab");
+        const target = button.dataset.tabTarget;
+        if (!target) return;
+        activateTab(target);
+      });
+    });
+  });
 
-        buttons.forEach((btn) => btn.classList.remove("active"));
-        panels.forEach((panel) => panel.classList.remove("active"));
+  const filterGroups = document.querySelectorAll("[data-filter-group]");
+  filterGroups.forEach((group) => {
+    const chips = group.querySelectorAll(".chip[data-filter]");
+    const targetSelector = group.getAttribute("data-filter-target") || "";
+    const scope = targetSelector ? document.querySelector(targetSelector) : group;
 
-        button.classList.add("active");
-        tabs.querySelector(`#${panelId}`)?.classList.add("active");
+    if (!scope || !chips.length) return;
+
+    const items = scope.querySelectorAll("[data-category]");
+    if (!items.length) return;
+
+    chips.forEach((chip) => {
+      chip.addEventListener("click", () => {
+        const filter = chip.dataset.filter || "all";
+
+        chips.forEach((item) => item.classList.remove("active"));
+        chip.classList.add("active");
+
+        items.forEach((card) => {
+          const category = card.dataset.category || "";
+          const categories = category.split(" ").filter(Boolean);
+          const visible = filter === "all" || categories.includes(filter);
+          card.hidden = !visible;
+        });
       });
     });
   });
 
   const accordionTriggers = document.querySelectorAll(".accordion-trigger");
-
   accordionTriggers.forEach((trigger) => {
     trigger.addEventListener("click", () => {
       const panelId = trigger.getAttribute("data-accordion-target");
-      const panel = document.getElementById(panelId);
+      const panel = panelId ? document.getElementById(panelId) : null;
       const isExpanded = trigger.getAttribute("aria-expanded") === "true";
 
       trigger.setAttribute("aria-expanded", String(!isExpanded));
@@ -119,14 +199,24 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       if (!panel) return;
-
-      if (isExpanded) {
-        panel.style.maxHeight = "0";
-      } else {
-        panel.style.maxHeight = `${panel.scrollHeight}px`;
-      }
+      panel.style.maxHeight = isExpanded ? "0" : `${panel.scrollHeight}px`;
     });
   });
+
+  const floatItems = document.querySelectorAll("[data-float]");
+  if (floatItems.length) {
+    window.addEventListener("mousemove", (event) => {
+      const xRatio = event.clientX / window.innerWidth - 0.5;
+      const yRatio = event.clientY / window.innerHeight - 0.5;
+
+      floatItems.forEach((item) => {
+        const depth = Number(item.getAttribute("data-float")) || 8;
+        const x = -(xRatio * depth);
+        const y = -(yRatio * depth);
+        item.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+      });
+    });
+  }
 
   const year = document.querySelector("[data-current-year]");
   if (year) {
