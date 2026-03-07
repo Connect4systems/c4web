@@ -289,6 +289,29 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  const setupImageFallbacks = () => {
+    const fallbackSrc = "/assets/c4web/images/image-fallback.svg";
+    const contentImages = document.querySelectorAll("main img, .site-footer img");
+
+    contentImages.forEach((img) => {
+      if (!(img instanceof HTMLImageElement)) return;
+
+      if (!img.getAttribute("loading")) {
+        img.setAttribute("loading", "lazy");
+      }
+      img.decoding = "async";
+
+      img.addEventListener("error", () => {
+        if (img.dataset.fallbackApplied === "1") return;
+        img.dataset.fallbackApplied = "1";
+        img.classList.add("img-fallback");
+        img.src = fallbackSrc;
+      });
+    });
+  };
+
+  setupImageFallbacks();
+
   const leadForms = document.querySelectorAll("[data-lead-form]");
   leadForms.forEach((form) => {
     form.addEventListener("submit", async (event) => {
