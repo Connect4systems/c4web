@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const navShell = document.querySelector("[data-nav-shell]");
   const header = document.querySelector(".site-header");
   const navDropdowns = document.querySelectorAll("[data-nav-dropdown]");
+  const isMobileNav = () => window.matchMedia("(max-width: 860px)").matches;
 
   const closeDropdowns = () => {
     navDropdowns.forEach((dropdown) => {
@@ -51,6 +52,11 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!toggle) return;
 
     toggle.addEventListener("click", (event) => {
+      if (!isMobileNav()) {
+        closeDropdowns();
+        return;
+      }
+
       event.preventDefault();
       event.stopPropagation();
 
@@ -82,6 +88,12 @@ document.addEventListener("DOMContentLoaded", () => {
     closeDropdowns();
     closeMenu();
     body.classList.remove("menu-open");
+  });
+
+  window.addEventListener("resize", () => {
+    if (!isMobileNav()) {
+      closeDropdowns();
+    }
   });
 
   const navLinks = document.querySelectorAll(".main-nav a");
