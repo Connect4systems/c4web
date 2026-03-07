@@ -399,26 +399,25 @@ document.addEventListener("DOMContentLoaded", () => {
           headers["X-Frappe-CSRF-Token"] = csrfToken;
         }
 
-        const sendLeadRequest = (requestHeaders) =>
+        const sendLeadRequest = (requestHeaders, credentialsMode = "same-origin") =>
           fetch("/api/method/c4web.api.create_website_lead", {
             method: "POST",
             headers: requestHeaders,
             body: body.toString(),
-            credentials: "same-origin",
+            credentials: credentialsMode,
           });
 
         let response = await sendLeadRequest(headers);
         let payload = await response.json().catch(() => ({}));
 
         const firstMessage = extractServerMessage(payload) || String(payload?.message || "");
-        const shouldRetryWithoutCsrf =
-          (!!headers["X-Frappe-CSRF-Token"] && /invalid request/i.test(firstMessage)) || response.status === 403;
+        const shouldRetryWithoutCsrf = /invalid request/i.test(firstMessage) || response.status === 403;
 
         if (shouldRetryWithoutCsrf) {
           const retryHeaders = {
             "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
           };
-          response = await sendLeadRequest(retryHeaders);
+          response = await sendLeadRequest(retryHeaders, "omit");
           payload = await response.json().catch(() => ({}));
         }
 

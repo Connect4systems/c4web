@@ -14,6 +14,17 @@ _LAYOUT_FIELD_TYPES = {
     "Heading",
 }
 
+_TEXT_LIKE_FIELD_TYPES = {
+    "Data",
+    "Small Text",
+    "Text",
+    "Text Editor",
+    "Long Text",
+    "Code",
+    "Markdown Editor",
+    "Read Only",
+}
+
 
 def _clean_text(value, max_len=0):
     text = (value or "").strip()
@@ -171,9 +182,13 @@ def create_website_lead():
 
     notes_text = "\n".join(extra_notes)
     if notes_text:
-        if lead_meta.has_field("notes"):
+        notes_field = lead_meta.get_field("notes")
+        description_field = lead_meta.get_field("description")
+
+        # Some Lead setups use a child table for notes; write summary text only to text-like fields.
+        if notes_field and notes_field.fieldtype in _TEXT_LIKE_FIELD_TYPES:
             lead_data["notes"] = notes_text
-        elif lead_meta.has_field("description"):
+        elif description_field and description_field.fieldtype in _TEXT_LIKE_FIELD_TYPES:
             lead_data["description"] = notes_text
 
     # Attempt to satisfy required custom fields from existing form values.
