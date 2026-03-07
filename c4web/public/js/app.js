@@ -218,6 +218,73 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  const leadForms = document.querySelectorAll("[data-lead-form]");
+  leadForms.forEach((form) => {
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const submitButton = form.querySelector("button[type='submit']");
+      const statusEl = form.querySelector("[data-form-status]");
+      const setStatus = (message, type = "") => {
+        if (!statusEl) return;
+        statusEl.textContent = message;
+        statusEl.classList.remove("success", "error");
+        if (type) {
+          statusEl.classList.add(type);
+        }
+      };
+
+      if (submitButton) {
+        submitButton.disabled = true;
+      }
+      setStatus("جاري إرسال الطلب...");
+
+      try {
+        const formData = new FormData(form);
+        const body = new URLSearchParams();
+
+        formData.forEach((value, key) => {
+          const normalizedValue = String(value).trim();
+          body.append(key, normalizedValue);
+        });
+        body.append("source_page", window.location.pathname || "/contact");
+
+        const csrfToken = window.csrf_token || window.frappe?.csrf_token || "";
+        const headers = {
+          "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+        };
+        if (csrfToken) {
+          headers["X-Frappe-CSRF-Token"] = csrfToken;
+        }
+
+        const response = await fetch("/api/method/c4web.api.create_website_lead", {
+          method: "POST",
+          headers,
+          body: body.toString(),
+          credentials: "same-origin",
+        });
+
+        const payload = await response.json().catch(() => ({}));
+        if (!response.ok || payload.exc) {
+          const errorMessage = payload?._server_messages
+            ? "تعذر إرسال الطلب حاليا. حاول مرة أخرى."
+            : payload?.message || "تعذر إرسال الطلب حاليا. حاول مرة أخرى.";
+          throw new Error(errorMessage);
+        }
+
+        form.reset();
+        setStatus("تم إنشاء Lead جديد بنجاح. سيتواصل فريقنا معك قريبا.", "success");
+      } catch (error) {
+        const message = error instanceof Error ? error.message : "تعذر إرسال الطلب حاليا. حاول مرة أخرى.";
+        setStatus(message, "error");
+      } finally {
+        if (submitButton) {
+          submitButton.disabled = false;
+        }
+      }
+    });
+  });
+
   const year = document.querySelector("[data-current-year]");
   if (year) {
     year.textContent = String(new Date().getFullYear());

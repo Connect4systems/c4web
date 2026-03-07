@@ -152,11 +152,18 @@ ul {
   border-radius: 14px;
   display: grid;
   place-items: center;
+  overflow: hidden;
   color: #fff;
   font-weight: 800;
   font-family: "Cairo Play", "Alexandria", sans-serif;
   background: linear-gradient(135deg, var(--brand) 0%, var(--ai) 100%);
   box-shadow: 0 10px 24px rgba(111, 53, 255, 0.28);
+}
+
+.brand-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .brand-title {
@@ -243,6 +250,12 @@ select:focus-visible {
 
 .btn:hover {
   transform: translateY(-2px);
+}
+
+.btn[disabled] {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
 }
 
 .btn-primary {
@@ -1014,6 +1027,21 @@ blockquote {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 10px;
+}
+
+.form-status {
+  min-height: 1.4em;
+  margin: 6px 2px 0;
+  font-size: 0.84rem;
+  color: var(--text-soft);
+}
+
+.form-status.success {
+  color: var(--success);
+}
+
+.form-status.error {
+  color: #c9452d;
 }
 
 .field {

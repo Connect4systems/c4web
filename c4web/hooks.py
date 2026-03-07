@@ -26,6 +26,13 @@ website_route_rules = [
     {"from_route": "/%D8%A7%D9%84%D9%85%D9%86%D8%AA%D8%AC%D8%A7%D8%AA", "to_route": "catalog"},
     {"from_route": "/e-commerce", "to_route": "catalog"},
 
+    {"from_route": "/trade", "to_route": "trade"},
+    {"from_route": "/retail-system", "to_route": "retail-system"},
+    {"from_route": "/factory", "to_route": "factory"},
+    {"from_route": "/crm", "to_route": "crm"},
+    {"from_route": "/hr", "to_route": "hr"},
+    {"from_route": "/construction", "to_route": "construction"},
+
     {"from_route": "/retailtest", "to_route": "retail-system"},
     {"from_route": "/retais-erp", "to_route": "retail-system"},
     {"from_route": "/hr2", "to_route": "hr"},
@@ -33,7 +40,6 @@ website_route_rules = [
     {"from_route": "/sales", "to_route": "trade"},
     {"from_route": "/ship", "to_route": "trade"},
     {"from_route": "/Account_system", "to_route": "trade"},
-    {"from_route": "/construction", "to_route": "solution-template"},
     {"from_route": "/web-development", "to_route": "solution-template"},
 
     {"from_route": "/recruitment", "to_route": "hr"},

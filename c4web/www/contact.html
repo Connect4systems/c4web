@@ -27,7 +27,14 @@
     <header class="site-header">
       <div class="container header-wrap">
         <a class="brand" href="/">
-          <span class="brand-mark">C4</span>
+          <span class="brand-mark">
+            <img
+              class="brand-logo"
+              src="https://connect4systems.com/app/file/cd953f1b3e"
+              alt="Connect 4 Systems Logo"
+              onerror="this.onerror=null;this.src='https://connect4systems.com/files/logo.png';"
+            />
+          </span>
           <span class="brand-title">
             <strong>Contact Connect 4</strong>
             <small>Let's Build Your Next System</small>
@@ -42,6 +49,10 @@
           <nav class="main-nav">
             <a href="/">الرئيسية</a>
             <a href="/solution-template">حلولنا</a>
+            <a href="/trade">التجارة</a>
+            <a href="/retail-system">التجزئة</a>
+            <a href="/factory">المصانع</a>
+            <a href="/construction">الإنشاءات</a>
             <a href="/catalog">المنتجات</a>
             <a href="/blog-list">المدونة</a>
             <a href="/about">من نحن</a>
@@ -94,10 +105,10 @@
             <h2>أرسل طلبك الآن</h2>
             <p class="text-muted">املأ النموذج التالي وسيتواصل معك فريقنا خلال يوم عمل.</p>
 
-            <form class="form-grid" novalidate>
+            <form id="lead-form" class="form-grid" data-lead-form novalidate>
               <div class="field">
                 <label for="name">الاسم</label>
-                <input id="name" name="name" type="text" placeholder="الاسم الكامل" />
+                <input id="name" name="name" type="text" placeholder="الاسم الكامل" required />
               </div>
 
               <div class="field">
@@ -107,12 +118,12 @@
 
               <div class="field">
                 <label for="phone">رقم الجوال</label>
-                <input id="phone" name="phone" type="tel" placeholder="+20" />
+                <input id="phone" name="phone" type="tel" placeholder="+20" required />
               </div>
 
               <div class="field">
                 <label for="email">البريد الإلكتروني</label>
-                <input id="email" name="email" type="email" placeholder="name@company.com" />
+                <input id="email" name="email" type="email" placeholder="name@company.com" required />
               </div>
 
               <div class="field field-full">
@@ -141,11 +152,15 @@
 
               <div class="field field-full">
                 <label for="message">وصف مختصر للتحدي الحالي</label>
-                <textarea id="message" name="message" placeholder="ما المشكلة التي ترغب في حلها؟"></textarea>
+                <textarea id="message" name="message" placeholder="ما المشكلة التي ترغب في حلها؟" required></textarea>
               </div>
 
               <div class="field field-full">
                 <button class="btn btn-primary" type="submit">إرسال الطلب</button>
+              </div>
+
+              <div class="field field-full">
+                <p class="form-status" data-form-status aria-live="polite"></p>
               </div>
             </form>
           </article>
@@ -245,6 +260,7 @@
             <li><a href="/trade">التجارة</a></li>
             <li><a href="/retail-system">التجزئة</a></li>
             <li><a href="/factory">المصانع</a></li>
+            <li><a href="/construction">الإنشاءات</a></li>
           </ul>
         </div>
         <div class="footer-col">
@@ -263,3 +279,6 @@
     </footer>
   </body>
 </html>
+
+
+
