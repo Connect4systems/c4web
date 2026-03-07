@@ -296,6 +296,9 @@ document.addEventListener("DOMContentLoaded", () => {
     contentImages.forEach((img) => {
       if (!(img instanceof HTMLImageElement)) return;
 
+      // Keep explicit inline onerror behavior when provided in templates.
+      if (img.hasAttribute("onerror")) return;
+
       if (!img.getAttribute("loading")) {
         img.setAttribute("loading", "lazy");
       }
