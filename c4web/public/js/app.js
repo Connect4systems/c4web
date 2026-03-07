@@ -360,4 +360,15 @@ document.addEventListener("DOMContentLoaded", () => {
   if (year) {
     year.textContent = String(new Date().getFullYear());
   }
+
+  if (!document.querySelector(".wa-float")) {
+    const waLink = document.createElement("a");
+    waLink.className = "wa-float";
+    waLink.href = "https://wa.me/201006676145";
+    waLink.target = "_blank";
+    waLink.rel = "noopener noreferrer";
+    waLink.setAttribute("aria-label", "تواصل عبر واتساب");
+    waLink.innerHTML = '<img src="/files/WhatsApp.svg.webp" alt="واتساب" loading="lazy" />';
+    body.appendChild(waLink);
+  }
 });
