@@ -3,46 +3,49 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>المدونة | كونكت 4</title>
+    <title>مدونة كونكت 4 | مقالات التحول الرقمي</title>
     <meta
       name="description"
-      content="تصميم حديث لصفحات تصنيفات المدونة مع بطاقات محتوى واضحة، فلاتر، وتجربة قراءة محسنة بالعربية."
+      content="مدونة Connect 4 العربية: مقالات ERP وCRM والذكاء الاصطناعي، قصص نجاح، ورؤى تنفيذية للشركات."
     />
     <link rel="stylesheet" href="/assets/c4web/css/style.css" />
     <script defer src="/assets/c4web/js/app.js"></script>
   </head>
   <body>
-    <div class="top-note">
-      <div class="container">
-        <span>قالب مخصص لصفحات التصنيفات: <strong>general-blog / partner / artical</strong></span>
-        <span class="badge-inline">Template E</span>
+    <div class="progress-line" data-scroll-progress></div>
+
+    <div class="announcement">
+      <div class="container announcement-wrap">
+        <span>
+          <strong>Knowledge Hub:</strong>
+          محتوى عربي عملي يشرح كيف يتحول ERP والذكاء الاصطناعي إلى نتائج تشغيلية قابلة للقياس.
+        </span>
+        <a class="announcement-link" href="/blog-post">اقرأ المقال المميز</a>
       </div>
     </div>
 
     <header class="site-header">
-      <div class="container nav-wrap">
+      <div class="container header-wrap">
         <a class="brand" href="/">
           <span class="brand-mark">C4</span>
-          <span>كونكت 4 سيستمز</span>
+          <span class="brand-title">
+            <strong>Connect 4 Blog</strong>
+            <small>ERP, AI, Business Growth</small>
+          </span>
         </a>
 
-        <button
-          class="menu-toggle"
-          type="button"
-          aria-label="فتح القائمة"
-          aria-expanded="false"
-          data-menu-toggle
-        >
+        <button class="menu-button" type="button" aria-label="فتح القائمة" aria-expanded="false" data-menu-toggle>
           ☰
         </button>
 
-        <div class="nav-shell" data-nav-shell>
+        <div class="nav-panel" data-nav-shell>
           <nav class="main-nav">
             <a href="/">الرئيسية</a>
-            <a href="/solution-template">الحلول</a>
+            <a href="/solution-template">حلولنا</a>
+            <a href="/catalog">المنتجات</a>
             <a href="/blog-list">المدونة</a>
             <a href="/about">من نحن</a>
-            <a href="/contact">اتصل بنا</a>
+            <a href="/contact">تواصل</a>
           </nav>
           <a class="btn btn-primary" href="/contact">اطلب استشارة محتوى</a>
         </div>
@@ -50,162 +53,143 @@
     </header>
 
     <main>
-      <section class="hero section--tight">
+      <section class="hero section-tight">
         <div class="container hero-grid">
-          <div class="hero-copy reveal">
-            <span class="kicker">مركز المعرفة</span>
-            <h1>مدونة عربية مرتبة تساعد عميلك يتخذ قرار أسرع</h1>
-            <p>
-              تم إعادة بناء تجربة تصفح المقالات لتقليل الفوضى البصرية: تصنيفات
-              واضحة، بطاقات موحدة، وبيانات قراءة مفيدة.
+          <div class="reveal">
+            <div class="hero-tag-row">
+              <span class="badge badge-brand">مقالات تنفيذية</span>
+              <span class="badge badge-ai">AI + ERP Insights</span>
+            </div>
+            <h1 class="hero-title">مدونة عربية تساعدك تتخذ قرار تقني أفضل</h1>
+            <p class="hero-text">
+              نصنع محتوى موجه للإدارة التنفيذية وفرق التشغيل، يشرح الأدوات والمنهجيات
+              بلغة عملية مدعومة بأمثلة واقعية وقصص نجاح.
             </p>
             <div class="hero-actions">
-              <a class="btn btn-primary" href="/blog-post">قراءة نموذج مقال</a>
-              <a class="btn btn-outline" href="#posts">استعرض المقالات</a>
+              <a class="btn btn-primary" href="/blog-post">المقال المميز</a>
+              <a class="btn btn-outline" href="#articles">كل المقالات</a>
             </div>
           </div>
 
-          <aside class="hero-panel reveal">
-            <div class="hero-panel-inner">
-              <h3>إدارة المحتوى بعد التحديث</h3>
-              <p>
-                نفس القالب يدعم جميع تصنيفات المدونة الموجودة حاليا مع إضافة فلاتر
-                وتجربة أسرع للمستخدم.
-              </p>
-              <div class="stat-grid">
-                <div class="stat-item">
-                  <strong data-counter="24">0</strong>
-                  <span>مقال ضمن General Blog</span>
-                </div>
-                <div class="stat-item">
-                  <strong data-counter="21">0</strong>
-                  <span>قصة شريك ضمن Partner</span>
-                </div>
-                <div class="stat-item">
-                  <strong data-counter="7">0</strong>
-                  <span>مقالات Artical</span>
-                </div>
-                <div class="stat-item">
-                  <strong data-counter="28">0</strong>
-                  <span>تصنيفات إضافية</span>
-                </div>
+          <aside class="hero-visual reveal" data-float="8">
+            <img class="hero-main-image" src="https://connect4systems.com/files/Copilot_20250724_120700.png" alt="مدونة التحول الرقمي" />
+            <div class="hero-overlay">
+              <div class="hero-panel">
+                <h3>محتوى موجه للقرار</h3>
+                <p>خطط تنفيذ، أخطاء شائعة، ومؤشرات نجاح قابلة للقياس.</p>
+              </div>
+              <div class="hero-panel">
+                <h3>تحديثات تقنية مستمرة</h3>
+                <p>مواكبة Frappe وERPNext والاتجاهات الأحدث في AI للأعمال.</p>
               </div>
             </div>
           </aside>
         </div>
       </section>
 
-      <section id="posts" class="section section--tight">
-        <div class="container">
-          <div class="chips reveal" aria-label="فلاتر التصنيف">
-            <button class="chip active" type="button">الكل</button>
-            <button class="chip" type="button">General Blog</button>
-            <button class="chip" type="button">Partner</button>
-            <button class="chip" type="button">Artical</button>
-            <button class="chip" type="button">Factories</button>
-            <button class="chip" type="button">ERPNext</button>
+      <section id="articles" class="section section-tight">
+        <div class="container" data-filter-group data-filter-target="#blog-grid">
+          <div class="chips reveal">
+            <button class="chip active" type="button" data-filter="all">الكل</button>
+            <button class="chip" type="button" data-filter="erp">ERP</button>
+            <button class="chip" type="button" data-filter="crm">CRM</button>
+            <button class="chip" type="button" data-filter="ai">AI</button>
+            <button class="chip" type="button" data-filter="partner">قصص نجاح</button>
           </div>
 
-          <div class="post-grid">
-            <article class="post-card reveal">
-              <div class="post-thumb">GENERAL BLOG</div>
-              <div class="post-body">
-                <div class="post-meta">
-                  <span>2 فبراير 2026</span>
-                  <span>4 دقائق</span>
-                </div>
-                <h3>طرق الجرد وأهميتها للمحلات التجارية</h3>
-                <p>
-                  أساليب الجرد المناسبة وكيف يؤثر الاختيار على الربحية ودقة
-                  المخزون.
-                </p>
+          <div class="blog-grid" id="blog-grid">
+            <article class="blog-card reveal" data-category="erp ai">
+              <img src="https://connect4systems.com/files/عرض تقديمي عن الذكاء الاصطناعي باللون الأزرق و اللبني .jpg" alt="أخطاء اختيار ERP" />
+              <div class="blog-body">
+                <div class="blog-meta"><span>ERP + AI</span><span>6 دقائق</span></div>
+                <h3>أبرز 7 أخطاء عند اختيار نظام ERP وكيف تتجنبها</h3>
+                <p>دليل عملي للمديرين قبل بدء أي مشروع تحول رقمي.</p>
               </div>
             </article>
 
-            <article class="post-card reveal">
-              <div class="post-thumb">PARTNER</div>
-              <div class="post-body">
-                <div class="post-meta">
-                  <span>31 أغسطس 2025</span>
-                  <span>دقيقة واحدة</span>
-                </div>
-                <h3>كيف ساعدنا Archi Touch في التحول الرقمي</h3>
-                <p>
-                  ملخص سريع لنتائج الشراكة وتأثير الربط بين الإدارات المختلفة.
-                </p>
+            <article class="blog-card reveal" data-category="crm ai">
+              <img src="https://connect4systems.com/files/عرض تقديمي عن الذكاء الاصطناعي باللون الأزرق و اللبني  (1).jpg" alt="دور AI في CRM" />
+              <div class="blog-body">
+                <div class="blog-meta"><span>CRM</span><span>5 دقائق</span></div>
+                <h3>كيف يرفع الذكاء الاصطناعي كفاءة فرق المبيعات وCRM</h3>
+                <p>استخدامات عملية لـ AI في ترتيب الفرص وزيادة معدل التحويل.</p>
               </div>
             </article>
 
-            <article class="post-card reveal">
-              <div class="post-thumb">ARTICAL</div>
-              <div class="post-body">
-                <div class="post-meta">
-                  <span>29 مايو 2023</span>
-                  <span>دقيقتان</span>
-                </div>
-                <h3>ما هي خدمات كونكت 4 سيستمز؟</h3>
-                <p>
-                  نظرة تمهيدية على باقة الخدمات الأساسية للشركات الصغيرة والمتوسطة.
-                </p>
+            <article class="blog-card reveal" data-category="partner">
+              <img src="https://connect4systems.com/files/297157449_5191567390892467_8253442718174640260_n.jpg" alt="قصة نجاح" />
+              <div class="blog-body">
+                <div class="blog-meta"><span>Partner Story</span><span>3 دقائق</span></div>
+                <h3>رحلة تحول رقمي ناجحة لشركة متعددة الفروع</h3>
+                <p>ما الذي تغير بعد توحيد العمليات في منصة واحدة؟</p>
               </div>
             </article>
 
-            <article class="post-card reveal">
-              <div class="post-thumb">ERPNEXT</div>
-              <div class="post-body">
-                <div class="post-meta">
-                  <span>28 يوليو 2025</span>
-                  <span>7 دقائق</span>
-                </div>
-                <h3>ما الجديد في Frappeverse والإصدار السادس عشر</h3>
-                <p>
-                  قراءة مبسطة لأهم التحديثات وتأثيرها على الأداء وتجربة المستخدم.
-                </p>
+            <article class="blog-card reveal" data-category="erp">
+              <img src="https://connect4systems.com/files/erp-1.webp" alt="Frappe updates" />
+              <div class="blog-body">
+                <div class="blog-meta"><span>ERPNext</span><span>4 دقائق</span></div>
+                <h3>ما الجديد في تحديثات Frappe الأخيرة للشركات؟</h3>
+                <p>أثر التحسينات على السرعة، الأمان، وتجربة المستخدم العربية.</p>
               </div>
             </article>
 
-            <article class="post-card reveal">
-              <div class="post-thumb">REAL ESTATE</div>
-              <div class="post-body">
-                <div class="post-meta">
-                  <span>أغسطس 2025</span>
-                  <span>3 دقائق</span>
-                </div>
-                <h3>حلول إدارة الاستثمار العقاري بمرونة أعلى</h3>
-                <p>
-                  كيف تنظم عمليات البيع بالتقسيط وإدارة عقود العملاء في منصة واحدة.
-                </p>
+            <article class="blog-card reveal" data-category="ai">
+              <img src="https://connect4systems.com/files/عرض تقديمي عن الذكاء الاصطناعي باللون الأزرق و اللبني  (10).jpg" alt="تحليلات AI" />
+              <div class="blog-body">
+                <div class="blog-meta"><span>AI Analytics</span><span>7 دقائق</span></div>
+                <h3>التحليل المالي باستخدام الذكاء الاصطناعي: أين تبدأ؟</h3>
+                <p>خارطة تطبيق واقعية لفِرق المالية والإدارة التنفيذية.</p>
               </div>
             </article>
 
-            <article class="post-card reveal">
-              <div class="post-thumb">FACTORIES</div>
-              <div class="post-body">
-                <div class="post-meta">
-                  <span>يونيو 2025</span>
-                  <span>5 دقائق</span>
-                </div>
-                <h3>تخطيط الإنتاج للمصانع: خطوات عملية</h3>
-                <p>
-                  تحويل التخطيط من جداول منفصلة إلى دورة متكاملة بين المواد والتشغيل.
-                </p>
+            <article class="blog-card reveal" data-category="partner erp">
+              <img src="https://connect4systems.com/files/Imad-1162-600.jpg" alt="نجاح في التصنيع" />
+              <div class="blog-body">
+                <div class="blog-meta"><span>Factories</span><span>5 دقائق</span></div>
+                <h3>كيف خفضت شركة صناعية فاقد المواد عبر ERPNext</h3>
+                <p>مقارنة قبل وبعد التنفيذ بالأرقام والمؤشرات.</p>
+              </div>
+            </article>
+
+            <article class="blog-card reveal" data-category="crm partner">
+              <img src="https://connect4systems.com/files/crm1.png" alt="رحلة CRM" />
+              <div class="blog-body">
+                <div class="blog-meta"><span>CRM Case</span><span>4 دقائق</span></div>
+                <h3>رحلة تطوير إدارة العملاء من جداول إلى منصة موحدة</h3>
+                <p>تحول كامل في متابعة الفرص وخدمة ما بعد البيع.</p>
+              </div>
+            </article>
+
+            <article class="blog-card reveal" data-category="ai erp">
+              <img src="https://connect4systems.com/files/عرض تقديمي عن الذكاء الاصطناعي باللون الأزرق و اللبني  (11).jpg" alt="فريق AI" />
+              <div class="blog-body">
+                <div class="blog-meta"><span>AI Team</span><span>3 دقائق</span></div>
+                <h3>كيف تعتمد فرق كونكت 4 على AI بنسبة 80% يوميا؟</h3>
+                <p>نظرة على أسلوب العمل الداخلي الذي يسرع التسليم ويقلل الأخطاء.</p>
+              </div>
+            </article>
+
+            <article class="blog-card reveal" data-category="erp">
+              <img src="https://connect4systems.com/files/ue.png" alt="إدارة المصانع" />
+              <div class="blog-body">
+                <div class="blog-meta"><span>Manufacturing</span><span>6 دقائق</span></div>
+                <h3>تخطيط الإنتاج للمصانع: من التقدير إلى الجدولة الدقيقة</h3>
+                <p>نموذج تشغيلي يساعد في رفع الالتزام بالطاقة الإنتاجية.</p>
               </div>
             </article>
           </div>
         </div>
       </section>
 
-      <section class="section section--tight">
+      <section class="section section-tight">
         <div class="container">
           <div class="cta-band reveal">
             <div>
-              <h3>كل بطاقة هنا قابلة للربط المباشر مع روابط المدونة الحالية</h3>
-              <p>
-                الخطوة التالية بعد اعتماد التصميم: ربط التصنيفات الفعلية مع نظام
-                الفلاتر والسيو والصفحات المرقمة.
-              </p>
+              <h3>تريد محتوى متخصص لقطاعك على موقعك؟</h3>
+              <p>يمكننا تصميم استراتيجية محتوى مترابطة بين الحلول والمقالات لرفع التحويل.</p>
             </div>
-            <a class="btn btn-accent" href="/blog-post">عرض صفحة المقال</a>
+            <a class="btn btn-accent" href="/contact">تحدث مع فريق المحتوى</a>
           </div>
         </div>
       </section>
@@ -214,37 +198,38 @@
     <footer class="site-footer">
       <div class="container footer-grid">
         <div class="footer-col">
-          <h4>المدونة الجديدة</h4>
-          <p>
-            نفس القالب يخدم كل تصنيفات المحتوى مع تحسين ترتيب العناوين والنصوص
-            والصور التعريفية.
-          </p>
+          <h4>Connect 4 Blog</h4>
+          <p>محتوى عربي موجه للقرار التنفيذي في ERP، CRM، والذكاء الاصطناعي.</p>
         </div>
-
         <div class="footer-col">
-          <h4>تصفح</h4>
+          <h4>أقسام المدونة</h4>
           <ul>
-            <li><a href="/">الرئيسية</a></li>
-            <li><a href="/solution-template">الحلول</a></li>
-            <li><a href="/contact">اتصل بنا</a></li>
+            <li><a href="/blog-list">General Blog</a></li>
+            <li><a href="/blog-list">Partner</a></li>
+            <li><a href="/blog-list">Artical</a></li>
           </ul>
         </div>
-
+        <div class="footer-col">
+          <h4>روابط مفيدة</h4>
+          <ul>
+            <li><a href="/solution-template">حلولنا</a></li>
+            <li><a href="/catalog">المنتجات</a></li>
+            <li><a href="/contact">استشارة</a></li>
+          </ul>
+        </div>
         <div class="footer-col">
           <h4>تواصل</h4>
           <ul>
             <li>info@connect4systems.com</li>
             <li>+20 111 999 7599</li>
-            <li>القاهرة - مصر</li>
+            <li>Mokattam, Cairo</li>
           </ul>
         </div>
       </div>
-
       <div class="container footer-bottom">
         <span>© <span data-current-year></span> Connect 4 Systems</span>
-        <span>Blog List Template - Arabic RTL</span>
+        <span>Knowledge Hub</span>
       </div>
     </footer>
   </body>
 </html>
-

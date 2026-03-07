@@ -3,46 +3,49 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>من نحن | كونكت 4</title>
+    <title>من نحن | Connect 4 Systems</title>
     <meta
       name="description"
-      content="قالب حديث لصفحة من نحن: رؤية واضحة، خط زمني، قيم الشركة، وفريق العمل بواجهة عربية RTL."
+      content="تعرف على كونكت 4: فريق التحول الرقمي المدعوم بالذكاء الاصطناعي، خبرة تنفيذية عميقة، ورؤية واضحة لنمو أعمال العملاء."
     />
     <link rel="stylesheet" href="/assets/c4web/css/style.css" />
     <script defer src="/assets/c4web/js/app.js"></script>
   </head>
   <body>
-    <div class="top-note">
-      <div class="container">
-        <span>إعادة تصميم صفحة الشركة والفريق لتكون أوضح وأكثر ثقة</span>
-        <span class="badge-inline">Template D</span>
+    <div class="progress-line" data-scroll-progress></div>
+
+    <div class="announcement">
+      <div class="container announcement-wrap">
+        <span>
+          <strong>Who We Are:</strong>
+          فريق تنفيذي وتقني موحد، 80% منه يعمل يوميا بمنهجيات الذكاء الاصطناعي لتسريع النتائج.
+        </span>
+        <a class="announcement-link" href="/contact">احجز لقاء تعريفي</a>
       </div>
     </div>
 
     <header class="site-header">
-      <div class="container nav-wrap">
+      <div class="container header-wrap">
         <a class="brand" href="/">
           <span class="brand-mark">C4</span>
-          <span>كونكت 4 سيستمز</span>
+          <span class="brand-title">
+            <strong>About Connect 4</strong>
+            <small>Strategy, Execution, Innovation</small>
+          </span>
         </a>
 
-        <button
-          class="menu-toggle"
-          type="button"
-          aria-label="فتح القائمة"
-          aria-expanded="false"
-          data-menu-toggle
-        >
+        <button class="menu-button" type="button" aria-label="فتح القائمة" aria-expanded="false" data-menu-toggle>
           ☰
         </button>
 
-        <div class="nav-shell" data-nav-shell>
+        <div class="nav-panel" data-nav-shell>
           <nav class="main-nav">
             <a href="/">الرئيسية</a>
-            <a href="/solution-template">الحلول</a>
+            <a href="/solution-template">حلولنا</a>
+            <a href="/catalog">المنتجات</a>
             <a href="/blog-list">المدونة</a>
             <a href="/about">من نحن</a>
-            <a href="/contact">اتصل بنا</a>
+            <a href="/contact">تواصل</a>
           </nav>
           <a class="btn btn-primary" href="/contact">تواصل مع الإدارة</a>
         </div>
@@ -50,134 +53,176 @@
     </header>
 
     <main>
-      <section class="hero section--tight">
+      <section class="hero section-tight">
         <div class="container hero-grid">
-          <div class="hero-copy reveal">
-            <span class="kicker">من نحن</span>
-            <h1>نبني أنظمة تشغيل تساعد الشركات تتحرك أسرع وبثقة أعلى</h1>
-            <p>
-              منذ التأسيس، ركزنا على تنفيذ عملي يجمع التقنية مع فهم عميق لسير
-              الأعمال. هدفنا تحويل الأنظمة من عبء تشغيلي إلى محرك نمو يومي.
+          <div class="reveal">
+            <div class="hero-tag-row">
+              <span class="badge badge-brand">Business Transformation Partner</span>
+              <span class="badge badge-ai">80% AI-Powered Team</span>
+            </div>
+            <h1 class="hero-title">نساعد الشركات تبني أنظمة أسرع من طريقة عملها القديمة</h1>
+            <p class="hero-text">
+              تأسست كونكت 4 بهدف واضح: تحويل التقنية إلى قيمة تشغيلية مباشرة.
+              لا نبيع برامج فقط، بل نبني نماذج عمل قابلة للنمو وقابلة للقياس.
             </p>
             <div class="hero-actions">
-              <a class="btn btn-primary" href="/contact">احجز لقاء تعريفي</a>
-              <a class="btn btn-outline" href="#timeline">رحلتنا</a>
+              <a class="btn btn-primary" href="#journey">رحلتنا</a>
+              <a class="btn btn-outline" href="#team">تعرف على الفريق</a>
+            </div>
+            <div class="metric-row">
+              <article class="stat-card">
+                <strong data-counter="2009">0</strong>
+                <span>عام الانطلاقة</span>
+              </article>
+              <article class="stat-card">
+                <strong data-counter="200" data-suffix="+">0</strong>
+                <span>مشروع تنفيذي</span>
+              </article>
+              <article class="stat-card">
+                <strong data-counter="50" data-suffix="+">0</strong>
+                <span>شريك نجاح</span>
+              </article>
             </div>
           </div>
 
-          <aside class="hero-panel reveal">
-            <div class="hero-panel-inner">
-              <h3>مؤشرات الشركة</h3>
-              <div class="stat-grid">
-                <div class="stat-item">
-                  <strong data-counter="2009">0</strong>
-                  <span>بداية التأسيس</span>
-                </div>
-                <div class="stat-item">
-                  <strong data-counter="50">0</strong>
-                  <span>شريك نجاح</span>
-                </div>
-                <div class="stat-item">
-                  <strong data-counter="200">0</strong>
-                  <span>مشروع منفذ</span>
-                </div>
-                <div class="stat-item">
-                  <strong data-counter="24">0</strong>
-                  <span>دعم فني مستمر</span>
-                </div>
+          <aside class="hero-visual reveal" data-float="8">
+            <img class="hero-main-image" src="https://connect4systems.com/files/Copilot_20250731_100001.png" alt="فريق كونكت 4" />
+            <div class="hero-overlay">
+              <div class="hero-panel">
+                <h3>عقلية تنفيذ</h3>
+                <p>فِرق متعددة التخصصات تعمل حول نتائج العميل لا حول حدود الأقسام.</p>
+              </div>
+              <div class="hero-panel">
+                <h3>AI داخل سير العمل</h3>
+                <p>استخدام يومي لأدوات AI في التحليل والتصميم والتطوير والدعم.</p>
               </div>
             </div>
           </aside>
         </div>
       </section>
 
-      <section id="timeline" class="section section--tight">
+      <section id="journey" class="section section-tight">
         <div class="container">
           <div class="section-head reveal">
-            <span class="kicker">محطات رئيسية</span>
-            <h2>رحلة نمو مبنية على التنفيذ الفعلي</h2>
+            <span class="kicker">رحلة الشركة</span>
+            <h2>محطات شكلت أسلوبنا في التنفيذ</h2>
           </div>
-
           <div class="timeline reveal">
             <article class="timeline-item">
-              <h4>2009 - انطلاق كونكت 4</h4>
-              <p>بداية العمل في مجال الأنظمة والحلول المؤسسية.</p>
+              <h4>2009 - التأسيس</h4>
+              <p>بداية العمل في أنظمة المؤسسات والتحول الرقمي للشركات المحلية.</p>
             </article>
             <article class="timeline-item">
-              <h4>2016 - أول مشروع كبير متعدد الإدارات</h4>
-              <p>تطوير منهجية تنفيذ مرحلية قابلة للتوسع.</p>
+              <h4>2016 - تطوير منهجية التنفيذ المرحلي</h4>
+              <p>صياغة إطار عمل يضمن نتائج سريعة دون إرباك العمليات اليومية.</p>
             </article>
             <article class="timeline-item">
-              <h4>2020 - توسع في قطاعات التجزئة والتصنيع</h4>
-              <p>بناء حلول أكثر تخصصا حسب النشاط التجاري.</p>
+              <h4>2020 - التوسع القطاعي</h4>
+              <p>توسيع نطاق الحلول ليشمل التجارة، التجزئة، المصانع، والموارد البشرية.</p>
             </article>
             <article class="timeline-item">
-              <h4>2025 - 50 شريك نجاح</h4>
-              <p>ترسيخ نموذج عمل يجمع التنفيذ والتدريب والدعم المستمر.</p>
+              <h4>2025 - توظيف AI على نطاق واسع</h4>
+              <p>اعتماد داخلي بنسبة 80% لأدوات الذكاء الاصطناعي في فرق العمل.</p>
             </article>
           </div>
         </div>
       </section>
 
-      <section class="section section--tight">
+      <section class="section section-tight">
         <div class="container">
           <div class="section-head reveal">
-            <span class="kicker">قيمنا</span>
-            <h2>كيف نعمل مع العملاء يوميا</h2>
+            <span class="kicker">قيمنا التشغيلية</span>
+            <h2>طريقة عمل ثابتة في كل مشروع</h2>
           </div>
-          <div class="cards cards--4">
+          <div class="cards cards-4">
             <article class="card reveal">
               <h3>الوضوح</h3>
-              <p>خطة تنفيذ مفهومة من اليوم الأول بدون تعقيد غير ضروري.</p>
+              <p>تحديد أهداف ومؤشرات نجاح واضحة من أول يوم.</p>
             </article>
             <article class="card reveal">
-              <h3>الاعتمادية</h3>
-              <p>نلتزم بمواعيد واضحة ومخرجات قابلة للقياس.</p>
+              <h3>السرعة المنضبطة</h3>
+              <p>تسليم سريع بدون التنازل عن جودة الهندسة والاختبارات.</p>
             </article>
             <article class="card reveal">
               <h3>الشراكة</h3>
-              <p>ننجح عندما ينجح فريق العميل في استخدام النظام فعليا.</p>
+              <p>العمل مع فرق العميل كامتداد تشغيلي وليس كمورد خارجي.</p>
             </article>
             <article class="card reveal">
-              <h3>التطوير المستمر</h3>
-              <p>نحوّل ملاحظات التشغيل اليومية إلى تحسينات عملية.</p>
+              <h3>التحسين المستمر</h3>
+              <p>تطوير متواصل اعتمادا على بيانات الاستخدام الفعلية.</p>
             </article>
           </div>
         </div>
       </section>
 
-      <section class="section section--tight">
+      <section id="team" class="section section-tight">
         <div class="container">
           <div class="section-head reveal">
             <span class="kicker">الفريق</span>
-            <h2>فريق متعدد الخبرات التقنية والتشغيلية</h2>
+            <h2>خبرات تقنية وتجارية متكاملة</h2>
           </div>
-
           <div class="cards">
             <article class="card reveal">
               <h3>Tarek Algazzar</h3>
-              <p>General Manager</p>
+              <p>General Manager - قيادة استراتيجية التحول والنمو.</p>
             </article>
             <article class="card reveal">
               <h3>Nadeen Mansour</h3>
-              <p>ERP Implementor</p>
+              <p>ERP Implementor - تصميم مسارات التشغيل والتدريب.</p>
             </article>
             <article class="card reveal">
               <h3>Abdulrahman Saleh</h3>
-              <p>ERP Implementor</p>
+              <p>ERP Implementor - إدارة تطبيقات الأعمال والحوكمة.</p>
             </article>
             <article class="card reveal">
               <h3>Mohamed Neamatallah</h3>
-              <p>ERP Sales Consultant</p>
+              <p>ERP Sales Consultant - مواءمة الحل مع احتياج السوق.</p>
             </article>
             <article class="card reveal">
               <h3>Jana Tarek</h3>
-              <p>Technical Support</p>
+              <p>Technical Support - ضمان استقرار التشغيل بعد الإطلاق.</p>
             </article>
             <article class="card reveal">
               <h3>Karim Tarek</h3>
-              <p>R&D</p>
+              <p>R&D - تطوير نماذج مبتكرة مدعومة بالذكاء الاصطناعي.</p>
             </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-tight">
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="kicker">شركاء العمل</span>
+            <h2>مؤسسات وثقت في قدراتنا</h2>
+          </div>
+          <div class="logo-ribbon reveal">
+            <div class="logo-track">
+              <div class="logo-card"><img src="https://connect4systems.com/files/logo.png" alt="partner" /></div>
+              <div class="logo-card"><img src="https://connect4systems.com/files/log2.png" alt="partner" /></div>
+              <div class="logo-card"><img src="https://connect4systems.com/files/logo-02.png" alt="partner" /></div>
+              <div class="logo-card"><img src="https://connect4systems.com/files/logo3.jpg" alt="partner" /></div>
+              <div class="logo-card"><img src="https://connect4systems.com/files/raissyon-logo-e1623504859761.png" alt="partner" /></div>
+              <div class="logo-card"><img src="https://connect4systems.com/files/logo copy32416a.jpg" alt="partner" /></div>
+              <div class="logo-card"><img src="https://connect4systems.com/files/MLogo.png" alt="partner" /></div>
+              <div class="logo-card"><img src="https://connect4systems.com/files/New Partnar (1)a2e854.png" alt="partner" /></div>
+              <div class="logo-card"><img src="https://connect4systems.com/files/logo.png" alt="partner" /></div>
+              <div class="logo-card"><img src="https://connect4systems.com/files/log2.png" alt="partner" /></div>
+              <div class="logo-card"><img src="https://connect4systems.com/files/logo-02.png" alt="partner" /></div>
+              <div class="logo-card"><img src="https://connect4systems.com/files/logo3.jpg" alt="partner" /></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-tight">
+        <div class="container">
+          <div class="cta-band reveal">
+            <div>
+              <h3>هل ترغب في فريق تنفيذي يفهم عملك فعلا؟</h3>
+              <p>ابدأ معنا باجتماع تعريفي نحدد فيه نقاط القوة وفرص التحسين داخل مؤسستك.</p>
+            </div>
+            <a class="btn btn-accent" href="/contact">احجز اللقاء</a>
           </div>
         </div>
       </section>
@@ -186,37 +231,38 @@
     <footer class="site-footer">
       <div class="container footer-grid">
         <div class="footer-col">
-          <h4>من نحن</h4>
-          <p>
-            قالب يجمع القصة، الثقة، والفريق في صفحة واحدة واضحة تناسب الزوار
-            الجدد والعملاء المحتملين.
-          </p>
+          <h4>Connect 4 Systems</h4>
+          <p>شريك التحول الرقمي للشركات التي تريد نتائج تشغيلية حقيقية وقابلة للقياس.</p>
         </div>
-
+        <div class="footer-col">
+          <h4>ماذا نقدم</h4>
+          <ul>
+            <li><a href="/solution-template">حلول القطاع</a></li>
+            <li><a href="/catalog">الباقات</a></li>
+            <li><a href="/blog-list">مركز المعرفة</a></li>
+          </ul>
+        </div>
         <div class="footer-col">
           <h4>روابط</h4>
           <ul>
-            <li><a href="/">الرئيسية</a></li>
-            <li><a href="/solution-template">الحلول</a></li>
-            <li><a href="/contact">اتصل بنا</a></li>
+            <li><a href="/trade">التجارة</a></li>
+            <li><a href="/factory">المصانع</a></li>
+            <li><a href="/hr">الموارد البشرية</a></li>
           </ul>
         </div>
-
         <div class="footer-col">
-          <h4>بيانات التواصل</h4>
+          <h4>تواصل</h4>
           <ul>
             <li>+20 111 999 7599</li>
             <li>info@connect4systems.com</li>
-            <li>المقطم - القاهرة</li>
+            <li>Mokattam, Cairo</li>
           </ul>
         </div>
       </div>
-
       <div class="container footer-bottom">
         <span>© <span data-current-year></span> Connect 4 Systems</span>
-        <span>About Template - Arabic RTL</span>
+        <span>About Page</span>
       </div>
     </footer>
   </body>
 </html>
-
