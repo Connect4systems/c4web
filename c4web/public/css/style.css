@@ -120,51 +120,51 @@ ul {
 .site-header {
   position: sticky;
   top: 0;
-  z-index: 110;
-  border-bottom: 1px solid rgba(8, 45, 70, 0.1);
-  background: rgba(245, 250, 255, 0.88);
-  backdrop-filter: blur(14px);
+  z-index: 120;
+  border-bottom: 1px solid rgba(8, 45, 70, 0.12);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(245, 250, 255, 0.93) 100%);
+  backdrop-filter: blur(12px);
 }
 
 .site-header.compact {
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 10px 26px rgba(8, 45, 70, 0.14);
 }
 
 .header-wrap {
-  min-height: 92px;
+  min-height: 88px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
+  gap: 16px;
 }
 
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   flex-shrink: 0;
 }
 
 .brand-mark {
-  width: 156px;
-  height: 74px;
-  border-radius: 14px;
+  width: 168px;
+  height: 68px;
+  border-radius: 12px;
   display: grid;
   place-items: center;
   overflow: hidden;
   color: #fff;
   font-weight: 800;
   font-family: "Cairo Play", "Alexandria", sans-serif;
-  background: #fff;
-  border: 1px solid rgba(15, 125, 143, 0.2);
-  box-shadow: 0 8px 20px rgba(8, 45, 70, 0.18);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(247, 251, 255, 0.95) 100%);
+  border: 1px solid rgba(8, 45, 70, 0.12);
+  box-shadow: 0 8px 20px rgba(8, 45, 70, 0.12);
 }
 
 .brand-logo {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  padding: 6px 12px;
+  padding: 4px 8px;
 }
 
 .brand-title {
@@ -172,58 +172,59 @@ ul {
 }
 
 .brand-title strong {
-  font-size: 1.08rem;
+  font-size: 1.02rem;
   letter-spacing: 0.02em;
   font-family: "Cairo Play", "Alexandria", sans-serif;
 }
 
 .brand-title small {
   color: var(--text-soft);
-  font-size: 0.84rem;
+  font-size: 0.78rem;
 }
 
 .menu-button {
   display: none;
   width: 42px;
   height: 42px;
-  border: 0;
+  border: 1px solid rgba(8, 45, 70, 0.14);
   border-radius: 10px;
   cursor: pointer;
   font-size: 1.2rem;
   color: var(--text);
-  background: rgba(8, 45, 70, 0.08);
+  background: rgba(255, 255, 255, 0.95);
 }
 
 .nav-panel {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   margin-inline-start: auto;
 }
 
 .main-nav {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   flex-wrap: nowrap;
 }
 
 .main-nav .c4-nav-link,
 .main-nav .c4-nav-toggle {
-  padding: 10px 13px;
+  padding: 10px 14px;
   border-radius: 11px;
   color: var(--text-soft);
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   font-weight: 700;
   font-family: inherit;
-  background: transparent;
-  border: 0;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid transparent;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  line-height: 1.2;
   white-space: nowrap;
-  transition: all var(--transition);
+  transition: color var(--transition), background var(--transition), border-color var(--transition), box-shadow var(--transition);
 }
 
 .main-nav .c4-nav-link:hover,
@@ -232,13 +233,15 @@ ul {
 .main-nav .c4-nav-toggle.active,
 .main-nav .c4-nav-dropdown:hover > .c4-nav-toggle {
   color: var(--brand-dark);
-  background: rgba(15, 125, 143, 0.14);
+  background: rgba(15, 125, 143, 0.12);
+  border-color: rgba(15, 125, 143, 0.24);
+  box-shadow: 0 6px 16px rgba(8, 45, 70, 0.08);
 }
 
 .c4-nav-dropdown {
   position: relative;
-  padding-bottom: 8px;
-  margin-bottom: -8px;
+  padding-bottom: 10px;
+  margin-bottom: -10px;
 }
 
 .c4-nav-toggle::after {
@@ -256,58 +259,38 @@ ul {
 
 .c4-dropdown-menu {
   position: absolute;
-  top: 100%;
+  top: calc(100% + 10px);
   inset-inline-start: 0;
-  z-index: 40;
-  min-width: 248px;
+  z-index: 50;
+  min-width: 270px;
   display: none !important;
   flex-direction: column;
-  gap: 4px;
-  padding: 8px;
+  gap: 6px;
+  padding: 10px;
   border-radius: 14px;
-  border: 1px solid rgba(8, 45, 70, 0.16);
+  border: 1px solid rgba(8, 45, 70, 0.15);
   background: #fff;
-  box-shadow: 0 16px 34px rgba(8, 45, 70, 0.2);
+  box-shadow: 0 20px 38px rgba(8, 45, 70, 0.18);
+  overflow: hidden;
 }
 
 .c4-dropdown-menu a {
+  display: flex;
+  align-items: center;
   width: 100%;
-  border-radius: 9px;
+  border-radius: 10px;
   justify-content: flex-start;
-  padding: 9px 12px;
+  padding: 10px 12px;
   color: var(--text);
   font-size: 0.92rem;
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1.4;
 }
 
 .c4-dropdown-menu a:hover,
 .c4-dropdown-menu a.active {
   color: var(--brand-dark);
-  background: rgba(15, 125, 143, 0.14);
-}
-
-.c4-dropdown-menu.c4-mega-menu {
-  min-width: 520px;
-  display: none !important;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-  padding: 12px;
-}
-
-.c4-menu-col {
-  display: grid;
-  gap: 4px;
-  align-content: start;
-}
-
-.c4-menu-title {
-  padding: 6px 10px 8px;
-  font-size: 0.78rem;
-  font-weight: 700;
-  color: var(--brand-dark);
-  border-bottom: 1px dashed rgba(8, 45, 70, 0.18);
+  background: rgba(15, 125, 143, 0.12);
 }
 
 @media (min-width: 861px) {
@@ -316,40 +299,35 @@ ul {
   .c4-nav-dropdown:focus-within > .c4-dropdown-menu {
     display: flex !important;
   }
-
-  .c4-nav-dropdown.open > .c4-dropdown-menu.c4-mega-menu,
-  .c4-nav-dropdown:hover > .c4-dropdown-menu.c4-mega-menu,
-  .c4-nav-dropdown:focus-within > .c4-dropdown-menu.c4-mega-menu {
-    display: grid !important;
-  }
 }
 
 .wa-float {
   position: fixed;
   inset-inline-end: 18px;
   bottom: 18px;
-  width: 58px;
-  height: 58px;
+  width: 62px;
+  height: 62px;
   border-radius: 50%;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(145deg, #20c45a 0%, #0d9f45 100%);
-  box-shadow: 0 12px 24px rgba(13, 159, 69, 0.35);
-  z-index: 140;
+  background: #fff;
+  border: 1px solid rgba(13, 159, 69, 0.28);
+  box-shadow: 0 14px 28px rgba(8, 45, 70, 0.2);
+  z-index: 180;
   transition: transform var(--transition), box-shadow var(--transition);
 }
 
 .wa-float:hover {
-  transform: translateY(-2px) scale(1.04);
-  box-shadow: 0 16px 30px rgba(13, 159, 69, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 18px 34px rgba(8, 45, 70, 0.24);
 }
 
 .wa-float img {
-  width: 31px;
-  height: 31px;
+  width: 38px;
+  height: 38px;
   object-fit: contain;
-  filter: brightness(0) invert(1);
+  filter: none;
 }
 
 .btn {
@@ -1442,8 +1420,8 @@ textarea:focus {
 
 @media (max-width: 860px) {
   .brand-mark {
-    width: 118px;
-    height: 58px;
+    width: 126px;
+    height: 56px;
   }
 
   .brand-title small {
@@ -1457,7 +1435,7 @@ textarea:focus {
 
   .nav-panel {
     position: fixed;
-    top: 92px;
+    top: 88px;
     inset-inline: 0;
     display: none;
     flex-direction: column;
@@ -1465,7 +1443,7 @@ textarea:focus {
     gap: 12px;
     padding: 14px 4vw;
     border-bottom: 1px solid rgba(8, 45, 70, 0.12);
-    background: rgba(247, 251, 255, 0.98);
+    background: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(10px);
   }
 
@@ -1476,7 +1454,7 @@ textarea:focus {
   .main-nav {
     flex-direction: column;
     align-items: stretch;
-    gap: 8px;
+    gap: 10px;
   }
 
   .main-nav .c4-nav-link,
@@ -1495,46 +1473,35 @@ textarea:focus {
     position: static;
     min-width: 0;
     display: none !important;
-    margin-top: 4px;
-    padding: 0;
-    border: 0;
-    border-radius: 0;
-    background: transparent;
+    margin-top: 6px;
+    padding: 6px;
+    border: 1px solid rgba(8, 45, 70, 0.12);
+    border-radius: 12px;
+    background: #fff;
     box-shadow: none;
-  }
-
-  .c4-dropdown-menu.c4-mega-menu {
-    display: none !important;
-    grid-template-columns: 1fr;
-    gap: 6px;
-    padding: 0;
   }
 
   .c4-nav-dropdown.open > .c4-dropdown-menu {
     display: flex !important;
   }
 
-  .c4-nav-dropdown.open > .c4-dropdown-menu.c4-mega-menu {
-    display: grid !important;
-  }
-
   .c4-dropdown-menu a {
     border-radius: 8px;
-    padding-inline-start: 24px;
-    background: rgba(242, 247, 252, 0.95);
-  }
-
-  .c4-menu-title {
-    margin-top: 6px;
-    border-bottom: 0;
-    padding: 6px 10px 2px;
+    padding: 10px 12px;
+    padding-inline-start: 18px;
+    background: rgba(242, 247, 252, 0.9);
   }
 
   .wa-float {
-    width: 54px;
-    height: 54px;
+    width: 56px;
+    height: 56px;
     inset-inline-end: 14px;
     bottom: 14px;
+  }
+
+  .wa-float img {
+    width: 34px;
+    height: 34px;
   }
 
   .metric-row,
