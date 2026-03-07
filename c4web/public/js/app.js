@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const closeDropdowns = () => {
     navDropdowns.forEach((dropdown) => {
       dropdown.classList.remove("open");
-      const toggle = dropdown.querySelector(".nav-toggle");
+      const toggle = dropdown.querySelector(".c4-nav-toggle");
       if (toggle) {
         toggle.setAttribute("aria-expanded", "false");
       }
@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   navDropdowns.forEach((dropdown) => {
-    const toggle = dropdown.querySelector(".nav-toggle");
+    const toggle = dropdown.querySelector(".c4-nav-toggle");
     if (!toggle) return;
 
     toggle.addEventListener("click", (event) => {
@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
       navDropdowns.forEach((item) => {
         if (item === dropdown) return;
         item.classList.remove("open");
-        const itemToggle = item.querySelector(".nav-toggle");
+        const itemToggle = item.querySelector(".c4-nav-toggle");
         if (itemToggle) {
           itemToggle.setAttribute("aria-expanded", "false");
         }
@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  const navToggles = document.querySelectorAll(".nav-toggle");
+  const navToggles = document.querySelectorAll(".c4-nav-toggle");
   navToggles.forEach((toggle) => {
     const dropdown = toggle.closest("[data-nav-dropdown]");
     if (!dropdown) return;
