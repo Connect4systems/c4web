@@ -1,0 +1,328 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>المنتجات والباقات | Connect 4</title>
+    <meta
+      name="description"
+      content="الباقات والخدمات المتاحة من كونكت 4 مع معرض الوسائط الكامل المعتمد للاستخدام في النسخة الجديدة من الموقع."
+    />
+    <link rel="stylesheet" href="/assets/c4web/css/style.css" />
+    <script defer src="/assets/c4web/js/app.js"></script>
+  </head>
+  <body>
+    <div class="progress-line" data-scroll-progress></div>
+
+    <header class="site-header">
+      <div class="container header-wrap">
+        <a class="brand" href="/">
+          <span class="brand-mark">
+            <img
+              class="brand-logo"
+              src="{{ c4_logo_url or '/files/logo-erp.png' }}"
+              alt="Connect 4 Systems Logo"
+              onerror="this.onerror=null;this.src='/files/logo.png';"
+            />
+          </span>
+                    <span class="brand-title">
+            <strong>Connect 4 Systems</strong>
+            <small>ERP, AI, Business Development</small>
+          </span>
+        </a>
+
+        <button class="menu-button" type="button" aria-label="فتح القائمة" aria-expanded="false" data-menu-toggle>
+          ☰
+        </button>
+
+        <div class="nav-panel" data-nav-shell>
+          <nav class="main-nav" aria-label="القائمة الرئيسية">
+            <a class="c4-nav-link" href="/">الرئيسية</a>
+
+            <div class="c4-nav-dropdown" data-nav-dropdown>
+              <button class="c4-nav-toggle" type="button" aria-expanded="false">البرامج السحابية</button>
+              <div class="c4-dropdown-menu" role="menu">
+                <a href="/hr">HRMS</a>
+                <a href="/trade">الإدارة المالية</a>
+                <a href="/trade">إدارة المبيعات</a>
+                <a href="/crm">إدارة خدمة العملاء</a>
+                <a href="/trade">إدارة المخازن</a>
+                <a href="/trade">إدارة الشحن الدولي</a>
+              </div>
+            </div>
+
+            <div class="c4-nav-dropdown" data-nav-dropdown>
+              <button class="c4-nav-toggle" type="button" aria-expanded="false">الحلول الكاملة</button>
+              <div class="c4-dropdown-menu" role="menu">
+                <a href="/retail-system">المحلات التجارية</a>
+                <a href="/trade">الشركات التجارية</a>
+                <a href="/factory">المصانع</a>
+                <a href="/construction">المقاولات</a>
+                <a href="/catalog">خطط الأسعار</a>
+                <a href="/contact">احجز جلسة تعريفية</a>
+              </div>
+            </div>
+
+            <a class="c4-nav-link" href="/catalog">خطط الأسعار</a>
+            <a class="c4-nav-link" href="/about">عملائنا</a>
+            <a class="c4-nav-link" href="/blog-list">المدونة</a>
+            <a class="c4-nav-link" href="/contact">تواصل</a>
+          </nav>
+          <a class="btn btn-primary" href="/contact">طلب عرض</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero section-tight">
+        <div class="container hero-grid">
+          <div class="reveal">
+            <div class="hero-tag-row">
+              <span class="badge badge-brand">Productized Services</span>
+              <span class="badge badge-ai">AI-Accelerated Delivery</span>
+            </div>
+            <h1 class="hero-title">باقات مرنة لنمو شركتك مع مسار تنفيذ واضح</h1>
+            <p class="hero-text">
+              اختر الباقة التي تناسب مستوى نضج أعمالك. كل باقة تتضمن إطار تنفيذ، تدريب، ودعم تشغيلي
+              مع خيارات تكامل وتوسعة مستقبلية.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#plans">استعرض الباقات</a>
+              <a class="btn btn-outline" href="#media-library">مكتبة الصور</a>
+            </div>
+          </div>
+
+          <aside class="hero-visual reveal" data-float="8">
+            <img class="hero-main-image" src="https://connect4systems.com/files/Copilot_20250728_010119.png" alt="باقات كونكت 4" />
+            <div class="hero-overlay">
+              <div class="hero-panel">
+                <h3>باقات تشغيل جاهزة</h3>
+                <p>خطط عملية للشركات التجارية، التجزئة، المصانع، والموارد البشرية.</p>
+              </div>
+              <div class="hero-panel">
+                <h3>تخصيص حسب القطاع</h3>
+                <p>كل باقة قابلة للتخصيص وفق حجم الفريق ونموذج العمل.</p>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="plans" class="section section-tight">
+        <div class="container" data-filter-group data-filter-target="#plan-grid">
+          <div class="chips reveal">
+            <button class="chip active" type="button" data-filter="all">كل الباقات</button>
+            <button class="chip" type="button" data-filter="starter">انطلاقة</button>
+            <button class="chip" type="button" data-filter="growth">نمو</button>
+            <button class="chip" type="button" data-filter="industry">قطاعي</button>
+            <button class="chip" type="button" data-filter="enterprise">مؤسسي</button>
+          </div>
+
+          <div class="cards" id="plan-grid">
+            <article class="card reveal" data-category="starter">
+              <h3>Starter Launch</h3>
+              <p>للشركات الصغيرة التي تبدأ التحول الرقمي وتحتاج نظاما أساسيا سريعا.</p>
+              <ul class="list-check">
+                <li>وحدات ERP أساسية</li>
+                <li>تدريب أولي للفريق</li>
+                <li>دعم تشغيلي قياسي</li>
+              </ul>
+              <div class="hero-actions"><a class="btn btn-outline" href="/contact">اطلب هذه الباقة</a></div>
+            </article>
+
+            <article class="card reveal" data-category="growth industry">
+              <h3>Trade Growth</h3>
+              <p>باقة مخصصة للشركات التجارية والتوزيع لرفع سرعة البيع والتحصيل.</p>
+              <ul class="list-check">
+                <li>CRM + Sales + Inventory</li>
+                <li>تقارير ربحية متقدمة</li>
+                <li>أتمتة متابعة المندوبين</li>
+              </ul>
+              <div class="hero-actions"><a class="btn btn-outline" href="/trade">تفاصيل الباقة</a></div>
+            </article>
+
+            <article class="card reveal" data-category="growth industry">
+              <h3>Retail Scale</h3>
+              <p>باقة التجزئة للفروع المتعددة مع POS ومخزون وبرنامج ولاء العملاء.</p>
+              <ul class="list-check">
+                <li>POS متعدد الفروع</li>
+                <li>إدارة عروض وخصومات</li>
+                <li>لوحات متابعة يومية</li>
+              </ul>
+              <div class="hero-actions"><a class="btn btn-outline" href="/retail-system">تفاصيل الباقة</a></div>
+            </article>
+
+            <article class="card reveal" data-category="industry enterprise">
+              <h3>Factory Precision</h3>
+              <p>باقة تشغيل للمصانع تشمل MRP وBOM والجودة والتكلفة الصناعية.</p>
+              <ul class="list-check">
+                <li>تخطيط إنتاج مرن</li>
+                <li>تتبع دفعات وجودة</li>
+                <li>تكلفة وحدة دقيقة</li>
+              </ul>
+              <div class="hero-actions"><a class="btn btn-outline" href="/factory">تفاصيل الباقة</a></div>
+            </article>
+
+            <article class="card reveal" data-category="industry growth">
+              <h3>HR Excellence</h3>
+              <p>باقة الموارد البشرية من التوظيف إلى الرواتب وتقييم الأداء.</p>
+              <ul class="list-check">
+                <li>Recruitment + Attendance + Payroll</li>
+                <li>سياسات اعتماد مرنة</li>
+                <li>تحليلات قوى عاملة</li>
+              </ul>
+              <div class="hero-actions"><a class="btn btn-outline" href="/hr">تفاصيل الباقة</a></div>
+            </article>
+
+            <article class="card reveal" data-category="enterprise">
+              <h3>Enterprise Transformation</h3>
+              <p>حل مؤسسي متكامل مع تكاملات متقدمة، حوكمة، وخارطة تطوير متعددة المراحل.</p>
+              <ul class="list-check">
+                <li>استشارات معمارية وتشغيلية</li>
+                <li>تكامل API عميق</li>
+                <li>SLA وفريق نجاح عميل</li>
+              </ul>
+              <div class="hero-actions"><a class="btn btn-outline" href="/contact">اطلب عرض مؤسسي</a></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="media-library" class="section section-tight">
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="kicker">مكتبة الصور المعتمدة</span>
+            <h2>جميع الصور المتاحة للاستخدام في النسخة الكاملة</h2>
+            <p>
+              هذه المكتبة تحتوي على كل الروابط التي تم التحقق منها من موقع Connect4Systems ويمكن إعادة استخدامها
+              في الهيرو، القطاعات، القصص، والمدونة.
+            </p>
+          </div>
+
+          <div class="gallery-grid">
+            <figure class="gallery-item reveal"><img loading="lazy" src="https://connect4systems.com/files/1313f0b.jpg" alt="asset 1" /><figcaption>1313f0b.jpg</figcaption></figure>
+            <figure class="gallery-item reveal"><img loading="lazy" src="https://connect4systems.com/files/21.png" alt="asset 2" /><figcaption>21.png</figcaption></figure>
+            <figure class="gallery-item reveal"><img loading="lazy" src="https://connect4systems.com/files/222.jpg" alt="asset 3" /><figcaption>222.jpg</figcaption></figure>
+            <figure class="gallery-item reveal"><img loading="lazy" src="https://connect4systems.com/files/297157449_5191567390892467_8253442718174640260_n.jpg" alt="asset 4" /><figcaption>297157449_...jpg</figcaption></figure>
+            <figure class="gallery-item reveal"><img loading="lazy" src="https://connect4systems.com/files/33.png" alt="asset 5" /><figcaption>33.png</figcaption></figure>
+            <figure class="gallery-item reveal"><img loading="lazy" src="https://connect4systems.com/files/78014104-.webp" alt="asset 6" /><figcaption>78014104-.webp</figcaption></figure>
+            <figure class="gallery-item reveal"><img loading="lazy" src="https://connect4systems.com/files/Copilot_20250724_120700.png" alt="asset 7" /><figcaption>Copilot_20250724_120700.png</figcaption></figure>
+            <figure class="gallery-item reveal"><img loading="lazy" src="https://connect4systems.com/files/Copilot_20250728_010119.png" alt="asset 8" /><figcaption>Copilot_20250728_010119.png</figcaption></figure>
+            <figure class="gallery-item reveal"><img loading="lazy" src="https://connect4systems.com/files/Copilot_20250731_100001.png" alt="asset 9" /><figcaption>Copilot_20250731_100001.png</figcaption></figure>
+            <figure class="gallery-item reveal"><img loading="lazy" src="https://connect4systems.com/files/crm1.png" alt="asset 10" /><figcaption>crm1.png</figcaption></figure>
+            <figure class="gallery-item reveal"><img loading="lazy" src="https://connect4systems.com/files/dt4538a19.jpg" alt="asset 11" /><figcaption>dt4538a19.jpg</figcaption></figure>
+            <figure class="gallery-item reveal"><img loading="lazy" src="https://connect4systems.com/files/erp-1.webp" alt="asset 12" /><figcaption>erp-1.webp</figcaption></figure>
+            <figure class="gallery-item reveal"><img loading="lazy" src="https://connect4systems.com/files/erp2.jpg" alt="asset 13" /><figcaption>erp2.jpg</figcaption></figure>
+            <figure class="gallery-item reveal"><img loading="lazy" src="https://connect4systems.com/files/free-chat-support-icon-1721-thumb.png" alt="asset 14" /><figcaption>free-chat-support-icon-1721-thumb.png</figcaption></figure>
+            <figure class="gallery-item reveal"><img loading="lazy" src="https://connect4systems.com/files/Imad-1162-600.jpg" alt="asset 15" /><figcaption>Imad-1162-600.jpg</figcaption></figure>
+            <figure class="gallery-item reveal"><img loading="lazy" src="https://connect4systems.com/files/log2.png" alt="asset 16" /><figcaption>log2.png</figcaption></figure>
+            <figure class="gallery-item reveal"><img loading="lazy" src="https://connect4systems.com/files/Logo (1).png" alt="asset 17" /><figcaption>Logo (1).png</figcaption></figure>
+            <figure class="gallery-item reveal"><img loading="lazy" src="https://connect4systems.com/files/logo copy.jpg" alt="asset 18" /><figcaption>logo copy.jpg</figcaption></figure>
+            <figure class="gallery-item reveal"><img loading="lazy" src="https://connect4systems.com/files/logo copy32416a.jpg" alt="asset 19" /><figcaption>logo copy32416a.jpg</figcaption></figure>
+            <figure class="gallery-item reveal"><img loading="lazy" src="https://connect4systems.com/files/logo.png" alt="asset 20" /><figcaption>logo.png</figcaption></figure>
+            <figure class="gallery-item reveal"><img loading="lazy" src="https://connect4systems.com/files/logo-02.png" alt="asset 21" /><figcaption>logo-02.png</figcaption></figure>
+            <figure class="gallery-item reveal"><img loading="lazy" src="https://connect4systems.com/files/logo3.jpg" alt="asset 22" /><figcaption>logo3.jpg</figcaption></figure>
+            <figure class="gallery-item reveal"><img loading="lazy" src="https://connect4systems.com/files/logo-s.jpg" alt="asset 23" /><figcaption>logo-s.jpg</figcaption></figure>
+            <figure class="gallery-item reveal"><img loading="lazy" src="https://connect4systems.com/files/MLogo.png" alt="asset 24" /><figcaption>MLogo.png</figcaption></figure>
+            <figure class="gallery-item reveal"><img loading="lazy" src="https://connect4systems.com/files/New Partnar - Copy.png" alt="asset 25" /><figcaption>New Partnar - Copy.png</figcaption></figure>
+            <figure class="gallery-item reveal"><img loading="lazy" src="https://connect4systems.com/files/New Partnar (1).png" alt="asset 26" /><figcaption>New Partnar (1).png</figcaption></figure>
+            <figure class="gallery-item reveal"><img loading="lazy" src="https://connect4systems.com/files/New Partnar (1)a2e854.png" alt="asset 27" /><figcaption>New Partnar (1)a2e854.png</figcaption></figure>
+            <figure class="gallery-item reveal"><img loading="lazy" src="https://connect4systems.com/files/OIP (2).jpeg" alt="asset 28" /><figcaption>OIP (2).jpeg</figcaption></figure>
+            <figure class="gallery-item reveal"><img loading="lazy" src="https://connect4systems.com/files/OIP (3).jpeg" alt="asset 29" /><figcaption>OIP (3).jpeg</figcaption></figure>
+            <figure class="gallery-item reveal"><img loading="lazy" src="https://connect4systems.com/files/raissyon-logo-e1623504859761.png" alt="asset 30" /><figcaption>raissyon-logo.png</figcaption></figure>
+            <figure class="gallery-item reveal"><img loading="lazy" src="https://connect4systems.com/files/s1.png" alt="asset 31" /><figcaption>s1.png</figcaption></figure>
+            <figure class="gallery-item reveal"><img loading="lazy" src="https://connect4systems.com/files/sa1.png" alt="asset 32" /><figcaption>sa1.png</figcaption></figure>
+            <figure class="gallery-item reveal"><img loading="lazy" src="https://connect4systems.com/files/Screenshot 2022-08-30 074004.jpg" alt="asset 33" /><figcaption>Screenshot 2022-08-30 074004.jpg</figcaption></figure>
+            <figure class="gallery-item reveal"><img loading="lazy" src="https://connect4systems.com/files/ue.png" alt="asset 34" /><figcaption>ue.png</figcaption></figure>
+            <figure class="gallery-item reveal"><img loading="lazy" src="https://connect4systems.com/files/Untitled.jpeg" alt="asset 35" /><figcaption>Untitled.jpeg</figcaption></figure>
+            <figure class="gallery-item reveal"><img loading="lazy" src="https://connect4systems.com/files/Untitled76abd7.jpeg" alt="asset 36" /><figcaption>Untitled76abd7.jpeg</figcaption></figure>
+            <figure class="gallery-item reveal"><img loading="lazy" src="https://connect4systems.com/files/Untitledcd6ac4.jpeg" alt="asset 37" /><figcaption>Untitledcd6ac4.jpeg</figcaption></figure>
+            <figure class="gallery-item reveal"><img loading="lazy" src="https://connect4systems.com/files/WhatsApp.svg.webp" alt="asset 38" /><figcaption>WhatsApp.svg.webp</figcaption></figure>
+            <figure class="gallery-item reveal"><img loading="lazy" src="https://connect4systems.com/files/White and Blue Professional Modern Technology Pitch Deck Presentation (1).png" alt="asset 39" /><figcaption>White and Blue ... (1).png</figcaption></figure>
+            <figure class="gallery-item reveal"><img loading="lazy" src="https://connect4systems.com/files/White and Blue Professional Modern Technology Pitch Deck Presentation.png" alt="asset 40" /><figcaption>White and Blue ... .png</figcaption></figure>
+            <figure class="gallery-item reveal"><img loading="lazy" src="https://connect4systems.com/files/عرض تقديمي عن الذكاء الاصطناعي باللون الأزرق و اللبني  (1).jpg" alt="asset 41" /><figcaption>AI Arabic (1).jpg</figcaption></figure>
+            <figure class="gallery-item reveal"><img loading="lazy" src="https://connect4systems.com/files/عرض تقديمي عن الذكاء الاصطناعي باللون الأزرق و اللبني  (10).jpg" alt="asset 42" /><figcaption>AI Arabic (10).jpg</figcaption></figure>
+            <figure class="gallery-item reveal"><img loading="lazy" src="https://connect4systems.com/files/عرض تقديمي عن الذكاء الاصطناعي باللون الأزرق و اللبني  (11).jpg" alt="asset 43" /><figcaption>AI Arabic (11).jpg</figcaption></figure>
+            <figure class="gallery-item reveal"><img loading="lazy" src="https://connect4systems.com/files/عرض تقديمي عن الذكاء الاصطناعي باللون الأزرق و اللبني  (12).jpg" alt="asset 44" /><figcaption>AI Arabic (12).jpg</figcaption></figure>
+            <figure class="gallery-item reveal"><img loading="lazy" src="https://connect4systems.com/files/عرض تقديمي عن الذكاء الاصطناعي باللون الأزرق و اللبني  (14).jpg" alt="asset 45" /><figcaption>AI Arabic (14).jpg</figcaption></figure>
+            <figure class="gallery-item reveal"><img loading="lazy" src="https://connect4systems.com/files/عرض تقديمي عن الذكاء الاصطناعي باللون الأزرق و اللبني  (15).jpg" alt="asset 46" /><figcaption>AI Arabic (15).jpg</figcaption></figure>
+            <figure class="gallery-item reveal"><img loading="lazy" src="https://connect4systems.com/files/عرض تقديمي عن الذكاء الاصطناعي باللون الأزرق و اللبني  (2).jpg" alt="asset 47" /><figcaption>AI Arabic (2).jpg</figcaption></figure>
+            <figure class="gallery-item reveal"><img loading="lazy" src="https://connect4systems.com/files/عرض تقديمي عن الذكاء الاصطناعي باللون الأزرق و اللبني  (6).jpg" alt="asset 48" /><figcaption>AI Arabic (6).jpg</figcaption></figure>
+            <figure class="gallery-item reveal"><img loading="lazy" src="https://connect4systems.com/files/عرض تقديمي عن الذكاء الاصطناعي باللون الأزرق و اللبني  (7).jpg" alt="asset 49" /><figcaption>AI Arabic (7).jpg</figcaption></figure>
+            <figure class="gallery-item reveal"><img loading="lazy" src="https://connect4systems.com/files/عرض تقديمي عن الذكاء الاصطناعي باللون الأزرق و اللبني  (8).jpg" alt="asset 50" /><figcaption>AI Arabic (8).jpg</figcaption></figure>
+            <figure class="gallery-item reveal"><img loading="lazy" src="https://connect4systems.com/files/عرض تقديمي عن الذكاء الاصطناعي باللون الأزرق و اللبني .jpg" alt="asset 51" /><figcaption>AI Arabic cover.jpg</figcaption></figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-tight">
+        <div class="container">
+          <div class="cta-band reveal">
+            <div>
+              <h3>اختر باقتك وابدأ التنفيذ خلال أيام</h3>
+              <p>نجهز نطاق العمل، الخطة الزمنية، ومخرجات المرحلة الأولى في عرض فني واضح.</p>
+            </div>
+            <a class="btn btn-accent" href="/contact">اطلب العرض الآن</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div class="footer-col">
+          <h4>Catalog & Media</h4>
+          <p>مركز المنتجات والباقات مع مكتبة الوسائط الكاملة المعتمدة.</p>
+        </div>
+        <div class="footer-col">
+          <h4>الباقات</h4>
+          <ul>
+            <li><a href="/trade">Trade Growth</a></li>
+            <li><a href="/retail-system">Retail Scale</a></li>
+            <li><a href="/factory">Factory Precision</a></li>
+            <li><a href="/hr">HR Excellence</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>روابط</h4>
+          <ul>
+            <li><a href="/solution-template">حلولنا</a></li>
+            <li><a href="/blog-list">المدونة</a></li>
+            <li><a href="/contact">اتصل بنا</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>تواصل</h4>
+          <ul>
+            <li>+20 111 999 7599</li>
+            <li>info@connect4systems.com</li>
+            <li>Mokattam, Cairo</li>
+          </ul>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        <span>© <span data-current-year></span> Connect 4 Systems</span>
+        <span>Catalog Full Media Library</span>
+      </div>
+    </footer>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
