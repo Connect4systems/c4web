@@ -35,6 +35,23 @@ _BLOG_IMAGE_FIELD_CANDIDATES = (
     "thumbnail",
 )
 
+_PARTNER_SECTION_KICKER_FIELD_CANDIDATES = (
+    "partners_section_kicker",
+    "partner_section_kicker",
+    "partners_kicker",
+    "partner_kicker",
+)
+
+_PARTNER_SECTION_TITLE_FIELD_CANDIDATES = (
+    "partners_section_title",
+    "partner_section_title",
+    "partners_title",
+    "partner_title",
+)
+
+_DEFAULT_PARTNER_SECTION_KICKER = "شركاء وكيانات نعمل معها"
+_DEFAULT_PARTNER_SECTION_TITLE = "منظومة تعاون قوية تعزز سرعة التنفيذ"
+
 _IMG_SRC_PATTERN = re.compile(r'<img[^>]+src=["\']([^"\']+)["\']', re.IGNORECASE)
 
 
@@ -82,6 +99,32 @@ def _extract_first_image_from_html(html_text):
     if not match:
         return ""
     return _normalize_web_url(match.group(1))
+
+
+def _first_configured_value(document, fieldnames, max_len=0):
+    for fieldname in fieldnames:
+        value = _clean_text(document.get(fieldname), max_len)
+        if value:
+            return value
+    return ""
+
+
+def _get_partner_section_text():
+    settings = frappe.get_cached_doc("Website Settings", "Website Settings")
+
+    kicker = _first_configured_value(
+        settings,
+        _PARTNER_SECTION_KICKER_FIELD_CANDIDATES,
+        max_len=200,
+    ) or _DEFAULT_PARTNER_SECTION_KICKER
+
+    title = _first_configured_value(
+        settings,
+        _PARTNER_SECTION_TITLE_FIELD_CANDIDATES,
+        max_len=240,
+    ) or _DEFAULT_PARTNER_SECTION_TITLE
+
+    return {"kicker": kicker, "title": title}
 
 
 def _coerce_field_value(field, raw_value):
@@ -319,6 +362,8 @@ def create_website_lead():
 @frappe.whitelist(allow_guest=True)
 def get_partner_logos(limit=60):
     """Return partner logos from published Blog Posts in category `partner`."""
+    section_text = _get_partner_section_text()
+
     try:
         limit_value = int(limit)
     except (TypeError, ValueError):
@@ -326,20 +371,61 @@ def get_partner_logos(limit=60):
 
     limit_value = max(1, min(limit_value, 200))
 
-    fields = ["name", "title", "route", "content", "blog_category", "published"]
-    fields.extend(_BLOG_IMAGE_FIELD_CANDIDATES)
+    try:
+        blog_meta = frappe.get_meta("Blog Post")
 
-    posts = frappe.get_all(
-        "Blog Post",
-        filters=[
-            ["published", "=", 1],
-            ["blog_category", "in", ["partner", "Partner"]],
-        ],
-        fields=fields,
-        order_by="published_on desc, creation desc",
-        limit_page_length=limit_value,
-        ignore_permissions=True,
-    )
+        fields = ["name"]
+        for fieldname in ("title", "route", "content", "blog_category", "published"):
+            if blog_meta.get_field(fieldname):
+                fields.append(fieldname)
+
+        available_image_fields = [
+            fieldname for fieldname in _BLOG_IMAGE_FIELD_CANDIDATES if blog_meta.get_field(fieldname)
+        ]
+        fields.extend(available_image_fields)
+
+        if not blog_meta.get_field("blog_category"):
+            return {
+                "items": [],
+                "kicker": section_text["kicker"],
+                "title": section_text["title"],
+            }
+
+        filters = [["blog_category", "in", ["partner", "Partner"]]]
+        if blog_meta.get_field("published"):
+            filters.insert(0, ["published", "=", 1])
+
+        order_by = "published_on desc, creation desc" if blog_meta.get_field("published_on") else "creation desc"
+
+        posts = frappe.get_all(
+            "Blog Post",
+            filters=filters,
+            fields=fields,
+            order_by=order_by,
+            limit_page_length=limit_value,
+            ignore_permissions=True,
+        )
+
+        if not posts:
+            relaxed_filters = [["blog_category", "like", "%partner%"]]
+            if blog_meta.get_field("published"):
+                relaxed_filters.insert(0, ["published", "=", 1])
+
+            posts = frappe.get_all(
+                "Blog Post",
+                filters=relaxed_filters,
+                fields=fields,
+                order_by=order_by,
+                limit_page_length=limit_value,
+                ignore_permissions=True,
+            )
+    except Exception:
+        frappe.log_error(frappe.get_traceback(), "c4web.get_partner_logos")
+        return {
+            "items": [],
+            "kicker": section_text["kicker"],
+            "title": section_text["title"],
+        }
 
     items = []
     seen_urls = set()
@@ -347,7 +433,7 @@ def get_partner_logos(limit=60):
     for post in posts:
         logo_url = ""
 
-        for fieldname in _BLOG_IMAGE_FIELD_CANDIDATES:
+        for fieldname in available_image_fields:
             logo_url = _normalize_web_url(post.get(fieldname))
             if logo_url:
                 break
@@ -372,4 +458,8 @@ def get_partner_logos(limit=60):
             }
         )
 
-    return {"items": items}
+    return {
+        "items": items,
+        "kicker": section_text["kicker"],
+        "title": section_text["title"],
+    }

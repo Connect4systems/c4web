@@ -331,7 +331,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
   setupImageFallbacks();
 
-  const createPartnerSection = () => {
+  const DEFAULT_PARTNER_KICKER = "شركاء وكيانات نعمل معها";
+  const DEFAULT_PARTNER_TITLE = "منظومة تعاون قوية تعزز سرعة التنفيذ";
+
+  const normalizePartnerSectionText = (text = {}) => ({
+    kicker: String(text?.kicker || "").trim() || DEFAULT_PARTNER_KICKER,
+    title: String(text?.title || "").trim() || DEFAULT_PARTNER_TITLE,
+  });
+
+  const applyPartnerSectionText = (section, text = {}) => {
+    if (!section) return;
+
+    const normalized = normalizePartnerSectionText(text);
+    const kickerEl = section.querySelector(".section-head .kicker");
+    const titleEl = section.querySelector(".section-head h2");
+    const ribbonEl = section.querySelector(".logo-ribbon");
+
+    if (kickerEl) {
+      kickerEl.textContent = normalized.kicker;
+    }
+    if (titleEl) {
+      titleEl.textContent = normalized.title;
+    }
+    if (ribbonEl) {
+      ribbonEl.setAttribute("aria-label", normalized.title);
+    }
+  };
+
+  const createPartnerSection = (text = {}) => {
     const section = document.createElement("section");
     section.className = "section section-tight";
     section.dataset.partnerLogosSection = "1";
@@ -339,14 +366,16 @@ document.addEventListener("DOMContentLoaded", () => {
     section.innerHTML = `
       <div class="container">
         <div class="section-head reveal">
-          <span class="kicker">شركاء وكيانات نعمل معها</span>
-          <h2>منظومة تعاون قوية تعزز سرعة التنفيذ</h2>
+          <span class="kicker"></span>
+          <h2></h2>
         </div>
-        <div class="logo-ribbon reveal" aria-label="شعارات الشركاء">
+        <div class="logo-ribbon reveal" aria-label="">
           <div class="logo-track" data-partner-logo-track></div>
         </div>
       </div>
     `;
+
+    applyPartnerSectionText(section, text);
 
     return section;
   };
@@ -363,15 +392,22 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const message = payload?.message;
-    const items = Array.isArray(message?.items) ? message.items : Array.isArray(message) ? message : [];
+    const messageObject = message && typeof message === "object" && !Array.isArray(message) ? message : {};
+    const items = Array.isArray(messageObject?.items) ? messageObject.items : Array.isArray(message) ? message : [];
 
-    return items
-      .map((item) => ({
-        title: String(item?.title || "partner").trim(),
-        route: String(item?.route || "/blog/partner").trim(),
-        logo_url: String(item?.logo_url || "").trim(),
-      }))
-      .filter((item) => Boolean(item.logo_url));
+    return {
+      text: normalizePartnerSectionText({
+        kicker: messageObject?.kicker,
+        title: messageObject?.title,
+      }),
+      items: items
+        .map((item) => ({
+          title: String(item?.title || "partner").trim(),
+          route: String(item?.route || "/blog/partner").trim(),
+          logo_url: String(item?.logo_url || "").trim(),
+        }))
+        .filter((item) => Boolean(item.logo_url)),
+    };
   };
 
   const renderPartnerLogos = (track, logos) => {
@@ -406,6 +442,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const setupPartnerLogos = async () => {
     const main = document.querySelector("main");
     if (!main) return;
+    const defaultText = normalizePartnerSectionText();
 
     let section = document.querySelector("[data-partner-logos-section]");
     if (!section) {
@@ -414,10 +451,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (!section) {
-      section = createPartnerSection();
+      section = createPartnerSection(defaultText);
     }
 
     section.dataset.partnerLogosSection = "1";
+    applyPartnerSectionText(section, defaultText);
 
     const leadSection = main.querySelector("#lead-request");
     if (leadSection) {
@@ -444,12 +482,16 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!track) return;
 
     try {
-      const logos = await fetchPartnerLogos();
+      const partnerPayload = await fetchPartnerLogos();
+      applyPartnerSectionText(section, partnerPayload.text);
+
+      const logos = partnerPayload.items;
       if (!logos.length) return;
       renderPartnerLogos(track, logos);
       setupImageFallbacks();
     } catch (_error) {
       // Keep existing logos as fallback when API is unavailable.
+      applyPartnerSectionText(section, defaultText);
     }
   };
 
