@@ -116,6 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const linksToEnsure = [
       { href: "/wells-solar", text: "الآبار والطاقة الشمسية" },
       { href: "/security-systems", text: "الأنظمة الأمنية" },
+      { href: "/computer-networks", text: "الحاسوب والشبكات" },
     ];
 
     navDropdowns.forEach((dropdown) => {
