@@ -112,6 +112,41 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  const ensureCompleteSolutionsLink = () => {
+    const linkHref = "/wells-solar";
+    const linkText = "شركات الآبار والطاقة الشمسية";
+
+    navDropdowns.forEach((dropdown) => {
+      const toggle = dropdown.querySelector(".c4-nav-toggle");
+      const menu = dropdown.querySelector(".c4-dropdown-menu");
+      if (!(toggle instanceof HTMLElement) || !(menu instanceof HTMLElement)) return;
+
+      const toggleLabel = (toggle.textContent || "").replace(/\s+/g, " ").trim();
+      if (!toggleLabel.includes("الحلول الكاملة")) return;
+
+      const hasLink = Array.from(menu.querySelectorAll("a")).some((anchor) => {
+        return (anchor.getAttribute("href") || "").trim() === linkHref;
+      });
+      if (hasLink) return;
+
+      const link = document.createElement("a");
+      link.href = linkHref;
+      link.textContent = linkText;
+
+      const pricingLink = Array.from(menu.querySelectorAll("a")).find((anchor) => {
+        return (anchor.getAttribute("href") || "").trim() === "/catalog";
+      });
+
+      if (pricingLink) {
+        menu.insertBefore(link, pricingLink);
+      } else {
+        menu.appendChild(link);
+      }
+    });
+  };
+
+  ensureCompleteSolutionsLink();
+
   const navLinks = document.querySelectorAll(".main-nav a");
   const currentPath = window.location.pathname.replace(/\/$/, "") || "/";
 
