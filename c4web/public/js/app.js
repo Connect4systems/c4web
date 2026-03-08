@@ -514,6 +514,13 @@ document.addEventListener("DOMContentLoaded", () => {
         '<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M9 0h3a4 4 0 0 0 4 4v3a7 7 0 0 1-4-1.26V11a5 5 0 1 1-5-5h1v3H7a2 2 0 1 0 2 2V0z"/></svg>',
     },
     {
+      key: "youtube",
+      label: "YouTube",
+      url: "https://www.youtube.com/@ConnectSystems-ERP",
+      icon:
+        '<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M15.5 4.3a2 2 0 0 0-1.4-1.4C12.9 2.5 8 2.5 8 2.5s-4.9 0-6.1.4A2 2 0 0 0 .5 4.3 20.3 20.3 0 0 0 0 8a20.3 20.3 0 0 0 .5 3.7 2 2 0 0 0 1.4 1.4c1.2.4 6.1.4 6.1.4s4.9 0 6.1-.4a2 2 0 0 0 1.4-1.4A20.3 20.3 0 0 0 16 8a20.3 20.3 0 0 0-.5-3.7zM6.4 10.4V5.6L10.8 8 6.4 10.4z"/></svg>',
+    },
+    {
       key: "linkedin",
       label: "LinkedIn",
       url: "https://www.linkedin.com/company/7695997/admin/page-posts/published/",
