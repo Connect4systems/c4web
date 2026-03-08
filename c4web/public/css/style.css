@@ -716,6 +716,17 @@ select:focus-visible {
   transform: none;
 }
 
+.card-image--logo {
+  min-height: 280px;
+  padding: 24px;
+}
+
+.card-image--logo img {
+  width: min(320px, 92%);
+  max-height: 220px;
+  object-fit: contain;
+}
+
 .card:hover .card-image--icon img {
   transform: none;
 }
