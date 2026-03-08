@@ -112,9 +112,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  const ensureCompleteSolutionsLink = () => {
-    const linkHref = "/wells-solar";
-    const linkText = "شركات الآبار والطاقة الشمسية";
+  const ensureCompleteSolutionsLinks = () => {
+    const linksToEnsure = [
+      { href: "/wells-solar", text: "الآبار والطاقة الشمسية" },
+      { href: "/security-systems", text: "الأنظمة الأمنية" },
+    ];
 
     navDropdowns.forEach((dropdown) => {
       const toggle = dropdown.querySelector(".c4-nav-toggle");
@@ -124,28 +126,30 @@ document.addEventListener("DOMContentLoaded", () => {
       const toggleLabel = (toggle.textContent || "").replace(/\s+/g, " ").trim();
       if (!toggleLabel.includes("الحلول الكاملة")) return;
 
-      const hasLink = Array.from(menu.querySelectorAll("a")).some((anchor) => {
-        return (anchor.getAttribute("href") || "").trim() === linkHref;
-      });
-      if (hasLink) return;
-
-      const link = document.createElement("a");
-      link.href = linkHref;
-      link.textContent = linkText;
-
       const pricingLink = Array.from(menu.querySelectorAll("a")).find((anchor) => {
         return (anchor.getAttribute("href") || "").trim() === "/catalog";
       });
 
-      if (pricingLink) {
-        menu.insertBefore(link, pricingLink);
-      } else {
-        menu.appendChild(link);
-      }
+      linksToEnsure.forEach(({ href, text }) => {
+        const hasLink = Array.from(menu.querySelectorAll("a")).some((anchor) => {
+          return (anchor.getAttribute("href") || "").trim() === href;
+        });
+        if (hasLink) return;
+
+        const link = document.createElement("a");
+        link.href = href;
+        link.textContent = text;
+
+        if (pricingLink) {
+          menu.insertBefore(link, pricingLink);
+        } else {
+          menu.appendChild(link);
+        }
+      });
     });
   };
 
-  ensureCompleteSolutionsLink();
+  ensureCompleteSolutionsLinks();
 
   const navLinks = document.querySelectorAll(".main-nav a");
   const currentPath = window.location.pathname.replace(/\/$/, "") || "/";
