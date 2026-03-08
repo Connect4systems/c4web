@@ -6,6 +6,22 @@ document.addEventListener("DOMContentLoaded", () => {
   const navDropdowns = document.querySelectorAll("[data-nav-dropdown]");
   const isMobileNav = () => window.matchMedia("(max-width: 860px)").matches;
 
+  // Remove stale legacy menu label if an old cached template is still being served.
+  navDropdowns.forEach((dropdown) => {
+    const links = dropdown.querySelectorAll(".dropdown-menu a");
+    links.forEach((link) => {
+      const label = (link.textContent || "").replace(/\s+/g, " ").trim();
+      if (!label.includes("الشحن")) return;
+
+      const item = link.closest("li");
+      if (item) {
+        item.remove();
+      } else {
+        link.remove();
+      }
+    });
+  });
+
   const closeDropdowns = () => {
     navDropdowns.forEach((dropdown) => {
       dropdown.classList.remove("open");
