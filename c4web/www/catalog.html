@@ -200,6 +200,95 @@
           </div>
         </div>
       </section>
+          <!-- lead-request-section:start -->
+      <section class="section section-tight" id="lead-request">
+        <div class="container contact-layout">
+          <article class="form-card reveal">
+            <h2>أرسل طلبك الآن</h2>
+            <p class="text-muted">املأ النموذج التالي وسيتواصل معك فريقنا خلال يوم عمل.</p>
+
+            <form class="form-grid" data-lead-form novalidate>
+              <div class="field">
+                <label for="leadreq-name">الاسم</label>
+                <input id="leadreq-name" name="name" type="text" placeholder="الاسم الكامل" required />
+              </div>
+
+              <div class="field">
+                <label for="leadreq-company">اسم الشركة</label>
+                <input id="leadreq-company" name="company" type="text" placeholder="اسم الشركة" />
+              </div>
+
+              <div class="field">
+                <label for="leadreq-users">عدد الموظفين</label>
+                <input id="leadreq-users" name="users" type="number" min="1" step="1" placeholder="مثال: 25" required />
+              </div>
+
+              <div class="field">
+                <label for="leadreq-phone">رقم الجوال</label>
+                <input id="leadreq-phone" name="phone" type="tel" placeholder="+20" required />
+              </div>
+
+              <div class="field">
+                <label for="leadreq-email">البريد الإلكتروني</label>
+                <input id="leadreq-email" name="email" type="email" placeholder="name@company.com" required />
+              </div>
+
+              <div class="field field-full">
+                <label for="leadreq-sector">القطاع</label>
+                <select id="leadreq-sector" name="sector">
+                  <option>اختر القطاع</option>
+                  <option>تجارة وتوزيع</option>
+                  <option>تجزئة ونقاط بيع</option>
+                  <option>مصانع وإنتاج</option>
+                  <option>مقاولات وإنشاءات</option>
+                  <option>تأجير وخدمات ميدانية</option>
+                  <option>خدمات مهنية</option>
+                </select>
+              </div>
+
+              <div class="field field-full">
+                <label for="leadreq-scope">نوع الاحتياج</label>
+                <select id="leadreq-scope" name="scope">
+                  <option>اختر نوع الاحتياج</option>
+                  <option>تطبيق ERP جديد</option>
+                  <option>تطوير نظام قائم</option>
+                  <option>مشروع CRM</option>
+                  <option>أتمتة وذكاء اصطناعي</option>
+                  <option>دعم وتشغيل مستمر</option>
+                </select>
+              </div>
+
+              <div class="field field-full">
+                <label for="leadreq-message">وصف مختصر للتحدي الحالي</label>
+                <textarea id="leadreq-message" name="message" placeholder="ما المشكلة التي ترغب في حلها؟" required></textarea>
+              </div>
+
+              <div class="field field-full">
+                <button class="btn btn-primary" type="submit">إرسال الطلب</button>
+              </div>
+
+              <div class="field field-full">
+                <p class="form-status" data-form-status aria-live="polite"></p>
+              </div>
+            </form>
+          </article>
+
+          <aside class="info-card reveal">
+            <h3>تواصل مباشر</h3>
+            <ul class="list-check">
+              <li>استجابة مبدئية خلال 24 ساعة.</li>
+              <li>تقييم احتياج حسب القطاع وحجم الفريق.</li>
+              <li>خارطة طريق تنفيذية واضحة قبل التعاقد.</li>
+            </ul>
+
+            <div class="hero-actions">
+              <a class="btn btn-accent" href="/contact">عرض صفحة التواصل</a>
+              <a class="btn btn-outline" href="https://wa.me/201006676145">تواصل واتساب</a>
+            </div>
+          </aside>
+        </div>
+      </section>
+      <!-- lead-request-section:end -->
     </main>
 
     <footer class="site-footer">
