@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>حل شركات التأجير | Connect 4 Systems</title>
+    <meta
+      name="description"
+      content="حل شركات التأجير من Connect 4: منصة تشغيل متكاملة لإدارة التوفر، العقود، الفواتير، المرتجعات، الصيانة، والتحصيل عبر الفروع."
+    />
+    <link rel="stylesheet" href="/assets/c4web/css/style.css" />
+    <script defer src="/assets/c4web/js/app.js"></script>
+  </head>
+  <body>
+    <div class="progress-line" data-scroll-progress></div>
+
+    <header class="site-header">
+      <div class="container header-wrap">
+        <a class="brand" href="/">
+          <span class="brand-mark">
+            <img
+              class="brand-logo"
+              src="{{ c4_logo_url or '/files/logo-erp.png' }}"
+              alt="Connect 4 Systems Logo"
+              onerror="this.onerror=null;this.src='/files/logo.png';"
+            />
+          </span>
+          <span class="brand-title">
+            <strong>Connect 4 Systems</strong>
+            <small>ERP, AI, Business Development</small>
+          </span>
+        </a>
+
+        <button class="menu-button" type="button" aria-label="فتح القائمة" aria-expanded="false" data-menu-toggle>
+          ☰
+        </button>
+
+        <div class="nav-panel" data-nav-shell>
+          <nav class="main-nav" aria-label="القائمة الرئيسية">
+            <a class="c4-nav-link" href="/">الرئيسية</a>
+
+            <div class="c4-nav-dropdown" data-nav-dropdown>
+              <button class="c4-nav-toggle" type="button" aria-expanded="false">البرامج السحابية</button>
+              <div class="c4-dropdown-menu" role="menu">
+                <a href="/hr">HRMS</a>
+                <a href="/rent-app">Rent App</a>
+                <a href="/trade">الإدارة المالية</a>
+                <a href="/trade">إدارة المبيعات</a>
+                <a href="/crm">إدارة خدمة العملاء</a>
+                <a href="/trade">إدارة المخازن</a>
+                <a href="/trade">إدارة الشحن الدولي</a>
+              </div>
+            </div>
+
+            <div class="c4-nav-dropdown" data-nav-dropdown>
+              <button class="c4-nav-toggle" type="button" aria-expanded="false">الحلول الكاملة</button>
+              <div class="c4-dropdown-menu" role="menu">
+                <a href="/retail-system">المحلات التجارية</a>
+                <a href="/trade">الشركات التجارية</a>
+                <a href="/rental-companies">شركات التأجير</a>
+                <a href="/factory">المصانع</a>
+                <a href="/construction">المقاولات</a>
+                <a href="/catalog">خطط الأسعار</a>
+                <a href="/contact">احجز جلسة تعريفية</a>
+              </div>
+            </div>
+
+            <a class="c4-nav-link" href="/catalog">خطط الأسعار</a>
+          </nav>
+          <a class="btn btn-primary" href="/contact">طلب عرض</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero section-tight">
+        <div class="container hero-grid">
+          <div class="reveal">
+            <div class="hero-tag-row">
+              <span class="badge badge-brand">حلول القطاع</span>
+              <span class="badge badge-ai">Rental Companies</span>
+            </div>
+            <h1 class="hero-title">حل متكامل لشركات التأجير: تشغيل أسرع، تحصيل أقوى، ونزاعات أقل</h1>
+            <p class="hero-text">
+              إذا كانت شركتك تدير معدات، أدوات، أو أصولا تأجيرية عبر فروع متعددة، فهذا الحل مصمم لك.
+              نوحد الحجز، العقود، الفواتير، الإرجاع، والصيانة في منصة واحدة حتى يعمل فريقك بدقة وسرعة.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="/contact">احجز جلسة تحليل مجانية</a>
+              <a class="btn btn-outline" href="#outcomes">نتائج متوقعة</a>
+            </div>
+            <div class="metric-row">
+              <article class="stat-card">
+                <strong data-counter="40" data-suffix="%">0</strong>
+                <span>تسريع دورة التأجير</span>
+              </article>
+              <article class="stat-card">
+                <strong data-counter="33" data-suffix="%">0</strong>
+                <span>تقليل فترات تعطل الأصول</span>
+              </article>
+              <article class="stat-card">
+                <strong data-counter="29" data-suffix="%">0</strong>
+                <span>تحسن معدل التحصيل</span>
+              </article>
+            </div>
+          </div>
+
+          <aside class="hero-visual reveal" data-float="10">
+            <img
+              class="hero-main-image"
+              src="https://images.unsplash.com/photo-1581090700227-4c4f50b3f2f7?auto=format&fit=crop&w=1400&q=80"
+              alt="Rental operations dashboard"
+            />
+            <div class="hero-overlay">
+              <div class="hero-panel">
+                <h3>إيراد متوقع ومستدام</h3>
+                <p>حوّل كل أصل تأجيري إلى تدفق نقدي قابل للتخطيط بدل قرارات تشغيلية عشوائية.</p>
+              </div>
+              <div class="hero-panel">
+                <h3>سير عمل موحد</h3>
+                <p>من الاستفسار إلى الإرجاع في مسار واحد قابل للتتبع والمراجعة.</p>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="outcomes" class="section section-tight">
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="kicker">ما الذي تكسبه شركتك؟</span>
+            <h2>نتائج تشغيلية ومالية مباشرة لقطاع التأجير</h2>
+          </div>
+
+          <div class="cards">
+            <article class="card reveal">
+              <h3>رفع الاستفادة من الأصول</h3>
+              <p>تقليل الوقت الضائع بين العقود عبر رؤية فورية للتوفر وجدولة أدق.</p>
+              <ul class="list-check">
+                <li>تحسين نسبة الإشغال اليومي للأصول.</li>
+                <li>تقليل التأخير في التجهيز والتسليم.</li>
+                <li>تنبيهات ذكية للأصول غير المستغلة.</li>
+              </ul>
+            </article>
+
+            <article class="card reveal">
+              <h3>فوترة أسرع وأكثر دقة</h3>
+              <p>إصدار تلقائي للعقود والفواتير مع حساب العربون والضرائب والتعديلات النهائية.</p>
+              <ul class="list-check">
+                <li>تقليل أخطاء الحساب اليدوي.</li>
+                <li>تسريع دورة الفاتورة إلى التحصيل.</li>
+                <li>تطابق تشغيلي ومالي كامل.</li>
+              </ul>
+            </article>
+
+            <article class="card reveal">
+              <h3>نزاعات أقل عند المرتجعات</h3>
+              <p>توثيق حالة الأصل أثناء التسليم والاسترجاع مع سجل تاريخي لكل عملية.</p>
+              <ul class="list-check">
+                <li>تخفيض النزاعات حول التلفيات.</li>
+                <li>تسوية أسرع للعقود المغلقة.</li>
+                <li>مستندات موثقة قابلة للمراجعة.</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-tight">
+        <div class="container case-grid">
+          <article class="case-card reveal">
+            <img
+              src="https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=1200&q=80"
+              alt="تأجير معدات"
+            />
+            <div class="case-body">
+              <h4>تأجير المعدات</h4>
+              <p>إدارة جاهزية الأصول، تواريخ الصيانة، والعقود طويلة وقصيرة المدى.</p>
+            </div>
+          </article>
+
+          <article class="case-card reveal">
+            <img
+              src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1200&q=80"
+              alt="تأجير فعاليات"
+            />
+            <div class="case-body">
+              <h4>تأجير الفعاليات</h4>
+              <p>تنسيق حجوزات متعددة العناصر مع توصيل، تركيب، واسترجاع منضبط.</p>
+            </div>
+          </article>
+
+          <article class="case-card reveal">
+            <img
+              src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=1200&q=80"
+              alt="تأجير مركبات"
+            />
+            <div class="case-body">
+              <h4>تأجير المركبات والأصول المتحركة</h4>
+              <p>متابعة الحجز، التسليم، العهدة، والفحص الدوري ضمن دورة موثقة.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section section-tight">
+        <div class="container tab-shell reveal">
+          <div class="tab-nav" role="tablist" aria-label="بنية الحل">
+            <button class="tab-button active" type="button" data-tab-target="flow" aria-selected="true">دورة التشغيل</button>
+            <button class="tab-button" type="button" data-tab-target="finance" aria-selected="false">المالية</button>
+            <button class="tab-button" type="button" data-tab-target="growth" aria-selected="false">التوسع</button>
+          </div>
+
+          <article class="tab-panel active" data-tab-panel="flow">
+            <figure class="tab-media">
+              <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80" alt="دورة التشغيل" />
+            </figure>
+            <div class="tab-content">
+              <h3>تشغيل منضبط من أول استفسار حتى الإرجاع</h3>
+              <p>قواعد موحدة للحجز والتسليم والفحص مع أدوار واضحة لكل عضو في الفريق.</p>
+              <ul class="list-check">
+                <li>تقليل الإدخال المكرر والمتابعات اليدوية.</li>
+                <li>رفع جودة الخدمة وتجربة العميل.</li>
+                <li>تحكم كامل في مواعيد التسليم والاسترجاع.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="tab-panel" data-tab-panel="finance">
+            <figure class="tab-media">
+              <img src="https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&w=1200&q=80" alt="المالية والتحصيل" />
+            </figure>
+            <div class="tab-content">
+              <h3>تدفق نقدي أقوى</h3>
+              <p>ربط كامل بين العقود والتحصيل والقيود المالية لتقليل التأخير والمخاطر.</p>
+              <ul class="list-check">
+                <li>إدارة دقيقة للمستحقات وأعمار الديون.</li>
+                <li>تقارير ربحية حسب الأصل والعميل والفرع.</li>
+                <li>تنبيهات استحقاق وتحرك مبكر للتحصيل.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="tab-panel" data-tab-panel="growth">
+            <figure class="tab-media">
+              <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80" alt="التوسع في الفروع" />
+            </figure>
+            <div class="tab-content">
+              <h3>نمو قابل للتوسع</h3>
+              <p>ابدأ بعملياتك الأساسية ثم أضف فروعا وخدمات جديدة دون إعادة بناء النظام.</p>
+              <ul class="list-check">
+                <li>إدارة مركزية مع صلاحيات محلية.</li>
+                <li>إطلاق أسرع للفرع الجديد.</li>
+                <li>رؤية موحدة للأداء عبر كل المواقع.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section section-tight">
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="kicker">خارطة التنفيذ</span>
+            <h2>إطلاق منظم خلال 4 مراحل</h2>
+          </div>
+
+          <div class="timeline reveal">
+            <article class="timeline-item">
+              <h4>1) Discovery</h4>
+              <p>تحليل نموذج التأجير الحالي وتحديد الاختناقات ذات الأثر الأكبر على الربحية.</p>
+            </article>
+            <article class="timeline-item">
+              <h4>2) Configuration</h4>
+              <p>تهيئة الأصول، التسعير، العقود، والصلاحيات وفق سياسة التشغيل في شركتك.</p>
+            </article>
+            <article class="timeline-item">
+              <h4>3) Go-Live</h4>
+              <p>إطلاق تدريجي مع تدريب الفريق ومراقبة المؤشرات التشغيلية والمالية.</p>
+            </article>
+            <article class="timeline-item">
+              <h4>4) Optimization</h4>
+              <p>تحسين مستمر وتفعيل تنبيهات ذكية ولوحات تنبؤية لتحسين القرار.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-tight">
+        <div class="container kpi-band reveal">
+          <div>
+            <h3>جاهز للنمو مع فرق التشغيل والمالية وإدارة الفروع</h3>
+            <p>
+              منصة واحدة تمنحك رؤية واضحة للأصول المؤجرة، العقود النشطة، المستحقات، وأداء الفروع لحظيا.
+            </p>
+          </div>
+          <div class="kpi-grid">
+            <article class="kpi-item">
+              <strong data-counter="128">0</strong>
+              <span>أصل متاح للحجز في لوحة واحدة</span>
+            </article>
+            <article class="kpi-item">
+              <strong data-counter="46">0</strong>
+              <span>حجز نشط قابل للمتابعة اللحظية</span>
+            </article>
+            <article class="kpi-item">
+              <strong data-counter="12">0</strong>
+              <span>فاتورة معلقة تحت المتابعة</span>
+            </article>
+            <article class="kpi-item">
+              <strong data-counter="5">0</strong>
+              <span>فروع مرتبطة برؤية موحدة</span>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-tight">
+        <div class="container">
+          <div class="cta-band reveal">
+            <div>
+              <h3>هل تبحث عن حل تأجير جاهز للتنفيذ؟</h3>
+              <p>ابدأ بجلسة استشارية لتحديد أسرع مسار إطلاق يناسب نموذج عملك الحالي.</p>
+            </div>
+            <a class="btn btn-accent" href="/contact">تحدث إلى فريق التأجير</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div class="footer-col">
+          <h4>Rental Companies Suite</h4>
+          <p>حلول تشغيل وتأهيل رقمي مصممة خصيصا لقطاع التأجير متعدد النماذج.</p>
+          <img src="https://rentos.live/files/lo.png" alt="Rent App Logo" style="margin-top: 10px; max-width: 140px; height: auto;" />
+        </div>
+
+        <div class="footer-col">
+          <h4>روابط رئيسية</h4>
+          <ul>
+            <li><a href="/solution-template">حلولنا</a></li>
+            <li><a href="/catalog">المنتجات</a></li>
+            <li><a href="/blog-list">المدونة</a></li>
+            <li><a href="/about">من نحن</a></li>
+            <li><a href="/contact">اتصل بنا</a></li>
+            <li><a href="/app">تسجيل الدخول</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>مسارات مرتبطة</h4>
+          <ul>
+            <li><a href="/rent-app">Rent App</a></li>
+            <li><a href="/trade">الشركات التجارية</a></li>
+            <li><a href="/crm">إدارة العملاء</a></li>
+            <li><a href="/contact">احجز جلسة تعريفية</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>تواصل مباشر</h4>
+          <ul>
+            <li>+20 111 999 7599</li>
+            <li>info@connect4systems.com</li>
+            <li>Mokattam, Cairo</li>
+            <li><a href="https://wa.me/201006676145">واتساب الأعمال</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="container footer-bottom">
+        <span>© <span data-current-year></span> Connect 4 Systems</span>
+        <span>Rental Companies Page</span>
+      </div>
+    </footer>
+  </body>
+</html>
