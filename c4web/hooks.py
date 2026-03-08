@@ -42,6 +42,7 @@ modern_website_route_rules = [
     {"from_route": "/inventory-management", "to_route": "inventory-management-modern"},
     {"from_route": "/asset-management", "to_route": "asset-management-modern"},
     {"from_route": "/procurement-management", "to_route": "procurement-management-modern"},
+    {"from_route": "/construction-management", "to_route": "construction-management-modern"},
 
     {"from_route": "/all-products", "to_route": "catalog-modern"},
     {"from_route": "/shop-by-category", "to_route": "catalog-modern"},
@@ -139,6 +140,7 @@ legacy_website_route_rules = [
     {"from_route": "/inventory-management", "to_route": "inventory-management"},
     {"from_route": "/asset-management", "to_route": "asset-management"},
     {"from_route": "/procurement-management", "to_route": "procurement-management"},
+    {"from_route": "/construction-management", "to_route": "construction-management"},
 
     {"from_route": "/retailtest", "to_route": "retail-system"},
     {"from_route": "/retais-erp", "to_route": "retail-system"},

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>إدارة المقاولات | ERPNext v15</title>
+    <meta
+      name="description"
+      content="منصة إدارة المقاولات من كونكت 4: دورة تشغيل كاملة من المناقصات والتسعير وBOQ حتى عقود المقاولين، طلبات مواد الموقع، المخالصات، وتقارير التكلفة." 
+    />
+    <link rel="stylesheet" href="/assets/c4web/css/style.css" />
+    <script defer src="/assets/c4web/js/app.js"></script>
+  </head>
+  <body>
+    <div class="progress-line" data-scroll-progress></div>
+
+    <header class="site-header">
+      <div class="container header-wrap">
+        <a class="brand" href="/">
+          <span class="brand-mark">
+            <img
+              class="brand-logo"
+              src="{{ c4_logo_url or '/files/logo-erp.png' }}"
+              alt="Connect 4 Systems Logo"
+              onerror="this.onerror=null;this.src='/files/logo.png';"
+            />
+          </span>
+          <span class="brand-title">
+            <strong>Connect 4 Systems</strong>
+            <small>ERP, AI, Business Development</small>
+          </span>
+        </a>
+
+        <button class="menu-button" type="button" aria-label="فتح القائمة" aria-expanded="false" data-menu-toggle>
+          ☰
+        </button>
+
+        <div class="nav-panel" data-nav-shell>
+          <nav class="main-nav" aria-label="القائمة الرئيسية">
+            <a class="c4-nav-link" href="/">الرئيسية</a>
+
+            <div class="c4-nav-dropdown" data-nav-dropdown>
+              <button class="c4-nav-toggle" type="button" aria-expanded="false">البرامج السحابية</button>
+              <div class="c4-dropdown-menu" role="menu">
+                <a href="/hr">ادارة الموارد البشرية</a>
+                <a href="/rent-app">ادارة الايجارات</a>
+                <a href="/finance-management">الادارة المالية</a>
+                <a href="/trade">إدارة المبيعات</a>
+                <a href="/crm">إدارة خدمة العملاء</a>
+                <a href="/inventory-management">إدارة المخازن</a>
+                <a href="/asset-management">إدارة الأصول</a>
+                <a href="/procurement-management">إدارة المشتريات</a>
+                <a href="/construction-management">إدارة المقاولات</a>
+              </div>
+            </div>
+
+            <div class="c4-nav-dropdown" data-nav-dropdown>
+              <button class="c4-nav-toggle" type="button" aria-expanded="false">الحلول الكاملة</button>
+              <div class="c4-dropdown-menu" role="menu">
+                <a href="/retail-system">المحلات التجارية</a>
+                <a href="/trade">الشركات التجارية</a>
+                <a href="/rental-companies">شركات التأجير</a>
+                <a href="/factory">المصانع</a>
+                <a href="/construction">المقاولات</a>
+                <a href="/catalog">خطط الأسعار</a>
+                <a href="/contact">احجز جلسة تعريفية</a>
+              </div>
+            </div>
+
+            <a class="c4-nav-link" href="/catalog">خطط الأسعار</a>
+          </nav>
+          <a class="btn btn-primary" href="/contact">طلب عرض</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero section-tight">
+        <div class="container hero-grid">
+          <div class="reveal">
+            <div class="hero-tag-row">
+              <span class="badge badge-brand">Construction Management</span>
+              <span class="badge badge-ai">ERPNext + Frappe</span>
+            </div>
+            <h1 class="hero-title">إدارة المقاولات من المناقصة حتى المخالصة في منصة واحدة</h1>
+            <p class="hero-text">
+              نبني دورة تشغيل مقاولات متكاملة مبنية على منطق عمل فعلي: إدارة المناقصات،
+              Costing Note و BOQ، طلبات التعاقد CR، مقارنة المقاولين، عقود المقاولين الفرعيين،
+              طلبات مواد الموقع، ثم المخالصات وتقارير التكلفة حسب Cost Code.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="/contact">احجز عرض نظام المقاولات</a>
+              <a class="btn btn-outline" href="#contractor-features">استعرض الوحدات</a>
+            </div>
+          </div>
+
+          <aside class="hero-visual reveal" data-float="8">
+            <img class="hero-main-image" src="https://images.pexels.com/photos/2219024/pexels-photo-2219024.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="إدارة مشاريع المقاولات" />
+            <div class="hero-overlay">
+              <div class="hero-panel">
+                <h3>Tender to Contract</h3>
+                <p>تحويل المناقصة إلى عقد قابل للتنفيذ مع اعتماد ومقارنات موثقة.</p>
+              </div>
+              <div class="hero-panel">
+                <h3>Cost Code Control</h3>
+                <p>تتبع التكلفة الفعلية مقابل المخطط حسب البنود ومراكز التكلفة.</p>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="contractor-features" class="section section-tight">
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="kicker">منطق التشغيل المستند إلى تطبيق المقاولات</span>
+            <h2>وحدات مترابطة تغطي دورة المشروع كاملة</h2>
+          </div>
+          <div class="cards cards-4">
+            <article class="card reveal">
+              <h3>Tender & Opportunity</h3>
+              <p>إدارة المناقصات من فرصة العميل حتى عروض الموردين وتقييم العرض الفني والمالي.</p>
+            </article>
+            <article class="card reveal">
+              <h3>Costing Note & BOQ</h3>
+              <p>تحليل التكلفة على مواد وعمالة ومقاولين ومصاريف مع حساب الربحية المستهدفة.</p>
+            </article>
+            <article class="card reveal">
+              <h3>CR & CR Comparison</h3>
+              <p>طلبات التعاقد مع مقارنة الموردين/المقاولين واختيار العرض المعتمد بشفافية.</p>
+            </article>
+            <article class="card reveal">
+              <h3>Subcontractor Contract</h3>
+              <p>إصدار عقود المقاولين الفرعيين وربطها بالمشروع ونوع العقد والمرفقات الرسمية.</p>
+            </article>
+            <article class="card reveal">
+              <h3>Site Material Request</h3>
+              <p>طلبات مواد الموقع من المخزن الصحيح وربط مباشر بالمشروع وتقدم التنفيذ.</p>
+            </article>
+            <article class="card reveal">
+              <h3>Clearence & Cost Report</h3>
+              <p>مخالصات العميل/المورد مع خصومات وقيم مستحقة وتقارير تكلفة تفصيلية حسب Cost Code.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-tight">
+        <div class="container timeline reveal">
+          <article class="timeline-item">
+            <h4>1) التأهيل والمناقصة</h4>
+            <p>تسجيل Tender ومتابعة الموردين وفرص الترسية.</p>
+          </article>
+          <article class="timeline-item">
+            <h4>2) التسعير والـ BOQ</h4>
+            <p>تجميع تكلفة المشروع من مواد وعمالة ومقاولين ومصاريف.</p>
+          </article>
+          <article class="timeline-item">
+            <h4>3) طلبات التعاقد</h4>
+            <p>إصدار CR ثم CR Comparison لاختيار المقاول/المورد الأنسب.</p>
+          </article>
+          <article class="timeline-item">
+            <h4>4) إدارة العقود</h4>
+            <p>إصدار عقد المقاول الفرعي وربطه بالمشروع والبنود المعتمدة.</p>
+          </article>
+          <article class="timeline-item">
+            <h4>5) طلبات مواد الموقع</h4>
+            <p>تشغيل Site Material Request مع تتبع الصرف على المشروع.</p>
+          </article>
+          <article class="timeline-item">
+            <h4>6) المخالصات والتقارير</h4>
+            <p>إدارة Clearence وPurchase Clearence وتحليل الانحرافات التكلفية.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section section-tight">
+        <div class="container tab-shell reveal">
+          <div class="tab-nav" role="tablist" aria-label="محاور إدارة المقاولات">
+            <button class="tab-button active" type="button" data-tab-target="planning" aria-selected="true">التخطيط والتسعير</button>
+            <button class="tab-button" type="button" data-tab-target="execution" aria-selected="false">التنفيذ والموقع</button>
+            <button class="tab-button" type="button" data-tab-target="settlement" aria-selected="false">المخالصات والتكلفة</button>
+          </div>
+
+          <article class="tab-panel active" data-tab-panel="planning">
+            <figure class="tab-media">
+              <img src="https://images.pexels.com/photos/3760529/pexels-photo-3760529.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="تخطيط مشروع مقاولات" />
+            </figure>
+            <div class="tab-content">
+              <h3>قرارات تسعير أدق قبل التنفيذ</h3>
+              <p>المكتب الفني يبني تكلفة دقيقة عبر Costing Note وBOQ قبل أي التزام تعاقدي.</p>
+              <ul class="list-check">
+                <li>تجميع آلي لتكلفة البنود.</li>
+                <li>ربط الربح المستهدف بسعر الترسية.</li>
+                <li>اعتماد واضح بين الإدارات.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="tab-panel" data-tab-panel="execution">
+            <figure class="tab-media">
+              <img src="https://images.pexels.com/photos/159306/construction-site-build-construction-work-159306.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="تنفيذ أعمال المقاولات" />
+            </figure>
+            <div class="tab-content">
+              <h3>تشغيل موقع منضبط ومواد تحت السيطرة</h3>
+              <p>طلبات المواد والعهد ترتبط مباشرة بالمشروع، فتقل الفواقد ويتحسن معدل الإنجاز.</p>
+              <ul class="list-check">
+                <li>طلب مواد حسب احتياج الموقع.</li>
+                <li>تتبع الصرف بالمخزن والبند.</li>
+                <li>ربط المقاولين الفرعيين بخطة التنفيذ.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="tab-panel" data-tab-panel="settlement">
+            <figure class="tab-media">
+              <img src="https://images.pexels.com/photos/416405/pexels-photo-416405.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="مخالصات ومتابعة تكلفة" />
+            </figure>
+            <div class="tab-content">
+              <h3>مخالصات دقيقة ورؤية تكلفة لحظية</h3>
+              <p>إدارة مستحقات العميل والمورد مع خصومات وقيم سابقة وحالية ومستحقة بشكل واضح.</p>
+              <ul class="list-check">
+                <li>Clearence وPurchase Clearence.</li>
+                <li>قوالب خصومات تلقائية.</li>
+                <li>Cost Report حسب Cost Code.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section section-tight">
+        <div class="container">
+          <div class="cta-band reveal">
+            <div>
+              <h3>هل تريد رفع ربحية المشاريع وتقليل انحراف التكلفة؟</h3>
+              <p>نصمم لك نظام إدارة مقاولات عملي يربط المكتب الفني، المشتريات، المخازن، والموقع في دورة واحدة.</p>
+            </div>
+            <a class="btn btn-accent" href="/contact">ابدأ إدارة المقاولات</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div class="footer-col">
+          <h4>Construction Management</h4>
+          <p>تشغيل مشاريع المقاولات بمنهجية واضحة من المناقصة حتى المخالصة.</p>
+        </div>
+        <div class="footer-col">
+          <h4>حلول مرتبطة</h4>
+          <ul>
+            <li><a href="/procurement-management">إدارة المشتريات</a></li>
+            <li><a href="/inventory-management">إدارة المخازن</a></li>
+            <li><a href="/finance-management">الادارة المالية</a></li>
+            <li><a href="/construction">حلول المقاولات</a></li>
+            <li><a href="/about">عملائنا</a></li>
+            <li><a href="/contact">تواصل</a></li>
+            <li><a href="/blog-list">المدونة</a></li>
+            <li><a href="/app">تسجيل الدخول</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>تواصل</h4>
+          <ul>
+            <li>+20 111 999 7599</li>
+            <li>info@connect4systems.com</li>
+            <li>Mokattam, Cairo</li>
+          </ul>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        <span>© <span data-current-year></span> Connect 4 Systems</span>
+        <span>Construction Management Page</span>
+      </div>
+    </footer>
+  </body>
+</html>
