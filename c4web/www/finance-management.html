@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>الادارة المالية | ERPNext v15</title>
+    <meta
+      name="description"
+      content="صفحة الادارة المالية من كونكت 4: محاسبة ERPNext v15 تشمل الأستاذ العام، مراكز التكلفة، التسويات البنكية، الإقفال المالي، والتقارير التنفيذية." 
+    />
+    <link rel="stylesheet" href="/assets/c4web/css/style.css" />
+    <script defer src="/assets/c4web/js/app.js"></script>
+  </head>
+  <body>
+    <div class="progress-line" data-scroll-progress></div>
+
+    <header class="site-header">
+      <div class="container header-wrap">
+        <a class="brand" href="/">
+          <span class="brand-mark">
+            <img
+              class="brand-logo"
+              src="{{ c4_logo_url or '/files/logo-erp.png' }}"
+              alt="Connect 4 Systems Logo"
+              onerror="this.onerror=null;this.src='/files/logo.png';"
+            />
+          </span>
+          <span class="brand-title">
+            <strong>Connect 4 Systems</strong>
+            <small>ERP, AI, Business Development</small>
+          </span>
+        </a>
+
+        <button class="menu-button" type="button" aria-label="فتح القائمة" aria-expanded="false" data-menu-toggle>
+          ☰
+        </button>
+
+        <div class="nav-panel" data-nav-shell>
+          <nav class="main-nav" aria-label="القائمة الرئيسية">
+            <a class="c4-nav-link" href="/">الرئيسية</a>
+
+            <div class="c4-nav-dropdown" data-nav-dropdown>
+              <button class="c4-nav-toggle" type="button" aria-expanded="false">البرامج السحابية</button>
+              <div class="c4-dropdown-menu" role="menu">
+                <a href="/hr">ادارة الموارد البشرية</a>
+                <a href="/rent-app">ادارة الايجارات</a>
+                <a href="/finance-management">الادارة المالية</a>
+                <a href="/trade">إدارة المبيعات</a>
+                <a href="/crm">إدارة خدمة العملاء</a>
+                <a href="/inventory-management">إدارة المخازن</a>
+                <a href="/asset-management">إدارة الأصول</a>
+                <a href="/procurement-management">إدارة المشتريات</a>
+                <a href="/trade">إدارة الشحن الدولي</a>
+              </div>
+            </div>
+
+            <div class="c4-nav-dropdown" data-nav-dropdown>
+              <button class="c4-nav-toggle" type="button" aria-expanded="false">الحلول الكاملة</button>
+              <div class="c4-dropdown-menu" role="menu">
+                <a href="/retail-system">المحلات التجارية</a>
+                <a href="/trade">الشركات التجارية</a>
+                <a href="/rental-companies">شركات التأجير</a>
+                <a href="/factory">المصانع</a>
+                <a href="/construction">المقاولات</a>
+                <a href="/catalog">خطط الأسعار</a>
+                <a href="/contact">احجز جلسة تعريفية</a>
+              </div>
+            </div>
+
+            <a class="c4-nav-link" href="/catalog">خطط الأسعار</a>
+          </nav>
+          <a class="btn btn-primary" href="/contact">طلب عرض</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero section-tight">
+        <div class="container hero-grid">
+          <div class="reveal">
+            <div class="hero-tag-row">
+              <span class="badge badge-brand">Financial Management</span>
+              <span class="badge badge-ai">ERPNext v15</span>
+            </div>
+            <h1 class="hero-title">الادارة المالية الذكية بدقة محاسبية وتشغيلية</h1>
+            <p class="hero-text">
+              صممنا صفحة الادارة المالية بالاعتماد على إمكانيات ERPNext v15 حتى تحصل على دورة مالية كاملة:
+              قيود يومية، حسابات عملاء وموردين، تسويات بنكية، وإقفال مالي سريع مع تقارير دقيقة.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="/contact">احجز عرض الادارة المالية</a>
+              <a class="btn btn-outline" href="#finance-features">استعرض المزايا</a>
+            </div>
+            <div class="metric-row">
+              <article class="stat-card">
+                <strong data-counter="45" data-suffix="%">0</strong>
+                <span>تسريع دورة الإقفال المالي</span>
+              </article>
+              <article class="stat-card">
+                <strong data-counter="60" data-suffix="%">0</strong>
+                <span>تقليل الأعمال اليدوية المتكررة</span>
+              </article>
+              <article class="stat-card">
+                <strong data-counter="100" data-suffix="%">0</strong>
+                <span>وضوح قيود دفتر الأستاذ</span>
+              </article>
+            </div>
+          </div>
+
+          <aside class="hero-visual reveal" data-float="8">
+            <img class="hero-main-image" src="/files/trade1.jpg" alt="الادارة المالية" />
+            <div class="hero-overlay">
+              <div class="hero-panel">
+                <h3>دفتر أستاذ موحد</h3>
+                <p>كل حركة تنعكس تلقائيا على الحسابات، الأبعاد، ومراكز التكلفة.</p>
+              </div>
+              <div class="hero-panel">
+                <h3>لوحات مالية تنفيذية</h3>
+                <p>تقارير فورية عن الربحية، السيولة، والانحرافات قبل نهاية الشهر.</p>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="finance-features" class="section section-tight">
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="kicker">مكونات ERPNext v15 المالية</span>
+            <h2>كل ما يحتاجه المدير المالي في صفحة واحدة</h2>
+          </div>
+
+          <div class="cards cards-4">
+            <article class="card reveal">
+              <h3>General Ledger</h3>
+              <p>قيود محاسبية مترابطة مع البيع، الشراء، المخازن، والبنوك.</p>
+              <ul class="list-check">
+                <li>شجرة حسابات مرنة.</li>
+                <li>قيود يومية تلقائية.</li>
+                <li>تتبع دقيق لكل مرجع حركة.</li>
+              </ul>
+            </article>
+            <article class="card reveal">
+              <h3>Accounts Receivable & Payable</h3>
+              <p>تحكم كامل في ذمم العملاء والموردين مع خطط تحصيل وسداد.</p>
+              <ul class="list-check">
+                <li>جداول أعمار الديون.</li>
+                <li>متابعة فواتير متأخرة وتنبيهات.</li>
+                <li>ربط مباشر مع أوامر البيع والشراء.</li>
+              </ul>
+            </article>
+            <article class="card reveal">
+              <h3>Bank & Cash Management</h3>
+              <p>تسويات بنكية دورية وإدارة الخزائن والحركات النقدية.</p>
+              <ul class="list-check">
+                <li>Bank Reconciliation مبسط.</li>
+                <li>إثبات قيود الفرق تلقائيا.</li>
+                <li>متابعة التدفقات النقدية اليومية.</li>
+              </ul>
+            </article>
+            <article class="card reveal">
+              <h3>Cost Centers & Dimensions</h3>
+              <p>تحليل الربحية حسب الفرع، المشروع، القسم، أو خط المنتج.</p>
+              <ul class="list-check">
+                <li>مراكز تكلفة متعددة المستويات.</li>
+                <li>أبعاد مالية قابلة للتخصيص.</li>
+                <li>تقارير مقارنة أداء دقيقة.</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-tight">
+        <div class="container timeline reveal">
+          <article class="timeline-item">
+            <h4>1) تسجيل العمليات</h4>
+            <p>البيع والشراء والمخازن تولد قيودا مالية بشكل آلي دون ازدواج إدخال.</p>
+          </article>
+          <article class="timeline-item">
+            <h4>2) مراجعة وتسوية</h4>
+            <p>تسويات بنكية، مطابقة الذمم، واعتماد قيود التسوية بنظام صلاحيات واضح.</p>
+          </article>
+          <article class="timeline-item">
+            <h4>3) إقفال دوري</h4>
+            <p>إقفال شهري أسرع مع قوائم جاهزة: المركز المالي، الدخل، والتدفق النقدي.</p>
+          </article>
+          <article class="timeline-item">
+            <h4>4) تحليل الإدارة</h4>
+            <p>مؤشرات تنفيذية تربط الربحية بالأقسام والمنتجات لاتخاذ قرارات أسرع.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section section-tight">
+        <div class="container tab-shell reveal">
+          <div class="tab-nav" role="tablist" aria-label="تقارير الادارة المالية">
+            <button class="tab-button active" type="button" data-tab-target="profit" aria-selected="true">الربحية</button>
+            <button class="tab-button" type="button" data-tab-target="cash" aria-selected="false">التدفق النقدي</button>
+            <button class="tab-button" type="button" data-tab-target="budget" aria-selected="false">الموازنات</button>
+          </div>
+
+          <article class="tab-panel active" data-tab-panel="profit">
+            <figure class="tab-media">
+              <img src="/files/finance-report.jpg" alt="تقارير الربحية" onerror="this.onerror=null;this.src='/files/trade1.jpg';" />
+            </figure>
+            <div class="tab-content">
+              <h3>ربحية حسب المنتج والعميل والفرع</h3>
+              <p>اعرف أين تتحقق الأرباح فعليا وأين تتآكل الهوامش.</p>
+              <ul class="list-check">
+                <li>مقارنة الأداء بين الفترات.</li>
+                <li>تحليل الإيراد مقابل التكلفة المباشرة.</li>
+                <li>كشف الانحرافات قبل نهاية الفترة.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="tab-panel" data-tab-panel="cash">
+            <figure class="tab-media">
+              <img src="/files/pos.jpg" alt="التدفق النقدي" />
+            </figure>
+            <div class="tab-content">
+              <h3>رؤية لحظية للسيولة</h3>
+              <p>إدارة أقوى للتحصيل والمدفوعات وخطط السيولة قصيرة ومتوسطة المدى.</p>
+              <ul class="list-check">
+                <li>توقعات نقدية أسبوعية.</li>
+                <li>تنبيه مبكر لفجوات السيولة.</li>
+                <li>ربط مباشر مع البنوك والخزائن.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="tab-panel" data-tab-panel="budget">
+            <figure class="tab-media">
+              <img src="/files/factory.jpg" alt="الموازنات" />
+            </figure>
+            <div class="tab-content">
+              <h3>موازنات واقعية مرتبطة بالتنفيذ</h3>
+              <p>قارن المعتمد بالفعلي في كل مركز تكلفة واتخذ إجراء تصحيحي بسرعة.</p>
+              <ul class="list-check">
+                <li>انحرافات شهرية واضحة.</li>
+                <li>موافقة متعددة المستويات.</li>
+                <li>حوكمة مالية متكاملة.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section section-tight">
+        <div class="container">
+          <div class="cta-band reveal">
+            <div>
+              <h3>جاهز لتطوير الادارة المالية في ERPNext v15؟</h3>
+              <p>نجهز لك نموذج تشغيل مالي متكامل يشمل الإعداد، الترحيل، التدريب، ولوحات المتابعة.</p>
+            </div>
+            <a class="btn btn-accent" href="/contact">ابدأ مشروع الادارة المالية</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div class="footer-col">
+          <h4>Financial Management</h4>
+          <p>محتوى محاسبي عملي مبني على قدرات ERPNext v15 للشركات العربية.</p>
+        </div>
+        <div class="footer-col">
+          <h4>حلول مرتبطة</h4>
+          <ul>
+            <li><a href="/inventory-management">إدارة المخازن</a></li>
+            <li><a href="/asset-management">إدارة الأصول</a></li>
+            <li><a href="/procurement-management">إدارة المشتريات</a></li>
+            <li><a href="/about">عملائنا</a></li>
+            <li><a href="/contact">تواصل</a></li>
+            <li><a href="/blog-list">المدونة</a></li>
+            <li><a href="/app">تسجيل الدخول</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>مركز المعرفة</h4>
+          <ul>
+            <li><a href="/blog-list">أدلة محاسبة ERPNext</a></li>
+            <li><a href="/blog-post">أفضل ممارسات الإقفال المالي</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>تواصل</h4>
+          <ul>
+            <li>+20 111 999 7599</li>
+            <li>info@connect4systems.com</li>
+            <li>Mokattam, Cairo</li>
+          </ul>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        <span>© <span data-current-year></span> Connect 4 Systems</span>
+        <span>Finance Management Page</span>
+      </div>
+    </footer>
+  </body>
+</html>

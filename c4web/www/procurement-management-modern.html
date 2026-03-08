@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>إدارة المشتريات | ERPNext v15</title>
+    <meta
+      name="description"
+      content="صفحة إدارة المشتريات من كونكت 4: دورة شراء ERPNext v15 من طلب الاحتياج حتى الاستلام والفاتورة مع تقييم الموردين وموافقات الشراء." 
+    />
+    <link rel="stylesheet" href="/assets/c4web/css/style.css" />
+    <script defer src="/assets/c4web/js/app.js"></script>
+  </head>
+  <body>
+    <div class="progress-line" data-scroll-progress></div>
+
+    <header class="site-header">
+      <div class="container header-wrap">
+        <a class="brand" href="/">
+          <span class="brand-mark">
+            <img
+              class="brand-logo"
+              src="{{ c4_logo_url or '/files/logo-erp.png' }}"
+              alt="Connect 4 Systems Logo"
+              onerror="this.onerror=null;this.src='/files/logo.png';"
+            />
+          </span>
+          <span class="brand-title">
+            <strong>Connect 4 Systems</strong>
+            <small>ERP, AI, Business Development</small>
+          </span>
+        </a>
+
+        <button class="menu-button" type="button" aria-label="فتح القائمة" aria-expanded="false" data-menu-toggle>
+          ☰
+        </button>
+
+        <div class="nav-panel" data-nav-shell>
+          <nav class="main-nav" aria-label="القائمة الرئيسية">
+            <a class="c4-nav-link" href="/">الرئيسية</a>
+
+            <div class="c4-nav-dropdown" data-nav-dropdown>
+              <button class="c4-nav-toggle" type="button" aria-expanded="false">البرامج السحابية</button>
+              <div class="c4-dropdown-menu" role="menu">
+                <a href="/hr">ادارة الموارد البشرية</a>
+                <a href="/rent-app">ادارة الايجارات</a>
+                <a href="/finance-management">الادارة المالية</a>
+                <a href="/trade">إدارة المبيعات</a>
+                <a href="/crm">إدارة خدمة العملاء</a>
+                <a href="/inventory-management">إدارة المخازن</a>
+                <a href="/asset-management">إدارة الأصول</a>
+                <a href="/procurement-management">إدارة المشتريات</a>
+                <a href="/trade">إدارة الشحن الدولي</a>
+              </div>
+            </div>
+
+            <div class="c4-nav-dropdown" data-nav-dropdown>
+              <button class="c4-nav-toggle" type="button" aria-expanded="false">الحلول الكاملة</button>
+              <div class="c4-dropdown-menu" role="menu">
+                <a href="/retail-system">المحلات التجارية</a>
+                <a href="/trade">الشركات التجارية</a>
+                <a href="/rental-companies">شركات التأجير</a>
+                <a href="/factory">المصانع</a>
+                <a href="/construction">المقاولات</a>
+                <a href="/catalog">خطط الأسعار</a>
+                <a href="/contact">احجز جلسة تعريفية</a>
+              </div>
+            </div>
+
+            <a class="c4-nav-link" href="/catalog">خطط الأسعار</a>
+          </nav>
+          <a class="btn btn-primary" href="/contact">طلب عرض</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero section-tight">
+        <div class="container hero-grid">
+          <div class="reveal">
+            <div class="hero-tag-row">
+              <span class="badge badge-brand">Procurement Management</span>
+              <span class="badge badge-ai">ERPNext v15</span>
+            </div>
+            <h1 class="hero-title">إدارة المشتريات من الطلب الداخلي حتى التوريد والفاتورة</h1>
+            <p class="hero-text">
+              تعيد هذه الصفحة تصميم رحلة المشتريات على ERPNext v15 بطريقة عملية: طلب احتياج،
+              طلب عروض أسعار، مقارنة موردين، أمر شراء، استلام، وفاتورة مورد ضمن مسار موافقات واضح.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="/contact">احجز عرض إدارة المشتريات</a>
+              <a class="btn btn-outline" href="#procurement-features">استعرض الدورة</a>
+            </div>
+          </div>
+
+          <aside class="hero-visual reveal" data-float="8">
+            <img class="hero-main-image" src="/files/trade1.jpg" alt="إدارة المشتريات" />
+            <div class="hero-overlay">
+              <div class="hero-panel">
+                <h3>Source to Pay</h3>
+                <p>رحلة شراء موحدة تقلل الفاقد وتضبط الالتزام بالميزانيات.</p>
+              </div>
+              <div class="hero-panel">
+                <h3>Supplier Intelligence</h3>
+                <p>تقييم الموردين حسب السعر، الجودة، والانضباط في التسليم.</p>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="procurement-features" class="section section-tight">
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="kicker">قدرات ERPNext v15 للمشتريات</span>
+            <h2>حوكمة شراء أقوى وتكلفة أدق</h2>
+          </div>
+          <div class="cards cards-4">
+            <article class="card reveal">
+              <h3>Material Request</h3>
+              <p>بدء العملية من طلب احتياج داخلي مع موافقات حسب السقف المالي.</p>
+            </article>
+            <article class="card reveal">
+              <h3>RFQ & Quotations</h3>
+              <p>إرسال RFQ لعدة موردين ومقارنة عروض الأسعار في شاشة واحدة.</p>
+            </article>
+            <article class="card reveal">
+              <h3>Purchase Order & Receipt</h3>
+              <p>إنشاء أمر شراء، متابعة الاستلام الجزئي، وربط الجودة بالمخازن.</p>
+            </article>
+            <article class="card reveal">
+              <h3>Purchase Invoice</h3>
+              <p>مطابقة الفاتورة مع الاستلام وأمر الشراء قبل الاعتماد المالي.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-tight">
+        <div class="container timeline reveal">
+          <article class="timeline-item">
+            <h4>1) طلب احتياج</h4>
+            <p>الأقسام تطلب الكميات مع توثيق سبب الطلب والأولوية.</p>
+          </article>
+          <article class="timeline-item">
+            <h4>2) طلب عروض</h4>
+            <p>إرسال RFQ آلي ومقارنة الموردين على السعر والمهلة والجودة.</p>
+          </article>
+          <article class="timeline-item">
+            <h4>3) أمر شراء واستلام</h4>
+            <p>اعتماد أمر الشراء ثم الاستلام المرحلي وربط المخزون والتكلفة.</p>
+          </article>
+          <article class="timeline-item">
+            <h4>4) مطابقة وفاتورة</h4>
+            <p>مطابقة 3-Way Match قبل السداد لتقليل أخطاء الموردين.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section section-tight">
+        <div class="container tab-shell reveal">
+          <div class="tab-nav" role="tablist" aria-label="تقارير إدارة المشتريات">
+            <button class="tab-button active" type="button" data-tab-target="suppliers" aria-selected="true">الموردون</button>
+            <button class="tab-button" type="button" data-tab-target="spend" aria-selected="false">الإنفاق</button>
+            <button class="tab-button" type="button" data-tab-target="contracts" aria-selected="false">العقود</button>
+          </div>
+
+          <article class="tab-panel active" data-tab-panel="suppliers">
+            <figure class="tab-media">
+              <img src="/files/pos.jpg" alt="تقييم الموردين" />
+            </figure>
+            <div class="tab-content">
+              <h3>تقييم موردين بالأرقام</h3>
+              <p>قارن الموردين حسب الالتزام، الجودة، وفروق الأسعار بوضوح كامل.</p>
+              <ul class="list-check">
+                <li>درجة أداء لكل مورد.</li>
+                <li>تحليل تأخير التسليم.</li>
+                <li>متابعة مرتجعات الشراء.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="tab-panel" data-tab-panel="spend">
+            <figure class="tab-media">
+              <img src="/files/trade1.jpg" alt="تحليل الإنفاق" />
+            </figure>
+            <div class="tab-content">
+              <h3>تحليل إنفاق المشتريات</h3>
+              <p>اعرف أين تذهب الميزانية وركز على البنود الأعلى تأثيرا.</p>
+              <ul class="list-check">
+                <li>تحليل إنفاق حسب الفئة.</li>
+                <li>تتبع وفورات التفاوض.</li>
+                <li>تقارير انحراف الميزانية.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="tab-panel" data-tab-panel="contracts">
+            <figure class="tab-media">
+              <img src="/files/factory.jpg" alt="إدارة العقود" />
+            </figure>
+            <div class="tab-content">
+              <h3>ضبط العقود والتجديدات</h3>
+              <p>إدارة أفضل للعقود طويلة الأجل والتنبيهات قبل انتهاء التعاقد.</p>
+              <ul class="list-check">
+                <li>تواريخ تجديد تلقائية.</li>
+                <li>مقارنة شروط التوريد.</li>
+                <li>تحكم أقوى في الالتزامات.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section section-tight">
+        <div class="container">
+          <div class="cta-band reveal">
+            <div>
+              <h3>هل تريد تقليل تكلفة الشراء بدون التأثير على الجودة؟</h3>
+              <p>نصمم لك دورة مشتريات ERPNext v15 مع حوكمة موافقات وتقارير إنفاق تنفيذية.</p>
+            </div>
+            <a class="btn btn-accent" href="/contact">ابدأ إدارة المشتريات</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div class="footer-col">
+          <h4>Procurement Management</h4>
+          <p>دورة شراء مؤسسية تقلل الهدر وترفع جودة التوريد.</p>
+        </div>
+        <div class="footer-col">
+          <h4>حلول مرتبطة</h4>
+          <ul>
+            <li><a href="/finance-management">الادارة المالية</a></li>
+            <li><a href="/inventory-management">إدارة المخازن</a></li>
+            <li><a href="/asset-management">إدارة الأصول</a></li>
+            <li><a href="/about">عملائنا</a></li>
+            <li><a href="/contact">تواصل</a></li>
+            <li><a href="/blog-list">المدونة</a></li>
+            <li><a href="/app">تسجيل الدخول</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>تواصل</h4>
+          <ul>
+            <li>+20 111 999 7599</li>
+            <li>info@connect4systems.com</li>
+            <li>Mokattam, Cairo</li>
+          </ul>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        <span>© <span data-current-year></span> Connect 4 Systems</span>
+        <span>Procurement Management Page</span>
+      </div>
+    </footer>
+  </body>
+</html>
