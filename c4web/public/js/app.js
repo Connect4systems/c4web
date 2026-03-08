@@ -6,6 +6,23 @@ document.addEventListener("DOMContentLoaded", () => {
   const navDropdowns = document.querySelectorAll("[data-nav-dropdown]");
   const isMobileNav = () => window.matchMedia("(max-width: 860px)").matches;
 
+  const ensureFavicon = () => {
+    const hasFavicon = document.head.querySelector("link[rel~='icon']");
+    if (hasFavicon) return;
+
+    const brandLogo = document.querySelector(".brand-logo");
+    const brandSrc = brandLogo instanceof HTMLImageElement ? (brandLogo.getAttribute("src") || "").trim() : "";
+    const faviconHref = brandSrc && !brandSrc.includes("{{") ? brandSrc : "/files/logo-erp.png";
+
+    const favicon = document.createElement("link");
+    favicon.rel = "icon";
+    favicon.type = "image/png";
+    favicon.href = faviconHref;
+    document.head.appendChild(favicon);
+  };
+
+  ensureFavicon();
+
   // Remove stale legacy menu label if an old cached template is still being served.
   navDropdowns.forEach((dropdown) => {
     const links = dropdown.querySelectorAll(".dropdown-menu a");
