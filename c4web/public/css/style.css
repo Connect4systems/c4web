@@ -303,6 +303,27 @@ ul {
   }
 }
 
+@media (min-width: 1100px) {
+  .header-wrap {
+    position: relative;
+  }
+
+  .nav-panel {
+    flex: 1;
+    margin-inline-start: 0;
+  }
+
+  .main-nav {
+    position: absolute;
+    inset-inline-start: 50%;
+    transform: translateX(-50%);
+  }
+
+  .site-header .btn-primary {
+    margin-inline-start: auto;
+  }
+}
+
 .wa-float {
   position: fixed;
   inset-inline-end: 18px;
