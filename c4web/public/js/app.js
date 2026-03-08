@@ -331,6 +331,95 @@ document.addEventListener("DOMContentLoaded", () => {
 
   setupImageFallbacks();
 
+  const SOCIAL_PROFILES = [
+    {
+      key: "facebook",
+      label: "Facebook",
+      url: "https://www.facebook.com/connect4egypt",
+      icon:
+        '<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M8.94 6.495H7.25V5.312c0-.453.3-.558.512-.558h1.38V2.45L7.237 2.443C5.003 2.443 4.494 4.11 4.494 5.172v1.323H3v2.39h1.494V16h3.06V8.885h2.066l.307-2.39z"/></svg>',
+    },
+    {
+      key: "tiktok",
+      label: "TikTok",
+      url: "https://www.tiktok.com/@connect4systems",
+      icon:
+        '<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M9 0h3a4 4 0 0 0 4 4v3a7 7 0 0 1-4-1.26V11a5 5 0 1 1-5-5h1v3H7a2 2 0 1 0 2 2V0z"/></svg>',
+    },
+    {
+      key: "linkedin",
+      label: "LinkedIn",
+      url: "https://www.linkedin.com/company/7695997/admin/page-posts/published/",
+      icon:
+        '<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.473 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.527 16 0 15.487 0 14.854V1.146zM4.943 13.394V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.432.568-.88 1.232-.88.869 0 1.216.664 1.216 1.637v3.864h2.401V9.252c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/></svg>',
+    },
+  ];
+
+  const createSocialLinks = ({ labeled = false } = {}) => {
+    const shell = document.createElement("div");
+    shell.className = labeled ? "social-links social-links-labeled" : "social-links";
+
+    SOCIAL_PROFILES.forEach((profile) => {
+      const link = document.createElement("a");
+      link.className = labeled ? "social-link social-link-labeled" : "social-link";
+      link.href = profile.url;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.setAttribute("aria-label", profile.label);
+      link.innerHTML = `
+        <span class="social-icon" aria-hidden="true">${profile.icon}</span>
+        ${labeled ? `<span class="social-label">${profile.label}</span>` : ""}
+      `;
+      shell.appendChild(link);
+    });
+
+    return shell;
+  };
+
+  const setupSocialMediaLinks = () => {
+    const footerColumns = document.querySelectorAll(".site-footer .footer-col");
+    const footerContactCol = Array.from(footerColumns).find((col) => {
+      const heading = (col.querySelector("h4")?.textContent || "").trim();
+      return heading.includes("تواصل");
+    });
+
+    if (footerContactCol && !footerContactCol.querySelector("[data-social-links='footer']")) {
+      const wrapper = document.createElement("div");
+      wrapper.className = "footer-social-wrap";
+      wrapper.dataset.socialLinks = "footer";
+
+      const title = document.createElement("p");
+      title.className = "social-links-title";
+      title.textContent = "تابعنا";
+
+      wrapper.appendChild(title);
+      wrapper.appendChild(createSocialLinks());
+      footerContactCol.appendChild(wrapper);
+    }
+
+    if (!currentPath.startsWith("/contact")) return;
+
+    const contactInfoCard = document.querySelector(".info-card");
+    if (!contactInfoCard || contactInfoCard.querySelector("[data-social-links='contact']")) return;
+
+    const insertAfter = contactInfoCard.querySelector(".hero-actions");
+    if (!insertAfter) return;
+
+    const contactSocial = document.createElement("div");
+    contactSocial.className = "contact-social";
+    contactSocial.dataset.socialLinks = "contact";
+
+    const title = document.createElement("p");
+    title.className = "social-links-title";
+    title.textContent = "تابعنا على المنصات";
+
+    contactSocial.appendChild(title);
+    contactSocial.appendChild(createSocialLinks({ labeled: true }));
+    insertAfter.insertAdjacentElement("afterend", contactSocial);
+  };
+
+  setupSocialMediaLinks();
+
   const DEFAULT_PARTNER_KICKER = "شركاء وكيانات نعمل معها";
   const DEFAULT_PARTNER_TITLE = "منظومة تعاون قوية تعزز سرعة التنفيذ";
 
