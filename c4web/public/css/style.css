@@ -918,82 +918,67 @@ select:focus-visible {
   border-radius: 18px;
   border: 1px solid var(--line);
   background: rgba(255, 255, 255, 0.84);
-  overflow: hidden;
-  padding: 14px 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 12px;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
 }
 
 .story-track {
   display: flex;
   align-items: stretch;
-  gap: 14px;
+  gap: 16px;
   width: max-content;
-  padding-inline: 14px;
-  animation: story-scroll 34s linear infinite;
-}
-
-.story-ribbon:hover .story-track {
-  animation-play-state: paused;
+  padding-inline: 2px;
 }
 
 .story-card {
-  min-width: min(560px, 86vw);
+  min-width: min(1120px, 92vw);
   display: grid;
-  grid-template-columns: 170px minmax(0, 1fr);
-  gap: 12px;
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: 16px;
   border-radius: 16px;
   border: 1px solid rgba(8, 45, 70, 0.14);
   background: #fff;
   box-shadow: var(--shadow-sm);
-  padding: 12px;
+  padding: 16px;
+  scroll-snap-align: start;
 }
 
 .story-logo {
   border-radius: 12px;
   border: 1px solid rgba(8, 45, 70, 0.12);
   background: linear-gradient(165deg, rgba(233, 245, 255, 0.86), rgba(247, 252, 255, 0.96));
-  min-height: 140px;
+  min-height: 180px;
   display: grid;
   place-items: center;
-  padding: 10px;
+  padding: 14px;
 }
 
 .story-logo img {
   max-width: 100%;
-  max-height: 116px;
+  max-height: 150px;
   object-fit: contain;
 }
 
 .story-content {
   display: grid;
-  gap: 8px;
+  gap: 10px;
   align-content: center;
 }
 
 .story-content h3 {
   margin: 0;
   line-height: 1.35;
+  font-size: clamp(1.25rem, 2.2vw, 1.85rem);
   font-family: "Cairo Play", "Alexandria", sans-serif;
 }
 
 .story-content p {
   margin: 0;
   color: var(--text-soft);
-  font-size: 0.88rem;
-}
-
-.story-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-@keyframes story-scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(50%);
-  }
+  font-size: 1rem;
 }
 
 .timeline {
@@ -1802,23 +1787,19 @@ textarea:focus {
   }
 
   .story-ribbon {
-    overflow-x: auto;
     padding: 10px;
-    scroll-snap-type: x mandatory;
   }
 
   .story-track {
-    animation: none;
     width: max-content;
   }
 
   .story-card {
-    min-width: 84vw;
+    min-width: 90vw;
     grid-template-columns: 1fr;
-    scroll-snap-align: start;
   }
 
   .story-logo {
-    min-height: 120px;
+    min-height: 140px;
   }
 }
