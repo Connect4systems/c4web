@@ -1,3 +1,5 @@
+import re
+
 import frappe
 from frappe import _
 
@@ -25,6 +27,16 @@ _TEXT_LIKE_FIELD_TYPES = {
     "Read Only",
 }
 
+_BLOG_IMAGE_FIELD_CANDIDATES = (
+    "image",
+    "meta_image",
+    "featured_image",
+    "cover_image",
+    "thumbnail",
+)
+
+_IMG_SRC_PATTERN = re.compile(r'<img[^>]+src=["\']([^"\']+)["\']', re.IGNORECASE)
+
 
 def _clean_text(value, max_len=0):
     if value is None:
@@ -47,6 +59,29 @@ def _clean_users(value):
         return ""
     # Keep numeric characters only so the value can be saved into Int/Data fields safely.
     return "".join(char for char in text if char.isdigit())
+
+
+def _normalize_web_url(value):
+    text = _clean_text(value, 500)
+    if not text:
+        return ""
+
+    if text.startswith(("http://", "https://", "//", "data:")):
+        return text
+    if text.startswith("/"):
+        return text
+    return f"/{text}"
+
+
+def _extract_first_image_from_html(html_text):
+    html_value = _clean_text(html_text, 20000)
+    if not html_value:
+        return ""
+
+    match = _IMG_SRC_PATTERN.search(html_value)
+    if not match:
+        return ""
+    return _normalize_web_url(match.group(1))
 
 
 def _coerce_field_value(field, raw_value):
@@ -279,3 +314,62 @@ def create_website_lead():
         "lead_name": lead.name,
         "message": _("تم استلام طلبك بنجاح، وسنتواصل معك قريبا"),
     }
+
+
+@frappe.whitelist(allow_guest=True)
+def get_partner_logos(limit=60):
+    """Return partner logos from published Blog Posts in category `partner`."""
+    try:
+        limit_value = int(limit)
+    except (TypeError, ValueError):
+        limit_value = 60
+
+    limit_value = max(1, min(limit_value, 200))
+
+    fields = ["name", "title", "route", "content", "blog_category", "published"]
+    fields.extend(_BLOG_IMAGE_FIELD_CANDIDATES)
+
+    posts = frappe.get_all(
+        "Blog Post",
+        filters=[
+            ["published", "=", 1],
+            ["blog_category", "in", ["partner", "Partner"]],
+        ],
+        fields=fields,
+        order_by="published_on desc, creation desc",
+        limit_page_length=limit_value,
+        ignore_permissions=True,
+    )
+
+    items = []
+    seen_urls = set()
+
+    for post in posts:
+        logo_url = ""
+
+        for fieldname in _BLOG_IMAGE_FIELD_CANDIDATES:
+            logo_url = _normalize_web_url(post.get(fieldname))
+            if logo_url:
+                break
+
+        if not logo_url:
+            logo_url = _extract_first_image_from_html(post.get("content"))
+
+        if not logo_url or logo_url in seen_urls:
+            continue
+
+        seen_urls.add(logo_url)
+
+        route = _clean_text(post.get("route"), 255)
+        if route and not route.startswith("/"):
+            route = f"/{route}"
+
+        items.append(
+            {
+                "title": _clean_text(post.get("title"), 140) or "partner",
+                "route": route or "/blog/partner",
+                "logo_url": logo_url,
+            }
+        )
+
+    return {"items": items}

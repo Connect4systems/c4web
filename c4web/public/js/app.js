@@ -331,6 +331,130 @@ document.addEventListener("DOMContentLoaded", () => {
 
   setupImageFallbacks();
 
+  const createPartnerSection = () => {
+    const section = document.createElement("section");
+    section.className = "section section-tight";
+    section.dataset.partnerLogosSection = "1";
+
+    section.innerHTML = `
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="kicker">شركاء وكيانات نعمل معها</span>
+          <h2>منظومة تعاون قوية تعزز سرعة التنفيذ</h2>
+        </div>
+        <div class="logo-ribbon reveal" aria-label="شعارات الشركاء">
+          <div class="logo-track" data-partner-logo-track></div>
+        </div>
+      </div>
+    `;
+
+    return section;
+  };
+
+  const fetchPartnerLogos = async () => {
+    const response = await fetch("/api/method/c4web.api.get_partner_logos?limit=120", {
+      method: "GET",
+      credentials: "same-origin",
+    });
+    const payload = await response.json().catch(() => ({}));
+
+    if (!response.ok || payload.exc) {
+      throw new Error("Failed to fetch partner logos");
+    }
+
+    const message = payload?.message;
+    const items = Array.isArray(message?.items) ? message.items : Array.isArray(message) ? message : [];
+
+    return items
+      .map((item) => ({
+        title: String(item?.title || "partner").trim(),
+        route: String(item?.route || "/blog/partner").trim(),
+        logo_url: String(item?.logo_url || "").trim(),
+      }))
+      .filter((item) => Boolean(item.logo_url));
+  };
+
+  const renderPartnerLogos = (track, logos) => {
+    if (!track || !logos.length) return;
+
+    const toCard = (item) => {
+      const card = document.createElement("div");
+      card.className = "logo-card";
+
+      const link = document.createElement("a");
+      link.href = item.route && item.route.startsWith("/") ? item.route : "/blog/partner";
+      link.setAttribute("aria-label", item.title || "partner");
+
+      const img = document.createElement("img");
+      img.src = item.logo_url;
+      img.alt = item.title || "partner";
+      img.loading = "lazy";
+      img.decoding = "async";
+
+      link.appendChild(img);
+      card.appendChild(link);
+      return card;
+    };
+
+    track.innerHTML = "";
+
+    // Duplicate the sequence for seamless infinite scrolling animation.
+    logos.forEach((item) => track.appendChild(toCard(item)));
+    logos.forEach((item) => track.appendChild(toCard(item)));
+  };
+
+  const setupPartnerLogos = async () => {
+    const main = document.querySelector("main");
+    if (!main) return;
+
+    let section = document.querySelector("[data-partner-logos-section]");
+    if (!section) {
+      const existingRibbon = main.querySelector(".logo-ribbon");
+      section = existingRibbon ? existingRibbon.closest("section") : null;
+    }
+
+    if (!section) {
+      section = createPartnerSection();
+    }
+
+    section.dataset.partnerLogosSection = "1";
+
+    const leadSection = main.querySelector("#lead-request");
+    if (leadSection) {
+      main.insertBefore(section, leadSection);
+    } else if (!section.parentElement || section.parentElement !== main) {
+      main.appendChild(section);
+    } else if (section !== main.lastElementChild) {
+      main.appendChild(section);
+    }
+
+    section.querySelectorAll(".reveal").forEach((item) => {
+      item.classList.add("revealed");
+    });
+
+    let track = section.querySelector("[data-partner-logo-track]");
+    if (!track) {
+      const ribbon = section.querySelector(".logo-ribbon");
+      if (!ribbon) return;
+      track = ribbon.querySelector(".logo-track");
+      if (track) {
+        track.setAttribute("data-partner-logo-track", "1");
+      }
+    }
+    if (!track) return;
+
+    try {
+      const logos = await fetchPartnerLogos();
+      if (!logos.length) return;
+      renderPartnerLogos(track, logos);
+      setupImageFallbacks();
+    } catch (_error) {
+      // Keep existing logos as fallback when API is unavailable.
+    }
+  };
+
+  setupPartnerLogos();
+
   const leadForms = document.querySelectorAll("[data-lead-form]");
   leadForms.forEach((form) => {
     form.addEventListener("submit", async (event) => {
