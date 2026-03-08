@@ -244,6 +244,133 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  const storyCarousels = document.querySelectorAll("[data-story-carousel]");
+  storyCarousels.forEach((carousel) => {
+    const track = carousel.querySelector(".story-track");
+    const slides = carousel.querySelectorAll(".story-card");
+    const prevButton = carousel.querySelector("[data-story-prev]");
+    const nextButton = carousel.querySelector("[data-story-next]");
+
+    if (!(track instanceof HTMLElement) || slides.length <= 1) {
+      if (prevButton instanceof HTMLButtonElement) {
+        prevButton.hidden = true;
+      }
+      if (nextButton instanceof HTMLButtonElement) {
+        nextButton.hidden = true;
+      }
+      return;
+    }
+
+    let activeIndex = 0;
+    let autoTimer = 0;
+    let touchStartX = 0;
+
+    const goToSlide = (nextIndex) => {
+      activeIndex = (nextIndex + slides.length) % slides.length;
+      track.style.transform = `translate3d(${-100 * activeIndex}%, 0, 0)`;
+      carousel.setAttribute("data-story-index", String(activeIndex));
+    };
+
+    const goNext = () => {
+      goToSlide(activeIndex + 1);
+    };
+
+    const goPrev = () => {
+      goToSlide(activeIndex - 1);
+    };
+
+    const stopAuto = () => {
+      if (!autoTimer) return;
+      window.clearInterval(autoTimer);
+      autoTimer = 0;
+    };
+
+    const startAuto = () => {
+      stopAuto();
+      autoTimer = window.setInterval(() => {
+        goNext();
+      }, 4600);
+    };
+
+    if (prevButton instanceof HTMLButtonElement) {
+      prevButton.addEventListener("click", () => {
+        goPrev();
+        startAuto();
+      });
+    }
+
+    if (nextButton instanceof HTMLButtonElement) {
+      nextButton.addEventListener("click", () => {
+        goNext();
+        startAuto();
+      });
+    }
+
+    carousel.addEventListener(
+      "touchstart",
+      (event) => {
+        const touch = event.changedTouches && event.changedTouches[0];
+        if (!touch) return;
+        touchStartX = touch.clientX;
+        stopAuto();
+      },
+      { passive: true }
+    );
+
+    carousel.addEventListener(
+      "touchend",
+      (event) => {
+        const touch = event.changedTouches && event.changedTouches[0];
+        if (!touch) {
+          startAuto();
+          return;
+        }
+
+        const deltaX = touch.clientX - touchStartX;
+        if (Math.abs(deltaX) > 40) {
+          if (deltaX < 0) {
+            goNext();
+          } else {
+            goPrev();
+          }
+        }
+
+        startAuto();
+      },
+      { passive: true }
+    );
+
+    carousel.addEventListener("mouseenter", () => {
+      stopAuto();
+    });
+
+    carousel.addEventListener("mouseleave", () => {
+      startAuto();
+    });
+
+    carousel.addEventListener("focusin", () => {
+      stopAuto();
+    });
+
+    carousel.addEventListener("focusout", (event) => {
+      const nextFocused = event.relatedTarget;
+      if (!(nextFocused instanceof Node) || !carousel.contains(nextFocused)) {
+        startAuto();
+      }
+    });
+
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) {
+        stopAuto();
+      } else {
+        startAuto();
+      }
+    });
+
+    goToSlide(0);
+    startAuto();
+  });
+
   const filterGroups = document.querySelectorAll("[data-filter-group]");
   filterGroups.forEach((group) => {
     const chips = group.querySelectorAll(".chip[data-filter]");
