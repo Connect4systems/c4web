@@ -293,10 +293,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const tabShells = document.querySelectorAll(".tab-shell");
   tabShells.forEach((shell) => {
-    const buttons = shell.querySelectorAll(".tab-button");
+    const buttons = Array.from(shell.querySelectorAll(".tab-button"));
     const panels = shell.querySelectorAll(".tab-panel");
 
     if (!buttons.length || !panels.length) return;
+
+    let autoTimer = 0;
+    const mobileOnlyAuto = shell.getAttribute("data-tab-mobile-auto") === "1";
+    const autoDelayMs = Number(shell.getAttribute("data-tab-auto-delay") || 4600);
+
+    const getActiveIndex = () => buttons.findIndex((button) => button.classList.contains("active"));
+
+    const scrollActiveIntoView = () => {
+      if (!isMobileNav()) return;
+
+      const activeButton = buttons[getActiveIndex()];
+      if (!(activeButton instanceof HTMLElement)) return;
+
+      activeButton.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "center"
+      });
+    };
 
     const activateTab = (id) => {
       buttons.forEach((button) => {
@@ -309,15 +328,95 @@ document.addEventListener("DOMContentLoaded", () => {
         const isActive = panel.dataset.tabPanel === id;
         panel.classList.toggle("active", isActive);
       });
+
+      scrollActiveIntoView();
     };
+
+    const stopAuto = () => {
+      if (!autoTimer) return;
+      window.clearTimeout(autoTimer);
+      autoTimer = 0;
+    };
+
+    const canAutoRotateTabs = () => {
+      if (!mobileOnlyAuto || !isMobileNav()) return false;
+      if (buttons.length <= 1) return false;
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return false;
+      return true;
+    };
+
+    const startAuto = () => {
+      stopAuto();
+      if (!canAutoRotateTabs()) return;
+
+      autoTimer = window.setTimeout(() => {
+        const currentIndex = getActiveIndex();
+        const safeIndex = currentIndex >= 0 ? currentIndex : 0;
+        const nextButton = buttons[(safeIndex + 1) % buttons.length];
+        const nextTarget = nextButton?.dataset.tabTarget;
+
+        if (nextTarget) {
+          activateTab(nextTarget);
+        }
+
+        startAuto();
+      }, autoDelayMs);
+    };
+
+    if (getActiveIndex() < 0 && buttons[0]?.dataset.tabTarget) {
+      activateTab(buttons[0].dataset.tabTarget);
+    } else {
+      scrollActiveIntoView();
+    }
 
     buttons.forEach((button) => {
       button.addEventListener("click", () => {
         const target = button.dataset.tabTarget;
         if (!target) return;
         activateTab(target);
+        startAuto();
       });
     });
+
+    shell.addEventListener("mouseenter", () => {
+      stopAuto();
+    });
+
+    shell.addEventListener("mouseleave", () => {
+      startAuto();
+    });
+
+    shell.addEventListener("focusin", () => {
+      stopAuto();
+    });
+
+    shell.addEventListener("focusout", (event) => {
+      const nextFocused = event.relatedTarget;
+      if (!(nextFocused instanceof Node) || !shell.contains(nextFocused)) {
+        startAuto();
+      }
+    });
+
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) {
+        stopAuto();
+      } else {
+        startAuto();
+      }
+    });
+
+    window.addEventListener("resize", () => {
+      if (!canAutoRotateTabs()) {
+        stopAuto();
+        return;
+      }
+
+      if (!autoTimer) {
+        startAuto();
+      }
+    });
+
+    startAuto();
   });
 
   const storyCarousels = document.querySelectorAll("[data-story-carousel]");

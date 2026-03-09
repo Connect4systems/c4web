@@ -1149,11 +1149,22 @@ select:focus-visible {
 
 .home-tab-shell .tab-button {
   border: 1px solid rgba(8, 45, 70, 0.12);
+  color: var(--brand-dark);
   background: #fff;
   white-space: nowrap;
 }
 
+.home-tab-shell .tab-button:hover,
+.home-tab-shell .tab-button:focus-visible {
+  border-color: rgba(15, 125, 143, 0.38);
+  color: var(--text);
+  transform: translateY(-1px);
+}
+
 .home-tab-shell .tab-button.active {
+  color: #fff;
+  background: linear-gradient(135deg, #0a6a7e 0%, #0f7d8f 58%, #1b4fa9 100%);
+  box-shadow: 0 12px 24px rgba(11, 71, 108, 0.24);
   border-color: transparent;
 }
 
@@ -1163,11 +1174,13 @@ select:focus-visible {
 
 .home-tab-shell .tab-panel.active {
   grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
-  align-items: stretch;
+  align-items: start;
 }
 
 .home-tab-shell .tab-media {
-  min-height: 300px;
+  min-height: 0;
+  height: 100%;
+  aspect-ratio: 16 / 10;
 }
 
 .home-tab-shell .tab-content {
@@ -1205,8 +1218,12 @@ select:focus-visible {
   animation: home-success-fade 760ms ease both;
 }
 
+.services-desktop-grid {
+  display: grid;
+}
+
 .services-mobile-carousel {
-  display: none;
+  display: none !important;
 }
 
 .service-story-card {
@@ -1921,15 +1938,16 @@ textarea:focus {
   }
 
   .home-tab-shell .tab-media {
-    min-height: 220px;
+    min-height: 0;
+    aspect-ratio: 4 / 3;
   }
 
   .services-desktop-grid {
-    display: none;
+    display: none !important;
   }
 
   .services-mobile-carousel {
-    display: block;
+    display: block !important;
   }
 
   .services-mobile-carousel .story-arrow {
