@@ -345,7 +345,13 @@ document.addEventListener("DOMContentLoaded", () => {
     let touchCurrentY = 0;
     const autoDelayMs = 4600;
     const forceAuto = carousel.getAttribute("data-story-force-auto") === "1";
-    const prefersReducedMotion = !forceAuto && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const mobileOnlyAuto = carousel.getAttribute("data-story-mobile-auto") === "1";
+
+    const canAutoRotate = () => {
+      if (mobileOnlyAuto && !isMobileNav()) return false;
+      if (!forceAuto && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return false;
+      return true;
+    };
 
     const goToSlide = (nextIndex) => {
       activeIndex = (nextIndex + slides.length) % slides.length;
@@ -369,7 +375,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const startAuto = () => {
       stopAuto();
-      if (prefersReducedMotion) return;
+      if (!canAutoRotate()) return;
 
       autoTimer = window.setTimeout(() => {
         goNext();
@@ -475,6 +481,17 @@ document.addEventListener("DOMContentLoaded", () => {
       if (document.hidden) {
         stopAuto();
       } else {
+        startAuto();
+      }
+    });
+
+    window.addEventListener("resize", () => {
+      if (!canAutoRotate()) {
+        stopAuto();
+        return;
+      }
+
+      if (!autoTimer) {
         startAuto();
       }
     });

@@ -1205,6 +1205,22 @@ select:focus-visible {
   animation: home-success-fade 760ms ease both;
 }
 
+.services-mobile-carousel {
+  display: none;
+}
+
+.service-story-card {
+  grid-template-columns: 1fr;
+}
+
+.service-story-card .card-image {
+  margin-bottom: 0;
+}
+
+.service-story-card .story-content {
+  align-content: start;
+}
+
 .case-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1906,6 +1922,24 @@ textarea:focus {
 
   .home-tab-shell .tab-media {
     min-height: 220px;
+  }
+
+  .services-desktop-grid {
+    display: none;
+  }
+
+  .services-mobile-carousel {
+    display: block;
+  }
+
+  .services-mobile-carousel .story-arrow {
+    display: none;
+  }
+
+  .services-mobile-carousel .story-ribbon,
+  .home-success-carousel .story-ribbon {
+    overflow: hidden;
+    scroll-snap-type: none;
   }
 
   .hero-visual {
