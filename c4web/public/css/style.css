@@ -744,6 +744,71 @@ select:focus-visible {
   font-size: 0.89rem;
 }
 
+.program-suite-section .section-head {
+  max-width: 920px;
+}
+
+.program-suite-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 14px;
+}
+
+.program-suite-card {
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--line);
+  background: #fff;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+}
+
+.program-suite-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(15, 125, 143, 0.26);
+}
+
+.program-suite-card .card-image {
+  margin: 0;
+  border: 0;
+  border-bottom: 1px solid rgba(8, 45, 70, 0.12);
+  border-radius: 0;
+  min-height: 148px;
+  aspect-ratio: 16 / 9;
+}
+
+.program-suite-card .card-image img {
+  transform: none;
+}
+
+.program-suite-card:hover .card-image img {
+  transform: scale(1.04);
+}
+
+.program-suite-body {
+  padding: 14px;
+  display: grid;
+  gap: 10px;
+}
+
+.program-suite-body h3 {
+  margin: 0;
+  font-size: 1.02rem;
+  line-height: 1.35;
+  font-family: "Cairo Play", "Alexandria", sans-serif;
+}
+
+.program-suite-body p {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 0.88rem;
+}
+
+.program-suite-link {
+  width: fit-content;
+}
+
 .pill-list {
   margin-top: 12px;
   display: flex;
@@ -2006,10 +2071,15 @@ textarea:focus {
   .industry-grid,
   .cards,
   .cards-4,
+  .program-suite-grid,
   .case-grid,
   .blog-grid,
   .gallery-grid {
     grid-template-columns: 1fr;
+  }
+
+  .program-suite-card .card-image {
+    min-height: 136px;
   }
 
   .home-tab-shell .tab-nav {
