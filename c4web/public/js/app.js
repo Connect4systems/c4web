@@ -5,6 +5,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const header = document.querySelector(".site-header");
   const navDropdowns = document.querySelectorAll("[data-nav-dropdown]");
   const isMobileNav = () => window.matchMedia("(max-width: 860px)").matches;
+  const normalizeMenuPath = (href) => {
+    if (!href) return "";
+
+    try {
+      const parsed = new URL(href, window.location.origin);
+      return (parsed.pathname || "/").replace(/\/+$/, "") || "/";
+    } catch {
+      const fallback = href.split(/[?#]/)[0].trim();
+      return fallback.replace(/\/+$/, "") || "/";
+    }
+  };
 
   const ensureFavicon = () => {
     const hasFavicon = document.head.querySelector("link[rel~='icon']");
@@ -25,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Remove stale legacy menu label if an old cached template is still being served.
   navDropdowns.forEach((dropdown) => {
-    const links = dropdown.querySelectorAll(".dropdown-menu a");
+    const links = dropdown.querySelectorAll(".c4-dropdown-menu a, .dropdown-menu a");
     links.forEach((link) => {
       const label = (link.textContent || "").replace(/\s+/g, " ").trim();
       if (!label.includes("الشحن")) return;
@@ -130,11 +141,12 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   const ensureCompleteSolutionsLinks = () => {
-    const linksToEnsure = [
+    const solutionLinksToEnsure = [
       { href: "/wells-solar", text: "الآبار والطاقة الشمسية" },
       { href: "/security-systems", text: "الأنظمة الأمنية" },
       { href: "/computer-networks", text: "الحاسوب والشبكات" },
     ];
+    const solutionMenuSeeds = new Set(["/retail-system", "/trade", "/rental-companies", "/factory", "/construction"]);
 
     navDropdowns.forEach((dropdown) => {
       const toggle = dropdown.querySelector(".c4-nav-toggle");
@@ -142,15 +154,22 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!(toggle instanceof HTMLElement) || !(menu instanceof HTMLElement)) return;
 
       const toggleLabel = (toggle.textContent || "").replace(/\s+/g, " ").trim();
-      if (!toggleLabel.includes("الحلول الكاملة")) return;
-
-      const pricingLink = Array.from(menu.querySelectorAll("a")).find((anchor) => {
-        return (anchor.getAttribute("href") || "").trim() === "/catalog";
+      const menuGroup = (toggle.getAttribute("data-nav-group") || "").trim();
+      const isSeededSolutionMenu = Array.from(menu.querySelectorAll("a")).some((anchor) => {
+        return solutionMenuSeeds.has(normalizeMenuPath(anchor.getAttribute("href")));
       });
 
-      linksToEnsure.forEach(({ href, text }) => {
+      if (!(menuGroup === "complete-solutions" || toggleLabel.includes("الحلول الكاملة") || isSeededSolutionMenu)) {
+        return;
+      }
+
+      const pricingLink = Array.from(menu.querySelectorAll("a")).find((anchor) => {
+        return normalizeMenuPath(anchor.getAttribute("href")) === "/catalog";
+      });
+
+      solutionLinksToEnsure.forEach(({ href, text }) => {
         const hasLink = Array.from(menu.querySelectorAll("a")).some((anchor) => {
-          return (anchor.getAttribute("href") || "").trim() === href;
+          return normalizeMenuPath(anchor.getAttribute("href")) === href;
         });
         if (hasLink) return;
 
@@ -321,6 +340,11 @@ document.addEventListener("DOMContentLoaded", () => {
     let activeIndex = 0;
     let autoTimer = 0;
     let touchStartX = 0;
+    let touchCurrentX = 0;
+    let touchStartY = 0;
+    let touchCurrentY = 0;
+    const autoDelayMs = 4600;
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     const goToSlide = (nextIndex) => {
       activeIndex = (nextIndex + slides.length) % slides.length;
@@ -338,15 +362,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const stopAuto = () => {
       if (!autoTimer) return;
-      window.clearInterval(autoTimer);
+      window.clearTimeout(autoTimer);
       autoTimer = 0;
     };
 
     const startAuto = () => {
       stopAuto();
-      autoTimer = window.setInterval(() => {
+      if (prefersReducedMotion) return;
+
+      autoTimer = window.setTimeout(() => {
         goNext();
-      }, 4600);
+        startAuto();
+      }, autoDelayMs);
     };
 
     if (prevButton instanceof HTMLButtonElement) {
@@ -368,8 +395,24 @@ document.addEventListener("DOMContentLoaded", () => {
       (event) => {
         const touch = event.changedTouches && event.changedTouches[0];
         if (!touch) return;
+
         touchStartX = touch.clientX;
+        touchCurrentX = touch.clientX;
+        touchStartY = touch.clientY;
+        touchCurrentY = touch.clientY;
         stopAuto();
+      },
+      { passive: true }
+    );
+
+    carousel.addEventListener(
+      "touchmove",
+      (event) => {
+        const touch = (event.touches && event.touches[0]) || (event.changedTouches && event.changedTouches[0]);
+        if (!touch) return;
+
+        touchCurrentX = touch.clientX;
+        touchCurrentY = touch.clientY;
       },
       { passive: true }
     );
@@ -378,13 +421,16 @@ document.addEventListener("DOMContentLoaded", () => {
       "touchend",
       (event) => {
         const touch = event.changedTouches && event.changedTouches[0];
-        if (!touch) {
-          startAuto();
-          return;
+
+        if (touch) {
+          touchCurrentX = touch.clientX;
+          touchCurrentY = touch.clientY;
         }
 
-        const deltaX = touch.clientX - touchStartX;
-        if (Math.abs(deltaX) > 40) {
+        const deltaX = touchCurrentX - touchStartX;
+        const deltaY = touchCurrentY - touchStartY;
+
+        if (Math.abs(deltaX) > 36 && Math.abs(deltaX) > Math.abs(deltaY)) {
           if (deltaX < 0) {
             goNext();
           } else {
@@ -392,6 +438,14 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         }
 
+        startAuto();
+      },
+      { passive: true }
+    );
+
+    carousel.addEventListener(
+      "touchcancel",
+      () => {
         startAuto();
       },
       { passive: true }

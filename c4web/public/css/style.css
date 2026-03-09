@@ -935,10 +935,13 @@ select:focus-visible {
   transition: transform 440ms ease;
   transform: translate3d(0, 0, 0);
   will-change: transform;
+  touch-action: pan-y;
 }
 
 .story-card {
+  flex: 0 0 100%;
   min-width: 100%;
+  max-width: 100%;
   display: grid;
   grid-template-columns: 240px minmax(0, 1fr);
   gap: 16px;
@@ -1835,6 +1838,15 @@ textarea:focus {
 
   .story-ribbon {
     border-radius: 14px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .story-ribbon::-webkit-scrollbar {
+    display: none;
   }
 
   .story-track {
@@ -1843,6 +1855,7 @@ textarea:focus {
 
   .story-card {
     min-width: 100%;
+    scroll-snap-align: start;
     grid-template-columns: 1fr;
     gap: 12px;
     padding: 14px;
