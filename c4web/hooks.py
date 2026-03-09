@@ -27,6 +27,7 @@ modern_website_route_rules = [
     {"from_route": "/about", "to_route": "about-modern"},
     {"from_route": "/contact", "to_route": "contact-modern"},
     {"from_route": "/solution-template", "to_route": "solution-template-modern"},
+    {"from_route": "/complete-solutions", "to_route": "complete-solutions-modern"},
     {"from_route": "/catalog", "to_route": "catalog-modern"},
     {"from_route": "/blog-list", "to_route": "blog-list-modern"},
     {"from_route": "/blog-post", "to_route": "blog-post-modern"},
@@ -158,6 +159,7 @@ legacy_website_route_rules = [
     {"from_route": "/ship", "to_route": "trade"},
     {"from_route": "/Account_system", "to_route": "trade"},
     {"from_route": "/web-development", "to_route": "solution-template"},
+    {"from_route": "/complete-solutions", "to_route": "complete-solutions"},
 
     {"from_route": "/recruitment", "to_route": "hr"},
     {"from_route": "/attendance", "to_route": "hr"},
