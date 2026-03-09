@@ -1180,10 +1180,29 @@ select:focus-visible {
   font-size: clamp(1.25rem, 2.2vw, 1.75rem);
 }
 
+@keyframes home-success-fade {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 .home-success-stories .section-head,
 .home-success-stories .story-carousel {
   opacity: 1;
   transform: none;
+}
+
+.home-success-stories .section-head {
+  animation: home-success-fade 520ms ease both;
+}
+
+.home-success-stories .story-carousel {
+  animation: home-success-fade 760ms ease both;
 }
 
 .case-grid {

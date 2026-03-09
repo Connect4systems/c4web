@@ -344,7 +344,8 @@ document.addEventListener("DOMContentLoaded", () => {
     let touchStartY = 0;
     let touchCurrentY = 0;
     const autoDelayMs = 4600;
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const forceAuto = carousel.getAttribute("data-story-force-auto") === "1";
+    const prefersReducedMotion = !forceAuto && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     const goToSlide = (nextIndex) => {
       activeIndex = (nextIndex + slides.length) % slides.length;
