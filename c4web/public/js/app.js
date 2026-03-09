@@ -146,7 +146,6 @@ document.addEventListener("DOMContentLoaded", () => {
       { href: "/security-systems", text: "الأنظمة الأمنية" },
       { href: "/computer-networks", text: "الحاسوب والشبكات" },
     ];
-    const solutionMenuSeeds = new Set(["/retail-system", "/trade", "/rental-companies", "/factory", "/construction"]);
 
     navDropdowns.forEach((dropdown) => {
       const toggle = dropdown.querySelector(".c4-nav-toggle");
@@ -155,11 +154,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const toggleLabel = (toggle.textContent || "").replace(/\s+/g, " ").trim();
       const menuGroup = (toggle.getAttribute("data-nav-group") || "").trim();
-      const isSeededSolutionMenu = Array.from(menu.querySelectorAll("a")).some((anchor) => {
-        return solutionMenuSeeds.has(normalizeMenuPath(anchor.getAttribute("href")));
-      });
 
-      if (!(menuGroup === "complete-solutions" || toggleLabel.includes("الحلول الكاملة") || isSeededSolutionMenu)) {
+      if (!(menuGroup === "complete-solutions" || toggleLabel.includes("الحلول الكاملة"))) {
         return;
       }
 
