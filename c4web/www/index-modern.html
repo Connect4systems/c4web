@@ -117,7 +117,7 @@
             </div>
 
             <div class="c4-nav-dropdown" data-nav-dropdown>
-              <button class="c4-nav-toggle" type="button" aria-expanded="false">الحلول الكاملة</button>
+              <button class="c4-nav-toggle" type="button" aria-expanded="false" data-nav-group="complete-solutions">الحلول الكاملة</button>
               <div class="c4-dropdown-menu" role="menu">
                 <a href="/retail-system">المحلات التجارية</a>
                 <a href="/trade">الشركات التجارية</a>
@@ -201,49 +201,94 @@
       <section class="section section-tight">
         <div class="container">
           <div class="section-head reveal">
-            <span class="kicker">قطاعات نخدمها بعمق</span>
+            <span class="kicker">الحلول الكاملة للشركات</span>
             <h2>حلول متخصصة وليست قوالب عامة</h2>
             <p>
-              كل قطاع له نموذج تشغيل مختلف، لذلك نبني هيكل النظام على واقعك الفعلي: التجارة، التجزئة، المصانع،
-              الخدمات، والمقاولات.
+              هذه الخارطة متزامنة مع قائمة الحلول الكاملة في أعلى الصفحة. اختر نوع النشاط وشاهد حلول تشغيل فعلية
+              مبنية على الواقع وليست قوالب جاهزة.
             </p>
           </div>
 
-          <div class="industry-grid">
-            <article class="industry-card reveal">
-              <img src="https://connect4systems.com/files/222.jpg" alt="قطاع التجارة والتوزيع" />
-              <div class="industry-body">
-                <h4>التجارة والتوزيع</h4>
-                <p>تحكم لحظي في دورة البيع، المشتريات، والتحصيل.</p>
+          <div class="solution-sync reveal" data-filter-group data-filter-target="#specialized-solutions-grid">
+            <div class="chips" role="tablist" aria-label="تصفية الحلول المتخصصة">
+              <button class="chip active" type="button" data-filter="all">كل الحلول</button>
+              <button class="chip" type="button" data-filter="commercial">تجارية وبيع</button>
+              <button class="chip" type="button" data-filter="operations">تشغيل ومشروعات</button>
+              <button class="chip" type="button" data-filter="specialty">حلول تخصصية</button>
+            </div>
+          </div>
+
+          <div class="cards specialized-grid" id="specialized-solutions-grid">
+            <article class="card specialized-card reveal" data-category="commercial">
+              <div class="card-image">
+                <img src="/files/trade1.jpg" alt="حلول الشركات التجارية" />
               </div>
+              <h3>الشركات التجارية</h3>
+              <p>توحيد دورة البيع والمشتريات والتحصيل مع متابعة ربحية دقيقة لكل عميل وصنف.</p>
+              <a class="btn btn-outline" href="/trade">استعراض الحل</a>
             </article>
-            <article class="industry-card reveal">
-              <img src="https://connect4systems.com/files/s1.png" alt="قطاع التجزئة ونقاط البيع" />
-              <div class="industry-body">
-                <h4>التجزئة ونقاط البيع</h4>
-                <p>تجربة بيع أسرع مع جرد مركزي وربط الفروع.</p>
+
+            <article class="card specialized-card reveal" data-category="commercial">
+              <div class="card-image">
+                <img src="/files/pos.jpg" alt="حلول المحلات التجارية" />
               </div>
+              <h3>المحلات التجارية</h3>
+              <p>نقاط بيع أسرع، جرد مركزي، وربط الفروع في تجربة تشغيل واحدة.</p>
+              <a class="btn btn-outline" href="/retail-system">استعراض الحل</a>
             </article>
-            <article class="industry-card reveal">
-              <img src="https://connect4systems.com/files/sa1.png" alt="قطاع المصانع" />
-              <div class="industry-body">
-                <h4>المصانع والإنتاج</h4>
-                <p>تخطيط MRP، إدارة BOM، وتتبع الجودة والتكلفة.</p>
+
+            <article class="card specialized-card reveal" data-category="operations">
+              <div class="card-image">
+                <img src="/files/sa1.png" alt="حلول المصانع" />
               </div>
+              <h3>المصانع</h3>
+              <p>تخطيط MRP، إدارة BOM، ومراقبة التكلفة والجودة لكل أمر تشغيل.</p>
+              <a class="btn btn-outline" href="/factory">استعراض الحل</a>
             </article>
-            <article class="industry-card reveal">
-              <img src="https://connect4systems.com/files/OIP (2).jpeg" alt="قطاع الموارد البشرية" />
-              <div class="industry-body">
-                <h4>الموارد البشرية</h4>
-                <p>هيكل موظفين متكامل من التوظيف حتى الرواتب.</p>
+
+            <article class="card specialized-card reveal" data-category="operations">
+              <div class="card-image">
+                <img src="/files/OIP (3).jpeg" alt="حلول المقاولات" />
               </div>
+              <h3>المقاولات</h3>
+              <p>إدارة المشاريع والعقود والمشتريات والموقع التنفيذي ضمن منصة واحدة.</p>
+              <a class="btn btn-outline" href="/construction">استعراض الحل</a>
             </article>
-            <article class="industry-card reveal">
-              <img src="https://connect4systems.com/files/OIP (3).jpeg" alt="قطاع الخدمات والمشاريع" />
-              <div class="industry-body">
-                <h4>الخدمات والمشاريع</h4>
-                <p>حوكمة مهام، عقود، ونسب إنجاز مباشرة للإدارة.</p>
+
+            <article class="card specialized-card reveal" data-category="operations">
+              <div class="card-image">
+                <img src="/files/222.jpg" alt="حلول شركات التأجير" />
               </div>
+              <h3>شركات التأجير</h3>
+              <p>متابعة دورة الأصل المؤجر من الحجز إلى الفوترة والصيانة والتحصيل.</p>
+              <a class="btn btn-outline" href="/rental-companies">استعراض الحل</a>
+            </article>
+
+            <article class="card specialized-card reveal" data-category="specialty">
+              <div class="card-image">
+                <img src="/files/logo-02.png" alt="حلول الآبار والطاقة الشمسية" />
+              </div>
+              <h3>الآبار والطاقة الشمسية</h3>
+              <p>إدارة المواقع والفرق الميدانية والضمان والصيانة الدورية بدقة تشغيلية.</p>
+              <a class="btn btn-outline" href="/wells-solar">استعراض الحل</a>
+            </article>
+
+            <article class="card specialized-card reveal" data-category="specialty">
+              <div class="card-image">
+                <img src="/files/logo-s.jpg" alt="حلول الأنظمة الأمنية" />
+              </div>
+              <h3>الأنظمة الأمنية</h3>
+              <p>إدارة المشاريع الأمنية من التسعير والتركيب حتى عقود الصيانة وخدمة ما بعد البيع.</p>
+              <a class="btn btn-outline" href="/security-systems">استعراض الحل</a>
+            </article>
+
+            <article class="card specialized-card reveal" data-category="specialty">
+              <div class="card-image">
+                <img src="/files/recover.png" alt="حلول الحاسوب والشبكات" />
+              </div>
+              <h3>الحاسوب والشبكات</h3>
+              <p>إدارة أوامر التنفيذ والدعم الفني والمخزون التقني بعقود SLA قابلة للقياس.</p>
+              <a class="btn btn-outline" href="/computer-networks">استعراض الحل</a>
             </article>
           </div>
         </div>

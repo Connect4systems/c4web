@@ -817,6 +817,28 @@ select:focus-visible {
   color: var(--text-soft);
 }
 
+.solution-sync {
+  margin-bottom: 14px;
+}
+
+.specialized-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.specialized-card {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  background:
+    radial-gradient(260px 120px at 90% 0%, rgba(15, 125, 143, 0.1), transparent 62%),
+    var(--surface);
+}
+
+.specialized-card .btn {
+  margin-top: 4px;
+  width: 100%;
+}
+
 .kpi-band {
   border-radius: var(--radius-xl);
   padding: 26px;
@@ -1687,6 +1709,10 @@ textarea:focus {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
+  .specialized-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .cards-4,
   .cards,
   .case-grid,
@@ -1808,6 +1834,7 @@ textarea:focus {
   .form-grid,
   .visual-collage,
   .industry-grid,
+  .specialized-grid,
   .cards,
   .cards-4,
   .case-grid,
