@@ -1725,6 +1725,38 @@ textarea:focus {
   font-size: 0.86rem;
 }
 
+.footer-tech-logos {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tech-logo-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 30px;
+  border-radius: 8px;
+  border: 1px solid rgba(8, 45, 70, 0.14);
+  background: rgba(255, 255, 255, 0.94);
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+}
+
+.tech-logo-link:hover,
+.tech-logo-link:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+  border-color: rgba(15, 125, 143, 0.36);
+}
+
+.tech-logo-link img {
+  width: 28px;
+  height: 18px;
+  object-fit: contain;
+}
+
 .footer-col ul {
   display: grid;
   gap: 7px;
