@@ -8,25 +8,17 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-PCBW39D2');</script>
     <!-- End Google Tag Manager -->
-    <!-- Google tag (gtag.js) -->
-    {%- if c4_ga4_id %}
-    <script async src="https://www.googletagmanager.com/gtag/js?id={{ c4_ga4_id | e }}"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', '{{ c4_ga4_id | e }}');
-      gtag('config', 'AW-1001473338');
-    </script>
-    {%- else %}
+    <!-- Google tag (gtag.js) - Google Ads -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-1001473338"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'AW-1001473338');
+      {%- if c4_ga4_id %}
+      gtag('config', '{{ c4_ga4_id | e }}');
+      {%- endif %}
     </script>
-    {%- endif %}
     <!-- End Google tag -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
