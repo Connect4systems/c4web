@@ -34,15 +34,114 @@ This repository now contains the **Phase 2 full version**:
 - `docs/redirect-seed.csv`: redirect seed map
 - `docs/image-inventory-verified.txt`: verified image URLs used in the redesign
 
+## GitHub Authentication
+
+> **GitHub no longer accepts your account password for git operations.**
+> Since August 2021, you must use either an **SSH key** or a **Personal Access Token (PAT)**.
+> If you are prompted for a username/password and then see
+> `remote: Support for password authentication was removed`, follow one of the two options below.
+
+---
+
+### Option A — SSH key (recommended for servers)
+
+**Step 1 – generate a key on your server (if you don't already have one)**
+
+```bash
+ssh-keygen -t ed25519 -C "your-email@example.com"
+# Press Enter to accept the default path (~/.ssh/id_ed25519)
+# Set a passphrase or leave blank
+```
+
+**Step 2 – copy the public key**
+
+```bash
+cat ~/.ssh/id_ed25519.pub
+```
+
+**Step 3 – add the public key to GitHub**
+
+1. Go to **GitHub → your profile → Settings → SSH and GPG keys → New SSH key**
+2. Paste the output of the command above and save.
+
+**Step 4 – switch the remote URL to SSH**
+
+```bash
+cd ~/frappe-bench/apps/c4web
+
+# Check current remote URL
+git remote -v
+
+# Replace the HTTPS URL with the SSH URL
+git remote set-url origin git@github.com:Connect4systems/c4web.git
+
+# Verify
+git remote -v
+```
+
+**Step 5 – pull as normal**
+
+```bash
+git pull origin main
+```
+
+---
+
+### Option B — Personal Access Token (PAT)
+
+If you prefer HTTPS, replace your GitHub password with a PAT.
+
+**Step 1 – create a token on GitHub**
+
+1. Go to **GitHub → your profile → Settings → Developer settings → Personal access tokens → Tokens (classic) → Generate new token**
+2. Give it a name (e.g. "server-c4web"), set an expiration, and tick the **`repo`** scope.
+3. Click **Generate token** and copy it immediately — GitHub will not show it again.
+
+**Step 2 – use the token when git asks for a password**
+
+When you run `git pull` (or `bench get-app`), enter:
+
+- **Username**: your GitHub username (e.g. `Connect4systems`)
+- **Password**: paste the PAT you just copied (NOT your GitHub account password)
+
+**Step 3 (optional) – save the token so you are not asked again**
+
+```bash
+git config --global credential.helper store
+# Run git pull once more; enter credentials once; they are saved to ~/.git-credentials
+git pull origin main
+```
+
+---
+
 ## Bench Install (first time)
+
+> **Authentication required.** Before running `bench get-app`, make sure you have set up
+> either an SSH key or a PAT as described in the [GitHub Authentication](#github-authentication) section above.
+
+**Using SSH (recommended):**
 
 ```bash
 cd ~/frappe-bench
+rm -rf apps/c4web   # remove any old copy first
 
-# If needed, remove old app clone first
+bench get-app git@github.com:Connect4systems/c4web.git
+bench --site <your-site-name> install-app c4web
+bench --site <your-site-name> migrate
+bench build
+bench clear-cache
+bench --site <your-site-name> clear-website-cache
+bench restart
+```
+
+**Using HTTPS + PAT:**
+
+```bash
+cd ~/frappe-bench
 rm -rf apps/c4web
 
 bench get-app https://github.com/Connect4systems/c4web
+# When prompted: Username = your GitHub username, Password = your PAT
 bench --site <your-site-name> install-app c4web
 bench --site <your-site-name> migrate
 bench build
@@ -76,8 +175,8 @@ cd ~/frappe-bench/apps/c4web
 # Check current remotes (may be empty)
 git remote -v
 
-# Add the GitHub remote
-git remote add origin https://github.com/Connect4systems/c4web.git
+# Add the GitHub remote (SSH – no password needed)
+git remote add origin git@github.com:Connect4systems/c4web.git
 
 # Fetch and pull the latest code
 git fetch origin
@@ -101,8 +200,8 @@ cd ~/frappe-bench
 # Remove the manually-copied directory
 rm -rf apps/c4web
 
-# Re-clone via bench (this is the `bench get-app` command you may remember)
-bench get-app https://github.com/Connect4systems/c4web.git
+# Re-clone via bench using SSH (no password prompt)
+bench get-app git@github.com:Connect4systems/c4web.git
 
 # No need to re-run install-app if the site already has c4web installed
 bench --site <your-site-name> clear-cache
