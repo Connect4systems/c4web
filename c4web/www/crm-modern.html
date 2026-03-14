@@ -15,6 +15,9 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'AW-1001473338');
+      {%- if c4_ga4_id %}
+      gtag('config', '{{ c4_ga4_id | e }}');
+      {%- endif %}
     </script>
     <!-- End Google tag -->
     <meta charset="UTF-8" />

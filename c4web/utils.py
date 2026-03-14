@@ -5,6 +5,9 @@ import frappe
 
 _SRC_RE = re.compile(r"src=['\"]([^'\"]+)['\"]", re.IGNORECASE)
 
+# GA4 measurement IDs follow the format G-XXXXXXXXXX (G- + alphanumeric, case-insensitive).
+_GA4_ID_RE = re.compile(r"^G-[A-Za-z0-9]+$")
+
 
 def _extract_logo_from_brand_html(brand_html):
     if not brand_html:
@@ -43,3 +46,9 @@ def update_website_context(context):
 
     context.c4_partner_kicker = partner_kicker or "شركاء وكيانات نعمل معها"
     context.c4_partner_title = partner_title or "منظومة تعاون قوية تعزز سرعة التنفيذ"
+
+    # Google Analytics 4 (GA4) measurement ID.
+    # Store the G-XXXXXXXXXX value in Website Settings > google_analytics_id.
+    # Only accept valid GA4 IDs (G- followed by alphanumeric characters).
+    ga4_raw = (settings.get("google_analytics_id") or "").strip()
+    context.c4_ga4_id = ga4_raw if _GA4_ID_RE.match(ga4_raw) else ""
