@@ -146,6 +146,7 @@ document.addEventListener("DOMContentLoaded", () => {
       { href: "/security-systems", text: "الأنظمة الأمنية" },
       { href: "/computer-networks", text: "الحاسوب والشبكات" },
     ];
+    const solutionMenuSeeds = new Set(["/retail-system", "/trade", "/rental-companies", "/factory", "/construction"]);
 
     navDropdowns.forEach((dropdown) => {
       const toggle = dropdown.querySelector(".c4-nav-toggle");
@@ -154,8 +155,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const toggleLabel = (toggle.textContent || "").replace(/\s+/g, " ").trim();
       const menuGroup = (toggle.getAttribute("data-nav-group") || "").trim();
+      const isSeededSolutionMenu = Array.from(menu.querySelectorAll("a")).some((anchor) => {
+        return solutionMenuSeeds.has(normalizeMenuPath(anchor.getAttribute("href")));
+      });
 
-      if (!(menuGroup === "complete-solutions" || toggleLabel.includes("الحلول الكاملة"))) {
+      if (!(menuGroup === "complete-solutions" || toggleLabel.includes("الحلول الكاملة") || isSeededSolutionMenu)) {
         return;
       }
 
@@ -1085,36 +1089,4 @@ document.addEventListener("DOMContentLoaded", () => {
     waLink.innerHTML = '<img src="/files/WhatsApp.svg.webp" alt="واتساب" loading="lazy" />';
     body.appendChild(waLink);
   }
-
-  const setupElfsightChatbot = () => {
-    const scriptSrc = "https://elfsightcdn.com/platform.js";
-    const widgetClass = "elfsight-app-d237957c-adc1-4d28-9be7-8cad7316f08f";
-
-    const hasPlatformScript = Array.from(document.querySelectorAll("script[src]")).some((script) => {
-      if (!(script instanceof HTMLScriptElement)) return false;
-
-      try {
-        return new URL(script.src, window.location.origin).href === scriptSrc;
-      } catch {
-        return false;
-      }
-    });
-
-    if (!hasPlatformScript) {
-      // Elfsight AI Chatbot | Connect 4 Systems
-      const platformScript = document.createElement("script");
-      platformScript.src = scriptSrc;
-      platformScript.async = true;
-      document.body.appendChild(platformScript);
-    }
-
-    if (!document.querySelector(`.${widgetClass}`)) {
-      const widget = document.createElement("div");
-      widget.className = widgetClass;
-      widget.setAttribute("data-elfsight-app-lazy", "");
-      document.body.appendChild(widget);
-    }
-  };
-
-  setupElfsightChatbot();
 });
