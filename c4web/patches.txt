@@ -1,1 +1,2 @@
 c4web.patches.v1_0.remove_jobs_route_conflicts
+c4web.patches.v1_0.remove_legacy_web_pages

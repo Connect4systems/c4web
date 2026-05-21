@@ -1,5 +1,5 @@
 include requirements.txt
 include *.md
 include *.txt
-recursive-include c4web *.css *.html *.js *.json *.md *.png *.svg *.txt *.xml
+recursive-include c4web *.json *.md *.txt
 recursive-exclude c4web *.pyc
