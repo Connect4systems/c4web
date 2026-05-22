@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const brandLogo = document.querySelector(".brand-logo");
     const brandSrc = brandLogo instanceof HTMLImageElement ? (brandLogo.getAttribute("src") || "").trim() : "";
-    const faviconHref = brandSrc ? brandSrc : "https://connect4systems.com/files/logo-erp.png";
+    const faviconHref = brandSrc ? brandSrc : "/assets/images/site/logo-erp.png";
 
     const favicon = document.createElement("link");
     favicon.rel = "icon";
@@ -1004,7 +1004,7 @@ document.addEventListener("DOMContentLoaded", () => {
     waLink.target = "_blank";
     waLink.rel = "noopener noreferrer";
     waLink.setAttribute("aria-label", "تواصل عبر واتساب");
-    waLink.innerHTML = '<img src="https://connect4systems.com/files/WhatsApp.svg.webp" alt="واتساب" loading="lazy" />';
+    waLink.innerHTML = '<img src="/assets/images/site/whatsapp-svg.webp" alt="واتساب" loading="lazy" />';
     body.appendChild(waLink);
   }
 });

@@ -1,7 +1,7 @@
 from pathlib import Path
 import re
 
-ROOT = Path("c4web/www")
+ROOT = Path(".")
 
 HEAD_BLOCK = """    <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -31,6 +31,15 @@ BODY_BLOCK = """    <!-- Google Tag Manager (noscript) -->
 def normalize_file(path: Path) -> bool:
     s = path.read_text(encoding="utf-8", errors="ignore")
     original = s
+
+    if (
+        HEAD_BLOCK in s
+        and BODY_BLOCK in s
+        and s.count("googletagmanager.com/gtm.js?id=") == 1
+        and s.count("googletagmanager.com/gtag/js?id=AW-1001473338") == 1
+        and s.count("googletagmanager.com/ns.html?id=GTM-PCBW39D2") == 1
+    ):
+        return False
 
     # Remove first head GTM+gtag block if present
     s = re.sub(
